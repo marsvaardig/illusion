@@ -22,9 +22,9 @@
   // Logical properties?
   @if $illusion-logical-properties {
     @if ($subtractFrom) {
-      #{$property}: calc(#{$subtractFrom} - (var(--spacing) * #{$ms-amount}));
+      @include property("#{$property}", calc(#{$subtractFrom} - (var(--spacing) * #{$ms-amount})));
     } @else {
-      #{$property}: calc(var(--spacing) * #{$ms-amount});
+      @include property("#{$property}", calc(var(--spacing) * #{$ms-amount}));
     }
   } @else {
     // Default
