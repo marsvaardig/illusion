@@ -104,7 +104,7 @@ $illusion-custom-select-background:                           $illusion-form-bac
 $illusion-custom-select-width:                                100% !default;
 $illusion-custom-select-margin:                               0 !default;
 $illusion-custom-select-padding:                              ($spacing-xs - ($illusion-form-border-width * 2)) ($spacing-s - ($illusion-form-border-width * 2)) !default;
-$illusion-custom-select-outline:                              none !default;
+$illusion-custom-select-outline:                              transparent !default;
 $illusion-custom-select-height:                               $illusion-form-input-min-height - ($illusion-form-border-width * 2) !default;
 $illusion-custom-select-multiple-height:                      $illusion-custom-select-height * 2 !default;
 $illusion-custom-select-box-sizing:                           border-box !default;
