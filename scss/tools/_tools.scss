@@ -3,6 +3,9 @@
 
 $illusion-display-warnings: true !default;
 
+// Map collect is being used by logical properties variables
+@import "functions/mapCollect";
+
 @import "variables/spacing";
 @import "variables/breakpoints";
 @import "variables/type";

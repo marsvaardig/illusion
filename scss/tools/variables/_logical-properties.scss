@@ -1,15 +1,19 @@
 // Logical properties
 
 $illusion-logical-properties: false !default;
-$illusion-logical-properties-map: (
-    // Sizing
+
+// Sizing
+$illusion-logical-properties-sizing: (
     "width": "inline-size",
     "min-width": "min-inline-size",
     "max-width": "max-inline-size",
     "height": "block-size",
     "min-height": "min-block-size",
-    "max-height": "max-block-size",
-    // Border
+    "max-height": "max-block-size"
+) !default;
+
+// Border
+$illusion-logical-properties-border: (
     "border-top": "border-block-start",
     "border-top-color": "border-block-start-color",
     "border-top-style": "border-block-start-style",
@@ -29,27 +33,63 @@ $illusion-logical-properties-map: (
     "border-top-left-radius": "border-start-start-radius",
     "border-top-right-radius": "border-start-end-radius",
     "border-bottom-left-radius": "border-end-start-radius",
-    "border-bottom-right-radius": "border-end-end-radius",
-    // Margin
+    "border-bottom-right-radius": "border-end-end-radius"
+) !default;
+
+// Margin
+$illusion-logical-properties-margin: (
     "margin-top": "margin-block-start",
     "margin-right": "margin-inline-end",
     "margin-bottom": "margin-block-end",
-    "margin-left": "margin-inline-start",
-    // Padding
+    "margin-left": "margin-inline-start"
+) !default;
+
+// Padding
+$illusion-logical-properties-padding: (
     "padding-top": "padding-block-start",
     "padding-right": "padding-inline-end",
     "padding-bottom": "padding-block-end",
-    "padding-left": "padding-inline-start",
-    // Positioning
+    "padding-left": "padding-inline-start"
+) !default;
+
+// Positioning
+$illusion-logical-properties-positioning: (
     "top": "inset-block-start",
     "right": "inset-inline-end",
     "bottom": "inset-block-end",
-    "left": "inset-inline-start",
-    // Overflow
-    "overflow-x": "overflow-inline",
-    "overflow-y": "overflow-block",
-    // For values
-    "float": "float",
-    "clear": "clear",
-    "text-align": "text-align",
+    "left": "inset-inline-start"
 ) !default;
+
+// Overflow
+$illusion-logical-properties-overflow: (
+    "overflow-x": "overflow-inline",
+    "overflow-y": "overflow-block"
+) !default;
+
+// Float
+$illusion-logical-properties-float: (
+    "float": "float",
+) !default;
+
+// Clear
+$illusion-logical-properties-clear: (
+    "clear": "clear",
+) !default;
+
+// Text-align
+$illusion-logical-properties-text-align: (
+    "text-align": "text-align"
+) !default;
+
+// Merged map
+$illusion-logical-properties-map: map-collect(
+        $illusion-logical-properties-sizing,
+        $illusion-logical-properties-border,
+        $illusion-logical-properties-margin,
+        $illusion-logical-properties-padding,
+        $illusion-logical-properties-positioning,
+        $illusion-logical-properties-overflow,
+        $illusion-logical-properties-float,
+        $illusion-logical-properties-clear,
+        $illusion-logical-properties-text-align,
+);
