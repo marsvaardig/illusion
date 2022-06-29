@@ -37,11 +37,19 @@
           @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        #{$type}-top: $spacing - $subtract;
+        @if $illusion-logical-properties {
+          @include property("#{$type}-top", $spacing - $subtract);
+        } @else {
+          #{$type}-top: $spacing - $subtract;
+        }
 
         @if $lastchildnone != false {
           &:last-child {
-            #{$type}-top: 0;
+            @if $illusion-logical-properties {
+              @include property("#{$type}-top", 0);
+            } @else {
+              #{$type}-top: 0;
+            }
           }
         }
       }
@@ -52,11 +60,19 @@
           @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        #{$type}-right: $spacing - $subtract;
+        @if $illusion-logical-properties {
+          @include property("#{$type}-right", $spacing - $subtract);
+        } @else {
+          #{$type}-right: $spacing - $subtract;
+        }
 
         @if $lastchildnone != false {
           &:last-child {
-            #{$type}-right: 0;
+            @if $illusion-logical-properties {
+              @include property("#{$type}-right", 0);
+            } @else {
+              #{$type}-right: 0;
+            }
           }
         }
       }
@@ -67,11 +83,19 @@
           @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        #{$type}-bottom: $spacing - $subtract;
+        @if $illusion-logical-properties {
+          @include property("#{$type}-bottom", $spacing - $subtract);
+        } @else {
+          #{$type}-bottom: $spacing - $subtract;
+        }
 
         @if $lastchildnone != false {
           &:last-child {
-            #{$type}-bottom: 0;
+            @if $illusion-logical-properties {
+              @include property("#{$type}-bottom", 0);
+            } @else {
+              #{$type}-bottom: 0;
+            }
           }
         }
       }
@@ -82,11 +106,19 @@
           @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        #{$type}-left: $spacing - $subtract;
+        @if $illusion-logical-properties {
+          @include property("#{$type}-left", $spacing - $subtract);
+        } @else {
+          #{$type}-left: $spacing - $subtract;
+        }
 
         @if $lastchildnone != false {
           &:last-child {
-            #{$type}-left: 0;
+            @if $illusion-logical-properties {
+              @include property("#{$type}-left", 0);
+            } @else {
+              #{$type}-left: 0;
+            }
           }
         }
       }
