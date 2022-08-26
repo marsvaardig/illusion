@@ -1,6 +1,14 @@
 // Cover the entire parent element
 
-@mixin coverall($offset: $illusion-coverall-offset, $top: $illusion-coverall-top, $right: $illusion-coverall-right, $bottom: $illusion-coverall-bottom, $left: $illusion-coverall-left, $position: $illusion-coverall-position, $reset: $illusion-coverall-reset) {
+@mixin coverall(
+  $offset: $illusion-coverall-offset,
+  $top: $illusion-coverall-top,
+  $right: $illusion-coverall-right,
+  $bottom: $illusion-coverall-bottom,
+  $left: $illusion-coverall-left,
+  $position: $illusion-coverall-position,
+  $reset: $illusion-coverall-reset
+) {
   @if $position != false {
     position: $position;
   }

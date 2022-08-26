@@ -2,7 +2,16 @@
 
 @use "sass:math";
 
-@mixin gallery($span: $illusion-gallery-span, $fromto: $illusion-gallery-fromto, $multiplier: $illusion-gallery-multiplier, $bottom: $illusion-gallery-bottom, $defaults: $illusion-gallery-defaults, $gutter: $illusion-gallery-gutter, $includeWidth: $illusion-gallery-includeWidth, $includeMargin: $illusion-gallery-includeMargin) {
+@mixin gallery(
+  $span: $illusion-gallery-span,
+  $fromto: $illusion-gallery-fromto,
+  $multiplier: $illusion-gallery-multiplier,
+  $bottom: $illusion-gallery-bottom,
+  $defaults: $illusion-gallery-defaults,
+  $gutter: $illusion-gallery-gutter,
+  $includeWidth: $illusion-gallery-includeWidth,
+  $includeMargin: $illusion-gallery-includeMargin
+) {
 
   // Span values
   $spanColumns: nth($span, 1);

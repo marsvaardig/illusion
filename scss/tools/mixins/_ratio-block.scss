@@ -1,6 +1,10 @@
 // Aspect ratio blocks
 
-@mixin ratio-block($ratio: $illusion-ratio-block, $overflow: $illusion-ratio-block-overflow, $after: $illusion-ratio-block-after) {
+@mixin ratio-block(
+  $ratio: $illusion-ratio-block,
+  $overflow: $illusion-ratio-block-overflow,
+  $after: $illusion-ratio-block-after
+) {
 
   // Get percentage
   $percent: calculateRatio($ratio);

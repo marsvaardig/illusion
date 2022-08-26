@@ -1,6 +1,12 @@
 // Reset elements
 
-@mixin reset($margin: $illusion-reset-margin, $padding: $illusion-reset-padding, $list-style: $illusion-reset-list-style, $border: $illusion-reset-border, $background: $illusion-reset-background) {
+@mixin reset(
+  $margin: $illusion-reset-margin,
+  $padding: $illusion-reset-padding,
+  $list-style: $illusion-reset-list-style,
+  $border: $illusion-reset-border,
+  $background: $illusion-reset-background
+) {
   @if $margin != false {
     @include property("margin", $margin);
   }

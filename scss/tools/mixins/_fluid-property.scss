@@ -2,7 +2,13 @@
 
 @use "sass:math";
 
-@mixin fluid-property($property, $min-value: $illusion-fluid-property-min-value, $max-value: $illusion-fluid-property-max-value, $min-screen: $illusion-fluid-property-min-screen, $max-screen: $illusion-fluid-property-max-screen) {
+@mixin fluid-property(
+  $property,
+  $min-value: $illusion-fluid-property-min-value,
+  $max-value: $illusion-fluid-property-max-value,
+  $min-screen: $illusion-fluid-property-min-screen,
+  $max-screen: $illusion-fluid-property-max-screen
+) {
 
   // Variables
   $u1: unit($min-screen);

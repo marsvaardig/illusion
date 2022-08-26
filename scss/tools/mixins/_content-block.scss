@@ -1,6 +1,9 @@
 // Content block
 
-@mixin content-block($spacing: $illusion-content-block-spacing, $location: $illusion-content-block-location ) {
+@mixin content-block(
+  $spacing: $illusion-content-block-spacing,
+  $location: $illusion-content-block-location
+) {
   @if $location == top {
     @include property("margin-top", $spacing);
 
