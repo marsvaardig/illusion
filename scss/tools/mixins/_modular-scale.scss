@@ -3,7 +3,12 @@
 // Responsive spacing items apart with an old browser fallback
 // This is a responsive spacer
 
-@mixin ms($property, $amount: 0, $multiplier: 1, $subtractFrom: false) {
+@mixin ms(
+  $property,
+  $amount: 0,
+  $multiplier: 1,
+  $subtractFrom: false
+) {
   // Get default value from map
   $ms-amount: map-get($illusion-ms-sizes, $amount);
   // Support for non default values

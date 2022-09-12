@@ -1,6 +1,11 @@
 // Cluster
 
-@mixin cluster($margin: $illusion-cluster-margin, $flex-wrap: $illusion-cluster-flex-wrap, $align-items: $illusion-cluster-align-items, $justify-content: $illusion-cluster-justify-content) {
+@mixin cluster(
+  $margin: $illusion-cluster-margin,
+  $flex-wrap: $illusion-cluster-flex-wrap,
+  $align-items: $illusion-cluster-align-items,
+  $justify-content: $illusion-cluster-justify-content
+) {
   @if $illusion-logical-properties {
     display: flex;
     flex-wrap: wrap;

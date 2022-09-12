@@ -1,6 +1,9 @@
 // Property
 
-@mixin property($property, $value) {
+@mixin property(
+  $property,
+  $value
+) {
   // Change properties to logical properties
   @if $illusion-logical-properties {
     @each $prop, $val in $illusion-logical-properties-map {

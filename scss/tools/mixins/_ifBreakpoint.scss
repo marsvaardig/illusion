@@ -1,6 +1,8 @@
 // Do or don't use breakpoint depending on width
 
-@mixin ifBreakpoint($width) {
+@mixin ifBreakpoint(
+  $width
+) {
 
   // Don't use media query when width = 0
   @if $width == 0 {

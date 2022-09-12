@@ -12,7 +12,9 @@
 //   display: flex;
 // }
 
-@mixin modernizr($classes...) {
+@mixin modernizr(
+  $classes...
+) {
   @at-root {
 
     // Create new classlist variable

@@ -1,7 +1,11 @@
 // Breakpoint
 // Sets a temporary global $inside-breakpoint variable to be used inside other mixins
 
-@mixin breakpoint($width, $width--max: $illusion-breakpoint-width-max, $type: $illusion-breakpoint-type) {
+@mixin breakpoint(
+  $width,
+  $width--max: $illusion-breakpoint-width-max,
+  $type: $illusion-breakpoint-type
+) {
   $inside-breakpoint: $width !global;
   $bp-width: if($type == inherit, $width, #{strip-unit($width)}#{$illusion-breakpoint-type});
   $bp-width--max: if($type == inherit, $width--max, #{strip-unit($width--max)}#{$illusion-breakpoint-type});

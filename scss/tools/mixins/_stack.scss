@@ -1,7 +1,9 @@
 // Stack
 // ==========================================================================
 
-@mixin stack($value: $illusion-stack-value) {
+@mixin stack(
+  $value: $illusion-stack-value
+) {
   & > * + * {
     @include property("margin-top", $value);
   }
