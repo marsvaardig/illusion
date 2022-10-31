@@ -27,4 +27,19 @@
       display: $illusion-ratio-block-after-display;
     }
   }
+  
+  @supports (aspect-ratio: 1) {
+    $width: nth($ratio, 1);
+    $height: nth($ratio, 3);
+
+    aspect-ratio: unquote("#{$width} / #{$height}");
+
+    &::before {
+      content: unset;
+    }
+
+    &::after {
+      content: unset;
+    }
+  }
 }
