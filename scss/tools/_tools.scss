@@ -2,6 +2,7 @@
 @use "sass:math";
 
 $illusion-display-warnings: true !default;
+$illusion-css-variables-prefix: '' !default;
 
 // Map collect is being used by logical properties variables
 @import "functions/mapCollect";

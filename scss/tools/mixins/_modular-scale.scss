@@ -27,9 +27,9 @@
   // Logical properties?
   @if $illusion-logical-properties {
     @if ($subtractFrom) {
-      @include property("#{$property}", calc(#{$subtractFrom} - (var(--spacing) * #{$ms-amount})));
+      @include property("#{$property}", calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
     } @else {
-      @include property("#{$property}", calc(var(--spacing) * #{$ms-amount}));
+      @include property("#{$property}", calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
     }
   } @else {
     // Default
@@ -42,9 +42,9 @@
     @if ($illusion-fallback == false) {
       @supports (--css: variables) {
         @if ($subtractFrom) {
-          #{$property}: calc(#{$subtractFrom} - (var(--spacing) * #{$ms-amount}));
+          #{$property}: calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
         } @else {
-          #{$property}: calc(var(--spacing) * #{$ms-amount});
+          #{$property}: calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount});
         }
       }
     }
