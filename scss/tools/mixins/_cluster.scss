@@ -6,7 +6,7 @@
   $align-items: $illusion-cluster-align-items,
   $justify-content: $illusion-cluster-justify-content
 ) {
-  @if $illusion-logical-properties {
+  @if $illusion-logical-properties or $illusion-layout-flex-gap {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
