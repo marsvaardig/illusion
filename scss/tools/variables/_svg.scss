@@ -8,3 +8,10 @@ $illusion-svg-background-viewboxHeight: false !default;
 $illusion-svg-background-position:      center !default;
 $illusion-svg-background-repeat:        no-repeat !default;
 $illusion-svg-background-size-unit:     px !default;
+
+// SVG mask
+$illusion-svg-mask-color:               currentColor !default;
+$illusion-svg-mask-width:               100% !default;
+$illusion-svg-mask-height:              false !default;
+$illusion-svg-mask-viewboxWidth:        24 !default;
+$illusion-svg-mask-viewboxHeight:       false !default;
