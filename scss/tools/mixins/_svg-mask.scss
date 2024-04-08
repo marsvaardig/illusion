@@ -20,6 +20,8 @@
   @if $color {
     background-color: $color;
   }
+  -webkit-mask-image: $svg-url;
   mask-image: $svg-url;
+  -webkit-mask-size: $width $height;
   mask-size: $width $height;
 }
