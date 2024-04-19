@@ -95,7 +95,7 @@
 
         // Float item
         @if $illusion-grid-type == float {
-          @include property("float", "left");
+          @include property("float", left);
         }
 
         // No margin for first child
