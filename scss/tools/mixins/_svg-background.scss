@@ -20,10 +20,7 @@
   @if $viewboxHeight == false {
     $viewboxHeight: $viewboxWidth;
   }
-  @if $aspectRatio != false {
-    $aspectRatio: ' preserveAspectRatio="' + $aspectRatio + '"';
-  }
-  $svg-url: svg-url('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}"#{$aspectRatio}>#{$svg}</svg>');
+  $svg-url: svg-url('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
   background-image: $svg-url;
   background-position: $background-position;
   background-repeat: $background-repeat;

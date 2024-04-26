@@ -17,10 +17,7 @@
   @if $viewboxHeight == false {
     $viewboxHeight: $viewboxWidth;
   }
-  @if $aspectRatio != false {
-    $aspectRatio: ' preserveAspectRatio="' + $aspectRatio + '"';
-  }
-  $svg-url: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}"#{$aspectRatio}>#{$svg}</svg>');
+  $svg-url: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
   @if $color {
     background-color: $color;
   }
