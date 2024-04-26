@@ -11,7 +11,8 @@
   $viewboxHeight: $illusion-svg-background-viewboxHeight,
   $background-position: $illusion-svg-background-position,
   $background-repeat: $illusion-svg-background-repeat,
-  $unit: $illusion-svg-background-size-unit
+  $unit: $illusion-svg-background-size-unit,
+  $aspectRatio: $illusion-svg-background-aspect-ratio
 ) {
   @if $height == false {
     $height: $width;
@@ -19,7 +20,10 @@
   @if $viewboxHeight == false {
     $viewboxHeight: $viewboxWidth;
   }
-  $svg-url: svg-url('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}">#{$svg}</svg>');
+  @if $aspectRatio != false {
+    $aspectRatio: ' preserveAspectRatio="' + $aspectRatio + '"';
+  }
+  $svg-url: svg-url('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}"#{$aspectRatio}>#{$svg}</svg>');
   background-image: $svg-url;
   background-position: $background-position;
   background-repeat: $background-repeat;

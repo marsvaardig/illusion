@@ -8,7 +8,8 @@
   $width: $illusion-svg-mask-width,
   $height: $illusion-svg-mask-height,
   $viewboxWidth: $illusion-svg-mask-viewboxWidth,
-  $viewboxHeight: $illusion-svg-mask-viewboxHeight
+  $viewboxHeight: $illusion-svg-mask-viewboxHeight,
+  $aspectRatio: $illusion-svg-mask-aspect-ratio
 ) {
   @if $height == false {
     $height: $width;
@@ -16,7 +17,10 @@
   @if $viewboxHeight == false {
     $viewboxHeight: $viewboxWidth;
   }
-  $svg-url: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}">#{$svg}</svg>');
+  @if $aspectRatio != false {
+    $aspectRatio: ' preserveAspectRatio="' + $aspectRatio + '"';
+  }
+  $svg-url: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}"#{$aspectRatio}>#{$svg}</svg>');
   @if $color {
     background-color: $color;
   }
