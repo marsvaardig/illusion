@@ -27,24 +27,36 @@
   // Logical properties?
   @if $illusion-logical-properties {
     @if ($subtractFrom) {
-      @include property("#{$property}", calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
+      & {
+        @include property("#{$property}", calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
+      }
     } @else {
-      @include property("#{$property}", calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+      & {
+        @include property("#{$property}", calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+      }
     }
   } @else {
     // Default
     @if ($subtractFrom) {
-      #{$property}: calc(#{$subtractFrom} - (#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount}));
+      & {
+        #{$property}: calc(#{$subtractFrom} - (#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount}));
+      }
     } @else {
-      #{$property}: calc(#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount});
+      & {
+        #{$property}: calc(#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount});
+      }
     }
     // Fallback
     @if ($illusion-fallback == false) {
       @supports (--css: variables) {
         @if ($subtractFrom) {
-          #{$property}: calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+          & {
+            #{$property}: calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+          }
         } @else {
-          #{$property}: calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount});
+          & {
+            #{$property}: calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount});
+          }
         }
       }
     }
