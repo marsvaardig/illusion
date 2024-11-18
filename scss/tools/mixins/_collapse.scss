@@ -1,5 +1,19 @@
+// Globals
 @use "sass:map";
 @use "sass:list";
+
+// Variables
+@use "../variables/collapse";
+
+// Tools
+@use "../tools";
+
+// Functions
+@use "../functions/breakpointMap";
+
+// Mixins// Globals
+@use "ifBreakpoint";
+@use "property";
 
 // Collapse
 //
@@ -7,23 +21,23 @@
 // Make sure there's no padding on the parent element
 
 @mixin collapse(
-  $sides: $illusion-collapse-sides,
-  $multiplier: $illusion-collapse-multiplier,
-  $fromto: $illusion-collapse-fromto,
-  $gutter: $illusion-collapse-gutter
+  $sides: collapse.$illusion-collapse-sides,
+  $multiplier: collapse.$illusion-collapse-multiplier,
+  $fromto: collapse.$illusion-collapse-fromto,
+  $gutter: collapse.$illusion-collapse-gutter
 ) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and tools.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `collapse` mixin is designed to work best with a number dividable by 0.5';
   }
 
   // Get new SCSS map
-  $grid-breakpoints: grid-breakpoints($fromto);
+  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
   // Map when gutter is set
   @if ($gutter != false) {
-    $grid-breakpoints: grid-breakpoint($fromto, $gutter);
+    $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
   }
 
   // Loop
@@ -35,16 +49,16 @@
     $width: map.get($values, width);
 
     // Only run between starting and stopping breakpoints
-    @include ifBreakpoint($width) {
+    @include ifBreakpoint.ifBreakpoint($width) {
 
       // Right
       @if ($side == both or $side == right) {
-        @include property("margin-right", calc((-1 * #{$multiplier}) * #{$spacing}));
+        @include property.property("margin-right", calc((-1 * #{$multiplier}) * #{$spacing}));
       }
 
       // Right
       @if ($side == both or $side == left) {
-        @include property("margin-left", calc((-1 * #{$multiplier}) * #{$spacing}));
+        @include property.property("margin-left", calc((-1 * #{$multiplier}) * #{$spacing}));
       }
     }
   }

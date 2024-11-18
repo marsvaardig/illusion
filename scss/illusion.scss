@@ -1,22 +1,22 @@
 // Variables, functions, mixins and grid
-@import "tools/tools";
+@use "tools/tools";
 
 // Atoms
-@import "atoms/boxsizing";
-@import "atoms/a";
-@import "atoms/address";
-@import "atoms/body";
-@import "atoms/fieldset";
-@import "atoms/figure";
-@import "atoms/h1-h6";
-@import "atoms/img";
-@import "atoms/list";
-@import "atoms/p";
-@import "atoms/picture";
-@import "atoms/svg";
+@use "atoms/boxsizing";
+@use "atoms/a";
+@use "atoms/address";
+@use "atoms/body";
+@use "atoms/fieldset";
+@use "atoms/figure";
+@use "atoms/h1-h6";
+@use "atoms/img";
+@use "atoms/list";
+@use "atoms/p";
+@use "atoms/picture";
+@use "atoms/svg";
 
 // Molecules
-@import "molecules/body-fallback";
-@import "molecules/custom-select";
-@import "molecules/form";
-@import "molecules/multiple-choice";
+@use "molecules/body-fallback";
+@use "molecules/custom-select";
+@use "molecules/form";
+@use "molecules/multiple-choice";

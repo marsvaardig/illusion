@@ -1,8 +1,11 @@
+// Variables
+@use "../variables/hover";
+
 // Hover mixin
 // Sets styling for both hover and focus
 
 @mixin hover(
-  $focusWithin: $illusion-hover-focusWithin
+  $focusWithin: hover.$illusion-hover-focusWithin
 ) {
   @if ($focusWithin != false) {
     &:hover,

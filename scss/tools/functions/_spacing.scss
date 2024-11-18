@@ -1,39 +1,54 @@
+// Globals
 @use "sass:map";
+
+// Variables
+@use "../variables/breakpoints";
+@use "../variables/grid";
+
+// Tools
+@use "../tools";
+
+// Functions
+@use "largestWidth";
+@use "lastValue";
+@use "mapGet";
+@use "mapGetNext";
+@use "smallestGutter";
 
 // Returns set spacing or calculate current spacing when inside breakpoint
 
 @function spacing($multiplier: 1, $breakpoint: false) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and tools.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `spacing` function is designed to work best with a number dividable by 0.5';
   }
 
   // Set default gutter to smallest one
-  $breakpointGutter: smallestGutter() * $multiplier;
+  $breakpointGutter: smallestGutter.smallestGutter() * $multiplier;
 
   // If no breakpoint has been set calculate the current breakpoint gutter
-  @if $breakpoint == false and $inside-breakpoint != false {
+  @if $breakpoint == false and breakpoints.$inside-breakpoint != false {
 
     // Run through each breakpoint and create a new map
-    @each $breakpoint, $values in $illusion-grid-breakpoints {
+    @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
 
       // Values
       $width: map.get($values, width);
       $gutter: map.get($values, gutter) * $multiplier;
-      $nextKey: map-get-next($illusion-grid-breakpoints, $breakpoint, #{lastValue()});
-      $nextWidth: map-deep-get($illusion-grid-breakpoints, $nextKey, "width");
-      $largestWidth: largestWidth();
+      $nextKey: mapGetNext.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, #{lastValue.lastValue()});
+      $nextWidth: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+      $largestWidth: largestWidth.largestWidth();
 
       // Create new temporary map and merge it with the current one
-      @if ($inside-breakpoint >= $width and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largestWidth) {
+      @if (breakpoints.$inside-breakpoint >= $width and breakpoints.$inside-breakpoint < $nextWidth) or (breakpoints.$inside-breakpoint >= $largestWidth) {
         $breakpointGutter: $gutter;
       }
     }
   }
   @else {
     @if $breakpoint != false {
-      $breakpointGutter: map-deep-get($illusion-grid-breakpoints, #{$breakpoint}, "gutter");
+      $breakpointGutter: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, #{$breakpoint}, "gutter");
     }
   }
 

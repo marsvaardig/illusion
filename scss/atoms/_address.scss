@@ -1,24 +1,30 @@
-@if ($illusion-extendalize == true and $illusion-extendalize-address != false) or $illusion-extendalize-address == true {
+// Variables
+@use "../tools/variables/extendalize";
+
+// Mixins
+@use "../tools/mixins/property";
+
+@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-address != false) or extendalize.$illusion-extendalize-address == true {
   /**
    * Address
    */
 
   address {
-    @include property("margin-top", $illusion-extendalize-address-margin-top);
-    @include property("margin-bottom", $illusion-extendalize-address-margin-bottom);
-    @include property("font-style", $illusion-extendalize-address-font-style);
+    @include property.property("margin-top", extendalize.$illusion-extendalize-address-margin-top);
+    @include property.property("margin-bottom", extendalize.$illusion-extendalize-address-margin-bottom);
+    @include property.property("font-style", extendalize.$illusion-extendalize-address-font-style);
 
     // Remove first-child margin
-    @if ($illusion-extendalize-last-children-direction == top) {
+    @if (extendalize.$illusion-extendalize-last-children-direction == top) {
       &:first-child {
-        @include property("margin-top", 0);
+        @include property.property("margin-top", 0);
       }
     }
 
     // Remove last-child margin
-    @if ($illusion-extendalize-last-children-direction == bottom) {
+    @if (extendalize.$illusion-extendalize-last-children-direction == bottom) {
       &:last-child {
-        @include property("margin-bottom", 0);
+        @include property.property("margin-bottom", 0);
       }
     }
   }

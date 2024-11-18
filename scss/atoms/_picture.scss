@@ -1,12 +1,15 @@
-@if ($illusion-extendalize == true and $illusion-extendalize-picture != false) or $illusion-extendalize-picture == true {
+// Variables
+@use "../tools/variables/extendalize";
+
+@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-picture != false) or extendalize.$illusion-extendalize-picture == true {
   /**
    * Picture
    */
 
-  @if ($illusion-extendalize-picture-img-vertical-align != false) {
+  @if (extendalize.$illusion-extendalize-picture-img-vertical-align != false) {
     picture {
       img {
-        vertical-align: $illusion-extendalize-picture-img-vertical-align; // 1
+        vertical-align: extendalize.$illusion-extendalize-picture-img-vertical-align; // 1
       }
     }
   }

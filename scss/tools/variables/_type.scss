@@ -1,3 +1,6 @@
+// Variables
+@use "breakpoints";
+
 // Font-family settings
 
 $font-family:             -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -18,6 +21,6 @@ $weight-bold:             700 !default;
 
 $illusion-fluid-property-min-value:   $font-size !default;
 $illusion-fluid-property-max-value:   20px !default;
-$illusion-fluid-property-min-screen:  $bravo !default;
-$illusion-fluid-property-max-screen:  $delta !default;
+$illusion-fluid-property-min-screen:  breakpoints.$bravo !default;
+$illusion-fluid-property-max-screen:  breakpoints.$delta !default;
 $illusion-fluid-property-clamp:       false !default;

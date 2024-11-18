@@ -1,12 +1,15 @@
+// Variables
+@use "breakpoints";
+
 // Grid
 
 $illusion-grid-container:         12 !default;
-$illusion-grid-maxwidth:          $echo !default;
+$illusion-grid-maxwidth:          breakpoints.$echo !default;
 $illusion-grid-default-width:     0 !default;
 $illusion-grid-default-gutter:    16px !default;
-$illusion-grid-bravo-width:       $bravo !default;
+$illusion-grid-bravo-width:       breakpoints.$bravo !default;
 $illusion-grid-bravo-gutter:      24px !default;
-$illusion-grid-delta-width:       $delta !default;
+$illusion-grid-delta-width:       breakpoints.$delta !default;
 $illusion-grid-delta-gutter:      32px !default;
 $illusion-grid-breakpoints:       (
   default: (

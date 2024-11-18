@@ -1,12 +1,17 @@
+// Variables
+@use "../variables/cluster";
+@use "../variables/layout";
+@use "../variables/logical-properties";
+
 // Cluster
 
 @mixin cluster(
-  $margin: $illusion-cluster-margin,
-  $flex-wrap: $illusion-cluster-flex-wrap,
-  $align-items: $illusion-cluster-align-items,
-  $justify-content: $illusion-cluster-justify-content
+  $margin: cluster.$illusion-cluster-margin,
+  $flex-wrap: cluster.$illusion-cluster-flex-wrap,
+  $align-items: cluster.$illusion-cluster-align-items,
+  $justify-content: cluster.$illusion-cluster-justify-content
 ) {
-  @if $illusion-logical-properties or $illusion-layout-flex-gap {
+  @if logical-properties.$illusion-logical-properties or layout.$illusion-layout-flex-gap {
     display: flex;
     flex-wrap: wrap;
     align-items: center;

@@ -1,28 +1,43 @@
+// Globals
 @use "sass:math";
 @use "sass:map";
 @use "sass:list";
 
+// Variables
+@use "../variables/shift";
+
+// Functions
+@use "../functions/breakpointMap";
+@use "../functions/getContainer";
+
+// Tools
+@use "../tools";
+
+// Mixins
+@use "ifBreakpoint";
+@use "property";
+
 // Shift
 
 @mixin shift(
-  $shift: $illusion-shift,
-  $fromto: $illusion-shift-fromto,
-  $multiplier: $illusion-shift-multiplier,
-  $defaults: $illusion-shift-defaults,
-  $gutter: $illusion-shift-gutter
+  $shift: shift.$illusion-shift,
+  $fromto: shift.$illusion-shift-fromto,
+  $multiplier: shift.$illusion-shift-multiplier,
+  $defaults: shift.$illusion-shift-defaults,
+  $gutter: shift.$illusion-shift-gutter
 ) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and tools.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `shift` mixin is designed to work best with a number dividable by 0.5';
   }
 
   // Get new SCSS map
-  $grid-breakpoints: grid-breakpoints($fromto);
+  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
   // Map when gutter is set
   @if ($gutter != false) {
-    $grid-breakpoints: grid-breakpoint($fromto, $gutter);
+    $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
   }
 
   // Loop
@@ -34,7 +49,7 @@
 
     // Shift values
     $spanColumns: list.nth($shift, 1);
-    $spanContainer: getcontainer($shift);
+    $spanContainer: getContainer.getcontainer($shift);
     $spanAmount: math.div($spanContainer, $spanColumns);
 
     // Negative
@@ -50,7 +65,7 @@
     }
 
     // Only run between starting and stopping breakpoints
-    @include ifBreakpoint($breakpointWidth) {
+    @include ifBreakpoint.ifBreakpoint($breakpointWidth) {
 
       // Set variable
       $left: auto;
@@ -75,7 +90,7 @@
       }
 
       // Set left
-      @include property("left", $left);
+      @include property.property("left", $left);
 
     }
   }

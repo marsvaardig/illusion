@@ -1,4 +1,17 @@
+// Globals
 @use "sass:map";
+
+// Variables
+@use "../variables/grid";
+
+// Functions
+@use "getFrom";
+@use "getTo";
+@use "largestWidth";
+@use "lastValue";
+@use "mapGet";
+@use "mapGetNext";
+@use "mapMerge";
 
 // Create a new map for the grid
 // Adds $from width at correct position
@@ -6,19 +19,19 @@
 @function grid-breakpoints($fromto) {
 
   // Variables
-  $from: getFrom($fromto);
-  $to: getTo($fromto);
+  $from: getFrom.getFrom($fromto);
+  $to: getTo.getTo($fromto);
   $new-map: ();
 
   // Run through each breakpoint
-  @each $breakpoint, $values in $illusion-grid-breakpoints {
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
 
     // Values
     $width: map.get($values, width);
     $gutter: map.get($values, gutter);
-    $nextKey: map-get-next($illusion-grid-breakpoints, $breakpoint, #{lastValue()});
-    $nextWidth: map-deep-get($illusion-grid-breakpoints, $nextKey, "width");
-    $largestWidth: largestWidth();
+    $nextKey: mapGetNext.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, #{lastValue.lastValue()});
+    $nextWidth: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+    $largestWidth: largestWidth.largestWidth();
 
     // Create new temporary map and merge it with the current (looped) one
     @if $width >= $from and $width < $to {
@@ -28,7 +41,7 @@
                       gutter: $gutter
               )
       );
-      $new-map: non-destructive-map-merge($new-map, $map);
+      $new-map: mapMerge.non-destructive-map-merge($new-map, $map);
     }
 
     // Add custom from in between and merge it with the current (looped) one
@@ -39,7 +52,7 @@
                       gutter: $gutter
               )
       );
-      $new-map: non-destructive-map-merge($new-map, $map);
+      $new-map: mapMerge.non-destructive-map-merge($new-map, $map);
     }
   }
 
@@ -54,7 +67,7 @@
 @function grid-breakpoint($fromto, $gutter) {
 
   // Variables
-  $from: getFrom($fromto);
+  $from: getFrom.getFrom($fromto);
 
   // Set to 0 when $fromto is false
   @if $from == false {

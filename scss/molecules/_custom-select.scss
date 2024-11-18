@@ -1,48 +1,55 @@
-@if ($illusion-form == true and $illusion-custom-select != false) or $illusion-custom-select == true {
+// Variables
+@use "../tools/variables/form";
+
+// Mixins
+@use "../tools/mixins/property";
+@use "../tools/mixins/selectors";
+
+@if (form.$illusion-form == true and form.$illusion-custom-select != false) or form.$illusion-custom-select == true {
 
   /* Highly based on https://github.com/filamentgroup/select-css */
 
   // Custom select container
-  @include selectors($illusion-custom-select-selector) {
-    position: $illusion-custom-select-position;
-    display: $illusion-custom-select-display;
-    background: $illusion-custom-select-background;
+  @include selectors.selectors(form.$illusion-custom-select-selector) {
+    position: form.$illusion-custom-select-position;
+    display: form.$illusion-custom-select-display;
+    background: form.$illusion-custom-select-background;
 
     // Native select invisible except for content
     select {
-      @include property("width", $illusion-custom-select-width);
-      @include property("margin", $illusion-custom-select-margin);
-      @include property("padding", $illusion-custom-select-padding);
-      outline: $illusion-custom-select-outline;
-      box-sizing: $illusion-custom-select-box-sizing;
-      font-size: $illusion-custom-select-font-size;
+      @include property.property("width", form.$illusion-custom-select-width);
+      @include property.property("margin", form.$illusion-custom-select-margin);
+      @include property.property("padding", form.$illusion-custom-select-padding);
+      outline: form.$illusion-custom-select-outline;
+      box-sizing: form.$illusion-custom-select-box-sizing;
+      font-size: form.$illusion-custom-select-font-size;
 
       &:not([multiple]) {
-        @include property("height", $illusion-custom-select-height);
+        @include property.property("height", form.$illusion-custom-select-height);
       }
 
       &[multiple] {
         position: relative;
         z-index: 3;
-        @include property("min-height", $illusion-custom-select-multiple-height);
+        @include property.property("min-height", form.$illusion-custom-select-multiple-height);
         background: inherit;
       }
     }
 
     // Custom arrow
     &::after {
-      content: $illusion-custom-select-arrow-content;
-      position: $illusion-custom-select-arrow-position;
-      @include property("top", $illusion-custom-select-arrow-top);
-      @include property("right", $illusion-custom-select-arrow-right);
-      z-index: $illusion-custom-select-arrow-z-index;
-      pointer-events: $illusion-custom-select-arrow-pointer-events;
-      @include property("width", $illusion-custom-select-arrow-width);
-      @include property("height", $illusion-custom-select-arrow-height);
-      @include property("border-left", $illusion-custom-select-arrow-border-horizontal);
-      @include property("border-right", $illusion-custom-select-arrow-border-horizontal);
-      @include property("border-top", $illusion-custom-select-arrow-border-top);
-      @include property("margin-top", $illusion-custom-select-arrow-margin-top);
+      content: form.$illusion-custom-select-arrow-content;
+      position: form.$illusion-custom-select-arrow-position;
+      @include property.property("top", form.$illusion-custom-select-arrow-top);
+      @include property.property("right", form.$illusion-custom-select-arrow-right);
+      z-index: form.$illusion-custom-select-arrow-z-index;
+      pointer-events: form.$illusion-custom-select-arrow-pointer-events;
+      @include property.property("width", form.$illusion-custom-select-arrow-width);
+      @include property.property("height", form.$illusion-custom-select-arrow-height);
+      @include property.property("border-left", form.$illusion-custom-select-arrow-border-horizontal);
+      @include property.property("border-right", form.$illusion-custom-select-arrow-border-horizontal);
+      @include property.property("border-top", form.$illusion-custom-select-arrow-border-top);
+      @include property.property("margin-top", form.$illusion-custom-select-arrow-margin-top);
       display: none;
     }
   }
@@ -54,14 +61,14 @@
 
     // Display custom arrow
     /* autoprefixer: on */
-    @include selectors($illusion-custom-select-selector) {
+    @include selectors.selectors(form.$illusion-custom-select-selector) {
       &::after {
-        display: $illusion-custom-select-arrow-display;
+        display: form.$illusion-custom-select-arrow-display;
       }
 
       // Select styling
       select {
-        @include property("padding-right", $illusion-custom-select-padding-right);
+        @include property.property("padding-right", form.$illusion-custom-select-padding-right);
         background: none;
         appearance: none;
       }
@@ -77,48 +84,48 @@
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 
     // Hide native arrow
-    @include selectors($illusion-custom-select-selector) {
+    @include selectors.selectors(form.$illusion-custom-select-selector) {
       select::-ms-expand {
         display: none;
       }
 
       select:focus::-ms-value {
-        background: $illusion-custom-select-ms-focus-background;
-        color: $illusion-custom-select-ms-focus-color;
+        background: form.$illusion-custom-select-ms-focus-background;
+        color: form.$illusion-custom-select-ms-focus-color;
       }
 
       // Display custom arrow
       &::after {
-        display: $illusion-custom-select-arrow-display;
+        display: form.$illusion-custom-select-arrow-display;
       }
 
       // Styling select
       select {
-        padding-right: $illusion-custom-select-padding-right; // make room for the arrow
+        padding-right: form.$illusion-custom-select-padding-right; // make room for the arrow
         background: none;
       }
     }
   }
 
-  @if ($illusion-custom-select-theme != false) or $illusion-custom-select-theme == true {
+  @if (form.$illusion-custom-select-theme != false) or form.$illusion-custom-select-theme == true {
     // Theming custom-select
-    #{$illusion-custom-select-selector} {
-      border: $illusion-custom-select-border;
+    #{form.$illusion-custom-select-selector} {
+      border: form.$illusion-custom-select-border;
 
       select {
-        font-family: $illusion-custom-select-font-family;
-        font-weight: $illusion-custom-select-font-weight;
-        color: $illusion-custom-select-color;
+        font-family: form.$illusion-custom-select-font-family;
+        font-weight: form.$illusion-custom-select-font-weight;
+        color: form.$illusion-custom-select-color;
         border: none;
-        line-height: $illusion-custom-select-line-height;
-        @include property("padding-top", $illusion-custom-select-padding-top);
-        @include property("padding-bottom", $illusion-custom-select-padding-bottom);
-        @include property("padding-left", $illusion-custom-select-padding-left);
+        line-height: form.$illusion-custom-select-line-height;
+        @include property.property("padding-top", form.$illusion-custom-select-padding-top);
+        @include property.property("padding-bottom", form.$illusion-custom-select-padding-bottom);
+        @include property.property("padding-left", form.$illusion-custom-select-padding-left);
 
         // Focus style
         &:focus {
-          outline: $illusion-custom-select-focus-outline;
-          outline-offset: $illusion-custom-select-focus-outline-offset;
+          outline: form.$illusion-custom-select-focus-outline;
+          outline-offset: form.$illusion-custom-select-focus-outline-offset;
         }
       }
     }

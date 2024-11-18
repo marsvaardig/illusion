@@ -1,3 +1,6 @@
+// Variables
+@use "../variables/type";
+
 // Pixels to rem
 // ==========================================================================
 // Actually only correct on a 0px wide viewport. Based on rem which itself is
@@ -7,10 +10,10 @@
 @use "sass:math";
 
 @function px($size, $type: rem) {
-  $value: math.div($size, $root-site-font-size);
+  $value: math.div($size, type.$root-site-font-size);
 
   @if ($type != false) {
-    $value: #{math.div($size, $root-site-font-size)}#{$type};
+    $value: #{math.div($size, type.$root-site-font-size)}#{$type};
   }
 
   @return $value;

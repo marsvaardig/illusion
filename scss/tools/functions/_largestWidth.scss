@@ -1,10 +1,14 @@
+// Globals
 @use "sass:map";
+
+// Variables
+@use "../variables/grid";
 
 // Loop through breakpoints to get the largest width
 
 @function largestWidth() {
   $width: false;
-  @each $breakpoint, $values in $illusion-grid-breakpoints {
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
     $width: map.get($values, width);
   }
   @return $width;

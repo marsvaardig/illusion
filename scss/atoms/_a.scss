@@ -1,14 +1,21 @@
-@if ($illusion-extendalize == true and $illusion-extendalize-anchor != false) or $illusion-extendalize-anchor == true {
+// Variables
+@use "../tools/variables/extendalize";
+
+// Mixins
+@use "../tools/mixins/hover";
+@use "../tools/mixins/property";
+
+@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-anchor != false) or extendalize.$illusion-extendalize-anchor == true {
   /**
    * Anchors
    */
 
   a {
-    @include property("color", $illusion-extendalize-anchor-color); // 1
+    @include property.property("color", extendalize.$illusion-extendalize-anchor-color); // 1
 
-    @if ($illusion-extendalize-anchor-hover-text-decoration != false) {
-      @include hover {
-        text-decoration: $illusion-extendalize-anchor-hover-text-decoration; // 2
+    @if (extendalize.$illusion-extendalize-anchor-hover-text-decoration != false) {
+      @include hover.hover {
+        text-decoration: extendalize.$illusion-extendalize-anchor-hover-text-decoration; // 2
       }
     }
   }

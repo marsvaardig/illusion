@@ -1,4 +1,8 @@
+// Globals
 @use "sass:list";
+
+// Variables
+@use "../variables/transition" as variables-transition;
 
 // Default transition
 //
@@ -28,9 +32,9 @@
 @function unfoldTransition ($transition) {
   // Default values
   $property: all;
-  $duration: $illusion-transition-duration;
-  $easing: $illusion-transition-easing;
-  $delay: $illusion-transition-delay;
+  $duration: variables-transition.$illusion-transition-duration;
+  $easing: variables-transition.$illusion-transition-easing;
+  $delay: variables-transition.$illusion-transition-delay;
   $defaults: ($property, $duration, $easing, $delay);
 
   // Grab transition properties if they exist

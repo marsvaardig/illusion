@@ -1,6 +1,10 @@
+// Globals
 @use "sass:map";
 @use "sass:meta";
 @use "sass:list";
+
+// Tools
+@use "../tools";
 
 // Function to get next map item
 // returns next map item or fallback value if map, key or next item does not exist
@@ -73,19 +77,19 @@
         }
       }
 
-      @if ($illusion-display-warnings != false) {
+      @if (tools.$illusion-display-warnings != false) {
         @warn 'No next map item for key #{$key}';
       }
       @return $fallback;
     }
 
-    @if ($illusion-display-warnings != false) {
+    @if (tools.$illusion-display-warnings != false) {
       @warn 'No valid key #{$key} in map';
     }
     @return $fallback;
   }
 
-  @if ($illusion-display-warnings != false) {
+  @if (tools.$illusion-display-warnings != false) {
     @warn 'No valid map';
   }
   @return $fallback;

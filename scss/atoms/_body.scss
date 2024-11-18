@@ -1,14 +1,20 @@
-@if ($illusion-extendalize == true and $illusion-extendalize-body != false) or $illusion-extendalize-body == true {
+// Variables
+@use "../tools/variables/extendalize";
+
+// Mixins
+@use "../tools/mixins/property";
+
+@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-body != false) or extendalize.$illusion-extendalize-body == true {
   /**
    * Body
    */
 
   body {
-    @include property("margin", $illusion-extendalize-body-margin);
-    @include property("font-family", $illusion-extendalize-body-font-family);
-    @include property("font-size", $illusion-extendalize-body-font-size);
-    @include property("font-weight", $illusion-extendalize-body-font-weight);
-    @include property("line-height", $illusion-extendalize-body-line-height);
-    @include property("color", $illusion-extendalize-body-color);
+    @include property.property("margin", extendalize.$illusion-extendalize-body-margin);
+    @include property.property("font-family", extendalize.$illusion-extendalize-body-font-family);
+    @include property.property("font-size", extendalize.$illusion-extendalize-body-font-size);
+    @include property.property("font-weight", extendalize.$illusion-extendalize-body-font-weight);
+    @include property.property("line-height", extendalize.$illusion-extendalize-body-line-height);
+    @include property.property("color", extendalize.$illusion-extendalize-body-color);
   }
 }

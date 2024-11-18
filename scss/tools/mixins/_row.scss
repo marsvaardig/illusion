@@ -1,12 +1,18 @@
+// Variables
+@use "../variables/grid";
+
+// Mixins
+@use "clearfix";
+
 // Row
 
 @mixin row(
-  $type: $illusion-grid-row-type
+  $type: grid.$illusion-grid-row-type
 ) {
 
   // Floats
   @if $type != flex {
-    @include clearfix;
+    @include clearfix.clearfix;
   }
 
   // Flexbox
