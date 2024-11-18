@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Modular scale
 // ==========================================================================
 // Responsive spacing items apart with an old browser fallback
@@ -10,7 +12,7 @@
   $subtractFrom: false
 ) {
   // Get default value from map
-  $ms-amount: map-get($illusion-ms-sizes, $amount);
+  $ms-amount: map.get($illusion-ms-sizes, $amount);
   // Support for non default values
   @if ($ms-amount == null) {
     $ms-amount: $amount;
@@ -21,7 +23,7 @@
   }
     // Apply multiplier if applicable
   @else if ($multiplier != 1) {
-    $ms-amount: map-get($illusion-ms-sizes, $amount) * $multiplier;
+    $ms-amount: map.get($illusion-ms-sizes, $amount) * $multiplier;
   }
 
   // Logical properties?

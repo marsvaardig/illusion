@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Create a new map for the grid
 // Adds $from width at correct position
 
@@ -12,8 +14,8 @@
   @each $breakpoint, $values in $illusion-grid-breakpoints {
 
     // Values
-    $width: map-get($values, width);
-    $gutter: map-get($values, gutter);
+    $width: map.get($values, width);
+    $gutter: map.get($values, gutter);
     $nextKey: map-get-next($illusion-grid-breakpoints, $breakpoint, #{lastValue()});
     $nextWidth: map-deep-get($illusion-grid-breakpoints, $nextKey, "width");
     $largestWidth: largestWidth();

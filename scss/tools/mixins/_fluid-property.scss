@@ -11,10 +11,10 @@
 ) {
 
   // Variables
-  $u1: unit($min-screen);
-  $u2: unit($max-screen);
-  $u3: unit($min-value);
-  $u4: unit($max-value);
+  $u1: math.unit($min-screen);
+  $u2: math.unit($max-screen);
+  $u3: math.unit($min-value);
+  $u4: math.unit($max-value);
 
   @if $illusion-logical-properties {
     @if $u1 == $u2 and $u3 == $u4 {

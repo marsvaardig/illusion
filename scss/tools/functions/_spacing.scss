@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Returns set spacing or calculate current spacing when inside breakpoint
 
 @function spacing($multiplier: 1, $breakpoint: false) {
@@ -17,8 +19,8 @@
     @each $breakpoint, $values in $illusion-grid-breakpoints {
 
       // Values
-      $width: map-get($values, width);
-      $gutter: map-get($values, gutter) * $multiplier;
+      $width: map.get($values, width);
+      $gutter: map.get($values, gutter) * $multiplier;
       $nextKey: map-get-next($illusion-grid-breakpoints, $breakpoint, #{lastValue()});
       $nextWidth: map-deep-get($illusion-grid-breakpoints, $nextKey, "width");
       $largestWidth: largestWidth();

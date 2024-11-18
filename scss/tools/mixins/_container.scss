@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Container
 
 @mixin container(
@@ -27,9 +29,9 @@
 
   // Run through each breakpoint
   @each $breakpoint, $values in $illusion-grid-breakpoints {
-    @include ifBreakpoint(map-get($values, width)) {
-      @include property("padding-left", map-get($values, gutter));
-      @include property("padding-right", map-get($values, gutter));
+    @include ifBreakpoint(map.get($values, width)) {
+      @include property("padding-left", map.get($values, gutter));
+      @include property("padding-right", map.get($values, gutter));
     }
   }
 }

@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "sass:list";
+
 // Spacing
 //
 // Responsive spacing that follows the grid breakpoints
@@ -27,12 +30,12 @@
   @each $breakpoint, $values in $grid-breakpoints {
 
     //Get values
-    $spacing: map-get($values, gutter);
-    $width: map-get($values, width);
-    $side: nth($sides, 1);
+    $spacing: map.get($values, gutter);
+    $width: map.get($values, width);
+    $side: list.nth($sides, 1);
     $skip: getsides($sides);
-    $spacing: map-get($values, gutter) * $multiplier;
-    $width: map-get($values, width);
+    $spacing: map.get($values, gutter) * $multiplier;
+    $width: map.get($values, width);
     $subtract: $minus;
 
     // Only run between starting and stopping breakpoints

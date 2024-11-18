@@ -1,6 +1,8 @@
-// Shift
-
 @use "sass:math";
+@use "sass:map";
+@use "sass:list";
+
+// Shift
 
 @mixin shift(
   $shift: $illusion-shift,
@@ -27,11 +29,11 @@
   @each $breakpoint, $values in $grid-breakpoints {
 
     // Breakpoint values
-    $breakpointGutter: map-get($values, gutter);
-    $breakpointWidth: map-get($values, width);
+    $breakpointGutter: map.get($values, gutter);
+    $breakpointWidth: map.get($values, width);
 
     // Shift values
-    $spanColumns: nth($shift, 1);
+    $spanColumns: list.nth($shift, 1);
     $spanContainer: getcontainer($shift);
     $spanAmount: math.div($spanContainer, $spanColumns);
 

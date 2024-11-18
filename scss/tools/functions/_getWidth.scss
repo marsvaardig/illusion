@@ -1,6 +1,8 @@
-// Returns gallery/span width
-
 @use "sass:math";
+@use "sass:map";
+@use "sass:list";
+
+// Returns gallery/span width
 
 @function getWidth($span: $illusion-span-span, $multiplier: $illusion-span-multiplier, $gutter: $illusion-span-gutter) {
 
@@ -17,7 +19,7 @@
   $breakpointGutter: smallestGutter() * $multiplier;
 
   // Span values
-  $spanColumns: nth($span, 1);
+  $spanColumns: list.nth($span, 1);
   $spanContainer: getcontainer($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
@@ -26,8 +28,8 @@
     @each $breakpoint, $values in $illusion-grid-breakpoints {
 
       // Values
-      $mapWidth: map-get($values, width);
-      $mapGutter: map-get($values, gutter) * $multiplier;
+      $mapWidth: map.get($values, width);
+      $mapGutter: map.get($values, gutter) * $multiplier;
       $nextKey: map-get-next($illusion-grid-breakpoints, $breakpoint, #{lastValue()});
       $nextWidth: map-deep-get($illusion-grid-breakpoints, $nextKey, "width");
       $largestWidth: largestWidth();

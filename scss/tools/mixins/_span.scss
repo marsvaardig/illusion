@@ -1,6 +1,8 @@
-// Span mixin
-
 @use "sass:math";
+@use "sass:map";
+@use "sass:list";
+
+// Span mixin
 
 @mixin span(
   $span: $illusion-span-span,
@@ -31,11 +33,11 @@
   @each $breakpoint, $values in $grid-breakpoints {
 
     // Breakpoint values
-    $breakpointGutter: map-get($values, gutter);
-    $breakpointWidth: map-get($values, width);
+    $breakpointGutter: map.get($values, gutter);
+    $breakpointWidth: map.get($values, width);
 
     // Span values
-    $spanColumns: nth($span, 1);
+    $spanColumns: list.nth($span, 1);
     $spanContainer: getcontainer($span);
     $spanAmount: math.div($spanContainer, $spanColumns);
 

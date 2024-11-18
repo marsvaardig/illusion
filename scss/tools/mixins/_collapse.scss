@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "sass:list";
+
 // Collapse
 //
 // Use as direct child of `@include span` element
@@ -27,9 +30,9 @@
   @each $breakpoint, $values in $grid-breakpoints {
 
     //Get values
-    $spacing: map-get($values, gutter);
-    $side: nth($sides, 1);
-    $width: map-get($values, width);
+    $spacing: map.get($values, gutter);
+    $side: list.nth($sides, 1);
+    $width: map.get($values, width);
 
     // Only run between starting and stopping breakpoints
     @include ifBreakpoint($width) {

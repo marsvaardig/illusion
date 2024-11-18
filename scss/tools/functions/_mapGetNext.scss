@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:list";
+
 // Function to get next map item
 // returns next map item or fallback value if map, key or next item does not exist
 //
@@ -37,10 +41,10 @@
 @function map-get-next($map, $key, $fallback: false) {
 
   // Check if map is valid
-  @if type_of($map) == map {
+  @if meta.type-of($map) == map {
 
     // Check if key exists in map
-    @if map_has_key($map, $key) {
+    @if map.has-key($map, $key) {
 
       // Init index counter variable
       $i: 0;
@@ -64,7 +68,7 @@
         }
 
         // If last entry return false
-        @if $i == length($map) {
+        @if $i == list.length($map) {
           @return $fallback;
         }
       }

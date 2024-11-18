@@ -1,3 +1,5 @@
+@use "sass:list";
+
 // Property
 
 @mixin property(
@@ -28,21 +30,21 @@
         $property: $val;
       }
     }
-    @if (($property == 'margin' and $illusion-logical-properties-margin != false) or ($property == 'padding') and $illusion-logical-properties-padding != false) and length($value) != 1 {
-      @if length($value) == 4 {
-        #{$property}-block-start: nth($value, 1);
-        #{$property}-inline-end: nth($value, 2);
-        #{$property}-block-end: nth($value, 3);
-        #{$property}-inline-start: nth($value, 4);
+    @if (($property == 'margin' and $illusion-logical-properties-margin != false) or ($property == 'padding') and $illusion-logical-properties-padding != false) and list.length($value) != 1 {
+      @if list.length($value) == 4 {
+        #{$property}-block-start: list.nth($value, 1);
+        #{$property}-inline-end: list.nth($value, 2);
+        #{$property}-block-end: list.nth($value, 3);
+        #{$property}-inline-start: list.nth($value, 4);
       }
-      @if length($value) == 3 {
-        #{$property}-block-start: nth($value, 1);
-        #{$property}-inline: nth($value, 2);
-        #{$property}-block-end: nth($value, 3);
+      @if list.length($value) == 3 {
+        #{$property}-block-start: list.nth($value, 1);
+        #{$property}-inline: list.nth($value, 2);
+        #{$property}-block-end: list.nth($value, 3);
       }
-      @if length($value) == 2 {
-        #{$property}-block: nth($value, 1);
-        #{$property}-inline: nth($value, 2);
+      @if list.length($value) == 2 {
+        #{$property}-block: list.nth($value, 1);
+        #{$property}-inline: list.nth($value, 2);
       }
     } @else {
       #{$property}: $value;

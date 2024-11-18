@@ -1,7 +1,9 @@
+@use "sass:list";
+
 // Gets the from width and returns to 0 when false
 
 @function getFrom($fromto) {
-  $from: nth($fromto, 1);
+  $from: list.nth($fromto, 1);
   @if $from == 0 or $from == false {
     $from: 0
   }
