@@ -1,29 +1,23 @@
-// Variables
-@use "../tools/variables/extendalize";
-
-// Mixins
-@use "../tools/mixins/property";
-
-@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-paragraph != false) or extendalize.$illusion-extendalize-paragraph == true {
+@if ($illusion-extendalize == true and $illusion-extendalize-paragraph != false) or $illusion-extendalize-paragraph == true {
   /**
    * Paragraph
    */
 
   p {
-    @include property.property("margin-top", extendalize.$illusion-extendalize-paragraph-margin-top); // 1
-    @include property.property("margin-bottom", extendalize.$illusion-extendalize-paragraph-margin-bottom); // 2
+    @include property("margin-top", $illusion-extendalize-paragraph-margin-top); // 1
+    @include property("margin-bottom", $illusion-extendalize-paragraph-margin-bottom); // 2
 
     // Remove first-child margin
-    @if (extendalize.$illusion-extendalize-last-children-direction == top) {
+    @if ($illusion-extendalize-last-children-direction == top) {
       &:first-child {
-        @include property.property("margin-top", 0);
+        @include property("margin-top", 0);
       }
     }
 
     // Remove last-child margin
-    @if (extendalize.$illusion-extendalize-last-children-direction == bottom) {
+    @if ($illusion-extendalize-last-children-direction == bottom) {
       &:last-child {
-        @include property.property("margin-bottom", 0);
+        @include property("margin-bottom", 0);
       }
     }
   }

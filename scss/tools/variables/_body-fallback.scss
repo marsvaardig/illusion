@@ -1,6 +1,3 @@
-// Variables
-@use "breakpoints";
-
 // Body width fallback
 //
 // 1. Default is set to false since Illusion doesn't create code by default
@@ -9,4 +6,4 @@
 
 $illusion-body-fallback:        false !default; // 1
 $illusion-body-fallback-align:  center !default; // 2
-$illusion-body-fallback-width:  breakpoints.$bravo !default; // 3
+$illusion-body-fallback-width:  $bravo !default; // 3

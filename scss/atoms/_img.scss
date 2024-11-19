@@ -1,21 +1,15 @@
-// Variables
-@use "../tools/variables/extendalize";
-
-// Mixins
-@use "../tools/mixins/property";
-
-@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-image != false) or extendalize.$illusion-extendalize-image == true {
+@if ($illusion-extendalize == true and $illusion-extendalize-image != false) or $illusion-extendalize-image == true {
   /**
    * Image
    */
 
   img {
-    @include property.property("max-width", extendalize.$illusion-extendalize-image-max-width); // 1
-    @include property.property("height", extendalize.$illusion-extendalize-image-height); // 2
+    @include property("max-width", $illusion-extendalize-image-max-width); // 1
+    @include property("height", $illusion-extendalize-image-height); // 2
 
-    @if (extendalize.$illusion-extendalize-image-vertical-align != false) {
+    @if ($illusion-extendalize-image-vertical-align != false) {
       &:only-child {
-        vertical-align: extendalize.$illusion-extendalize-image-vertical-align; // 3
+        vertical-align: $illusion-extendalize-image-vertical-align; // 3
       }
     }
   }

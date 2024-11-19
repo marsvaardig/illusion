@@ -1,21 +1,15 @@
-// Variables
-@use "../variables/svg";
-
-// Functions
-@use "../functions/svg-url";
-
 // Example
 //
 // @include svg-mask('<g transform="matrix(2.18679,0,0,2.18679,5.43964,-0.0421697)"><path d="M5.9 5.3L0.5 0.1C0.4 0 0.2 0 0.1 0.1 0 0.2 0 0.4 0.1 0.5L5.2 5.5 0.1 10.5C0 10.6 0 10.8 0.1 10.9 0.2 11 0.2 11 0.3 11 0.4 11 0.5 11 0.5 10.9L5.9 5.7C6 5.6 6 5.4 5.9 5.3Z"/></g>');
 
 @mixin svg-mask(
   $svg,
-  $color: svg.$illusion-svg-mask-color,
-  $width: svg.$illusion-svg-mask-width,
-  $height: svg.$illusion-svg-mask-height,
-  $viewboxWidth: svg.$illusion-svg-mask-viewboxWidth,
-  $viewboxHeight: svg.$illusion-svg-mask-viewboxHeight,
-  $aspectRatio: svg.$illusion-svg-mask-aspect-ratio
+  $color: $illusion-svg-mask-color,
+  $width: $illusion-svg-mask-width,
+  $height: $illusion-svg-mask-height,
+  $viewboxWidth: $illusion-svg-mask-viewboxWidth,
+  $viewboxHeight: $illusion-svg-mask-viewboxHeight,
+  $aspectRatio: $illusion-svg-mask-aspect-ratio
 ) {
   @if $height == false {
     $height: $width;
@@ -23,7 +17,7 @@
   @if $viewboxHeight == false {
     $viewboxHeight: $viewboxWidth;
   }
-  $svg-url: svg-url.svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
+  $svg-url: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
   @if $color {
     background-color: $color;
   }

@@ -1,9 +1,6 @@
 // Globals
 @use "sass:list";
 
-// Variables
-@use "../variables/logical-properties";
-
 // Property
 
 @mixin property(
@@ -11,8 +8,8 @@
   $value
 ) {
   // Change properties to logical properties
-  @if logical-properties.$illusion-logical-properties {
-    @each $prop, $val in logical-properties.$illusion-logical-properties-map {
+  @if $illusion-logical-properties {
+    @each $prop, $val in $illusion-logical-properties-map {
       //@error $illusion-logical-properties-map;
       @if ($prop == $property) {
         @if $prop == 'float' or $prop == 'clear' {
@@ -34,7 +31,7 @@
         $property: $val;
       }
     }
-    @if (($property == 'margin' and logical-properties.$illusion-logical-properties-margin != false) or ($property == 'padding') and logical-properties.$illusion-logical-properties-padding != false) and list.length($value) != 1 {
+    @if (($property == 'margin' and $illusion-logical-properties-margin != false) or ($property == 'padding') and $illusion-logical-properties-padding != false) and list.length($value) != 1 {
       @if list.length($value) == 4 {
         #{$property}-block-start: list.nth($value, 1);
         #{$property}-inline-end: list.nth($value, 2);

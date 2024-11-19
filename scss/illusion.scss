@@ -1,22 +1,12 @@
-// Variables, functions, mixins and grid
-@use "tools/tools";
+// Illusion
+// =============================================================================
 
-// Atoms
-@use "atoms/boxsizing";
-@use "atoms/a";
-@use "atoms/address";
-@use "atoms/body";
-@use "atoms/fieldset";
-@use "atoms/figure";
-@use "atoms/h1-h6";
-@use "atoms/img";
-@use "atoms/list";
-@use "atoms/p";
-@use "atoms/picture";
-@use "atoms/svg";
+// Illusion is an opinionated, mobile-first, progressive enhanced, accessible,
+// SCSS base kit to kickstart your projects.
+// It combines modern web-design philosophies to write consistent, maintainable
+// and clean SCSS code in less time.
+// Copyright 2015 - Marsvaardig.eu
 
-// Molecules
-@use "molecules/body-fallback";
-@use "molecules/custom-select";
-@use "molecules/form";
-@use "molecules/multiple-choice";
+@forward "tools/tools";
+@forward "atoms/atoms";
+@forward "molecules/molecules";

@@ -1,36 +1,31 @@
-// Variables
-@use "color";
-@use "spacing";
-@use "type";
-
 // Form settings
 
 $illusion-form:                                               false !default;
 $illusion-form-selector:                                      ".form" !default;
-$illusion-form-background-color:                              color.$color-form-input !default;
+$illusion-form-background-color:                              $color-form-input !default;
 $illusion-form-border-width:                                  2px !default;
-$illusion-form-focus-color:                                   color.$color-focus !default;
+$illusion-form-focus-color:                                   $color-focus !default;
 $illusion-form-disabled-cursor:                               not-allowed !default;
 $illusion-form-disabled-opacity:                              0.6 !default;
 $illusion-form-group-selector:                                ".form__group" !default;
-$illusion-form-group-margin:                                  spacing.$spacing-m !default;
+$illusion-form-group-margin:                                  $spacing-m !default;
 $illusion-form-label-selector:                                ".form__label" !default;
 $illusion-form-label-display:                                 inline-block !default;
-$illusion-form-label-padding:                                 spacing.$spacing-s !default;
+$illusion-form-label-padding:                                 $spacing-s !default;
 $illusion-form-input-selector:                                ".form__input" !default;
 $illusion-form-input-width:                                   100% !default;
-$illusion-form-input-padding:                                 spacing.$spacing-xs spacing.$spacing-s !default;
+$illusion-form-input-padding:                                 $spacing-xs $spacing-s !default;
 $illusion-form-input-border:                                  $illusion-form-border-width solid !default;
-$illusion-form-input-line-height:                             type.$line-height + spacing.$spacing-xs !default;
-$illusion-form-input-min-height:                              $illusion-form-input-line-height + (spacing.$spacing-xs * 2) + ($illusion-form-border-width * 2) !default;
+$illusion-form-input-line-height:                             $line-height + $spacing-xs !default;
+$illusion-form-input-min-height:                              $illusion-form-input-line-height + ($spacing-xs * 2) + ($illusion-form-border-width * 2) !default;
 $illusion-form-input-font-family:                             inherit !default;
 $illusion-form-input-font-weight:                             inherit !default;
 $illusion-form-input-color:                                   inherit !default;
 $illusion-form-input-focus-outline:                           3px solid $illusion-form-focus-color !default;
 $illusion-form-input-focus-outline-offset:                    0 !default;
 $illusion-form-input-border-radius:                           0 !default;
-$illusion-form-select-line-height:                            type.$line-height + (spacing.$spacing-xs * 4) !default;
-$illusion-form-submit-focus-outline:                          3px solid color.$color-focus !default;
+$illusion-form-select-line-height:                            $line-height + ($spacing-xs * 4) !default;
+$illusion-form-submit-focus-outline:                          3px solid $color-focus !default;
 
 $illusion-multiple-choice:                                    inherit !default;
 $illusion-multiple-choice-selector:                           ".multiple-choice" !default;
@@ -40,7 +35,7 @@ $illusion-multiple-choice-float:                              none !default;
 $illusion-multiple-choice-clear:                              left !default;
 $illusion-multiple-choice-position:                           relative !default;
 $illusion-multiple-choice-padding:                            0 0 0 $illusion-multiple-choice-unit !default;
-$illusion-multiple-choice-margin-bottom:                      spacing.$spacing-m !default;
+$illusion-multiple-choice-margin-bottom:                      $spacing-m !default;
 $illusion-multiple-choice-min-height:                         $illusion-multiple-choice-unit !default;
 $illusion-multiple-choice-bravo-float:                        left !default;
 $illusion-multiple-choice-input-position:                     absolute !default;
@@ -53,7 +48,7 @@ $illusion-multiple-choice-input-zindex:                       1 !default;
 $illusion-multiple-choice-input-margin:                       0 !default;
 $illusion-multiple-choice-input-opacity:                      0 !default;
 $illusion-multiple-choice-label-cursor:                       pointer !default;
-$illusion-multiple-choice-label-padding:                      spacing.$spacing-xs spacing.$spacing-m !default;
+$illusion-multiple-choice-label-padding:                      $spacing-xs $spacing-m !default;
 $illusion-multiple-choice-label-display:                      flex !default;
 $illusion-multiple-choice-label-align-items:                  center !default;
 $illusion-multiple-choice-label-min-height:                   $illusion-multiple-choice-unit !default;
@@ -108,7 +103,7 @@ $illusion-custom-select-background:                           $illusion-form-bac
 
 $illusion-custom-select-width:                                100% !default;
 $illusion-custom-select-margin:                               0 !default;
-$illusion-custom-select-padding:                              (spacing.$spacing-xs - ($illusion-form-border-width * 2)) (spacing.$spacing-s - ($illusion-form-border-width * 2)) !default;
+$illusion-custom-select-padding:                              ($spacing-xs - ($illusion-form-border-width * 2)) ($spacing-s - ($illusion-form-border-width * 2)) !default;
 $illusion-custom-select-outline:                              transparent !default;
 $illusion-custom-select-height:                               $illusion-form-input-min-height - ($illusion-form-border-width * 2) !default;
 $illusion-custom-select-multiple-height:                      $illusion-custom-select-height * 2 !default;
@@ -119,14 +114,14 @@ $illusion-custom-select-font-family:                          $illusion-form-inp
 $illusion-custom-select-font-weight:                          $illusion-form-input-font-weight !default;
 $illusion-custom-select-color:                                $illusion-form-input-color !default;
 $illusion-custom-select-line-height:                          $illusion-form-input-line-height + $illusion-form-border-width !default;
-$illusion-custom-select-padding-top:                          spacing.$spacing-xs !default;
-$illusion-custom-select-padding-bottom:                       spacing.$spacing-xs !default;
-$illusion-custom-select-padding-left:                         spacing.$spacing-s !default;
+$illusion-custom-select-padding-top:                          $spacing-xs !default;
+$illusion-custom-select-padding-bottom:                       $spacing-xs !default;
+$illusion-custom-select-padding-left:                         $spacing-s !default;
 
 $illusion-custom-select-arrow-content:                        " " !default;
 $illusion-custom-select-arrow-position:                       absolute !default;
 $illusion-custom-select-arrow-top:                            50% !default;
-$illusion-custom-select-arrow-right:                          spacing.$spacing-s !default;
+$illusion-custom-select-arrow-right:                          $spacing-s !default;
 $illusion-custom-select-arrow-z-index:                        2 !default;
 $illusion-custom-select-arrow-pointer-events:                 none !default;
 $illusion-custom-select-arrow-width:                          0 !default;

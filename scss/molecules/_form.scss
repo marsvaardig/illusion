@@ -1,62 +1,51 @@
-// Variables
-@use "../tools/variables/extendalize";
-@use "../tools/variables/form";
-
-// Mixins
-@use "../tools/mixins/button";
-@use "../tools/mixins/content-block";
-@use "../tools/mixins/property";
-@use "../tools/mixins/selectors";
-@use "../tools/mixins/spacing";
-
-@if form.$illusion-form == true {
+@if $illusion-form == true {
 
   // Form section is used to wrap .form-group
-  @include selectors.selectors(form.$illusion-form-selector) {
-    @include spacing.spacing(bottom, margin, $lastchildnone: true);
+  @include selectors($illusion-form-selector) {
+    @include spacing(bottom, margin, $lastchildnone: true);
 
     // Lighter fields for disabled fields
     [disabled] {
-      cursor: form.$illusion-form-disabled-cursor;
-      opacity: form.$illusion-form-disabled-opacity;
+      cursor: $illusion-form-disabled-cursor;
+      opacity: $illusion-form-disabled-opacity;
     }
   }
 
   // Form group is used to wrap label and input pairs
-  @include selectors.selectors(form.$illusion-form-group-selector) {
-    @if (extendalize.$illusion-extendalize-last-children != false) {
-      @include content-block.content-block(form.$illusion-form-group-margin);
+  @include selectors($illusion-form-group-selector) {
+    @if ($illusion-extendalize-last-children != false) {
+      @include content-block($illusion-form-group-margin);
     }
   }
 
-  @include selectors.selectors(form.$illusion-form-label-selector) {
+  @include selectors($illusion-form-label-selector) {
     font-size: inherit;
     line-height: inherit;
-    display: form.$illusion-form-label-display;
-    @include property.property("padding-bottom", form.$illusion-form-label-padding);
+    display: $illusion-form-label-display;
+    @include property("padding-bottom", $illusion-form-label-padding);
   }
 
-  @include selectors.selectors(form.$illusion-form-input-selector) {
+  @include selectors($illusion-form-input-selector) {
     font-size: inherit;
-    @include property.property("width", form.$illusion-form-input-width);
-    @include property.property("padding", form.$illusion-form-input-padding);
-    border: form.$illusion-form-input-border;
-    line-height: form.$illusion-form-input-line-height;
-    @include property.property("min-height", form.$illusion-form-input-min-height);
-    font-family: form.$illusion-form-input-font-family;
-    font-weight: form.$illusion-form-input-font-weight;
+    @include property("width", $illusion-form-input-width);
+    @include property("padding", $illusion-form-input-padding);
+    border: $illusion-form-input-border;
+    line-height: $illusion-form-input-line-height;
+    @include property("min-height", $illusion-form-input-min-height);
+    font-family: $illusion-form-input-font-family;
+    font-weight: $illusion-form-input-font-weight;
     -webkit-appearance: none;
-    border-radius: form.$illusion-form-input-border-radius;
+    border-radius: $illusion-form-input-border-radius;
 
     &:focus {
-      outline: form.$illusion-form-input-focus-outline;
-      outline-offset: form.$illusion-form-input-focus-outline-offset;
+      outline: $illusion-form-input-focus-outline;
+      outline-offset: $illusion-form-input-focus-outline-offset;
     }
   }
 
   // Set a height for select elements
   select {
-    @include property.property("height", form.$illusion-form-select-line-height);
+    @include property("height", $illusion-form-select-line-height);
   }
 
   /* Submit button */
@@ -64,7 +53,7 @@
     @include button.button-structure();
 
     &:focus {
-      outline: form.$illusion-form-submit-focus-outline;
+      outline: $illusion-form-submit-focus-outline;
     }
   }
 }

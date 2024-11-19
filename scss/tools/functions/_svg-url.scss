@@ -3,8 +3,6 @@
 @use "sass:string";
 @use "sass:list";
 
-// Functions
-@use "strReplace";
 
 // Function to create an optimized svg url
 // https://codepen.io/jakob-e/pen/doMoML?editors=0100
@@ -13,7 +11,7 @@
 
   // Add missing namespace
   @if not string.index($svg,xmlns) {
-    $svg: strReplace.str-replace($svg, '<svg','<svg xmlns="http://www.w3.org/2000/svg"');
+    $svg: str-replace($svg, '<svg','<svg xmlns="http://www.w3.org/2000/svg"');
   }
 
   // Chunk up string in order to avoid
@@ -26,14 +24,14 @@
     $chunk: string.slice($svg, $index, $index + $slice - 1);
 
     // Encode
-    $chunk: strReplace.str-replace($chunk,'"', '\'');
-    $chunk: strReplace.str-replace($chunk,'%', '%25');
-    $chunk: strReplace.str-replace($chunk,'&', '%26');
-    $chunk: strReplace.str-replace($chunk,'#', '%23');
-    $chunk: strReplace.str-replace($chunk,'{', '%7B');
-    $chunk: strReplace.str-replace($chunk,'}', '%7D');
-    $chunk: strReplace.str-replace($chunk,'<', '%3C');
-    $chunk: strReplace.str-replace($chunk,'>', '%3E');
+    $chunk: str-replace($chunk,'"', '\'');
+    $chunk: str-replace($chunk,'%', '%25');
+    $chunk: str-replace($chunk,'&', '%26');
+    $chunk: str-replace($chunk,'#', '%23');
+    $chunk: str-replace($chunk,'{', '%7B');
+    $chunk: str-replace($chunk,'}', '%7D');
+    $chunk: str-replace($chunk,'<', '%3C');
+    $chunk: str-replace($chunk,'>', '%3E');
 
     $encoded: #{$encoded}#{$chunk};
     $index: $index + $slice;

@@ -1,16 +1,10 @@
-// Variables
-@use "../variables/stack";
-
-// Mixins
-@use "property";
-
 // Stack
 // ==========================================================================
 
 @mixin stack(
-  $value: stack.$illusion-stack-value
+  $value: $illusion-stack-value
 ) {
   & > * + * {
-    @include property.property("margin-top", $value);
+    @include property("margin-top", $value);
   }
 }

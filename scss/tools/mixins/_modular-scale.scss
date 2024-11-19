@@ -1,19 +1,6 @@
 // Globals
 @use "sass:map";
 
-// Variables
-@use "../variables/fallback";
-@use "../variables/logical-properties";
-@use "../variables/modular-scale" as variables-modular-scale;
-
-// Functions
-@use "../functions/modular-scale" as functions-modular-scale;
-
-// Tools
-@use "../tools";
-
-// Mixins
-@use "property";
 
 // Modular scale
 // ==========================================================================
@@ -27,7 +14,7 @@
   $subtractFrom: false
 ) {
   // Get default value from map
-  $ms-amount: map.get(variables-modular-scale.$illusion-ms-sizes, $amount);
+  $ms-amount: map.get($illusion-ms-sizes, $amount);
   // Support for non default values
   @if ($ms-amount == null) {
     $ms-amount: $amount;
@@ -38,30 +25,30 @@
   }
     // Apply multiplier if applicable
   @else if ($multiplier != 1) {
-    $ms-amount: map.get(variables-modular-scale.$illusion-ms-sizes, $amount) * $multiplier;
+    $ms-amount: map.get($illusion-ms-sizes, $amount) * $multiplier;
   }
 
   // Logical properties?
-  @if logical-properties.$illusion-logical-properties {
+  @if $illusion-logical-properties {
     @if ($subtractFrom) {
-      @include property.property("#{$property}", calc(#{$subtractFrom} - (var(--#{tools.$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
+      @include property("#{$property}", calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
     } @else {
-      @include property.property("#{$property}", calc(var(--#{tools.$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+      @include property("#{$property}", calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
     }
   } @else {
     // Default
     @if ($subtractFrom) {
-      #{$property}: calc(#{$subtractFrom} - (#{functions-modular-scale.ms(1, rem)} * #{$ms-amount * fallback.$illusion-fallback-amount}));
+      #{$property}: calc(#{$subtractFrom} - (#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount}));
     } @else {
-      #{$property}: calc(#{functions-modular-scale.ms(1, rem)} * #{$ms-amount * fallback.$illusion-fallback-amount});
+      #{$property}: calc(#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount});
     }
     // Fallback
-    @if (fallback.$illusion-fallback == false) {
+    @if ($illusion-fallback == false) {
       @supports (--css: variables) {
         @if ($subtractFrom) {
-          #{$property}: calc(#{$subtractFrom} - (var(--#{tools.$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+          #{$property}: calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
         } @else {
-          #{$property}: calc(var(--#{tools.$illusion-css-variables-prefix}spacing) * #{$ms-amount});
+          #{$property}: calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount});
         }
       }
     }

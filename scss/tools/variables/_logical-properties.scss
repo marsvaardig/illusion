@@ -1,6 +1,3 @@
-// Functions
-@use "../functions/mapCollect";
-
 // Logical properties
 
 $illusion-logical-properties: false !default;
@@ -85,7 +82,7 @@ $illusion-logical-properties-text-align: (
 ) !default;
 
 // Merged map
-$illusion-logical-properties-map: mapCollect.map-collect(
+$illusion-logical-properties-map: map-collect(
         $illusion-logical-properties-sizing,
         $illusion-logical-properties-border,
         $illusion-logical-properties-margin,

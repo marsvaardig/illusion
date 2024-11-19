@@ -1,12 +1,6 @@
-// Variables
-@use "../variables/span";
-
-// Functions
-@use "spacing";
-
 // Returns gallery/span margin
 
-@function getMargin($multiplier: span.$illusion-span-multiplier) {
-  $breakpointGutter: spacing.spacing($multiplier);
+@function getMargin($multiplier: $illusion-span-multiplier) {
+  $breakpointGutter: spacing($multiplier);
   @return $breakpointGutter;
 }

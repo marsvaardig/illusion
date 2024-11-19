@@ -1,12 +1,9 @@
-// Variables
-@use "../variables/clearfix";
-
 // Clearfix
 // Also clearing top-margin
 // Still using single colon for better browser compatibility
 
 @mixin clearfix(
-  $reset: clearfix.$illusion-clearfix-reset
+  $reset: $illusion-clearfix-reset
 ) {
   @if $reset == false {
     &::before,

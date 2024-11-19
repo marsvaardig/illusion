@@ -1,24 +1,17 @@
-// Variables
-@use "../tools/variables/extendalize";
-
-// Mixins
-@use "../tools/mixins/content-block";
-@use "../tools/mixins/property";
-
-@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-fieldset != false) or extendalize.$illusion-extendalize-fieldset == true {
+@if ($illusion-extendalize == true and $illusion-extendalize-fieldset != false) or $illusion-extendalize-fieldset == true {
   /**
    * Fieldset
    */
 
   fieldset {
-    @include property.property("width", extendalize.$illusion-extendalize-fieldset-width);
-    @include property.property("padding", extendalize.$illusion-extendalize-fieldset-padding);
-    @include property.property("margin", extendalize.$illusion-extendalize-fieldset-margin);
-    @include property.property("border", extendalize.$illusion-extendalize-fieldset-border);
+    @include property("width", $illusion-extendalize-fieldset-width);
+    @include property("padding", $illusion-extendalize-fieldset-padding);
+    @include property("margin", $illusion-extendalize-fieldset-margin);
+    @include property("border", $illusion-extendalize-fieldset-border);
 
-    @if (extendalize.$illusion-extendalize-last-children != false) {
+    @if ($illusion-extendalize-last-children != false) {
       legend {
-        @include content-block.content-block(extendalize.$illusion-extendalize-legend-margin-bottom);
+        @include content-block($illusion-extendalize-legend-margin-bottom);
       }
     }
   }

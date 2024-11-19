@@ -3,46 +3,32 @@
 @use "sass:map";
 @use "sass:list";
 
-// Variables
-@use "../variables/grid";
-@use "../variables/span";
-
-// Functions
-@use "../functions/breakpointMap";
-@use "../functions/getContainer";
-
-// Tools
-@use "../tools";
-
-// Mixins
-@use "ifBreakpoint";
-@use "property";
 
 // Span mixin
 
 @mixin span(
-  $span: span.$illusion-span-span,
-  $fromto: span.$illusion-span-fromto,
-  $multiplier: span.$illusion-span-multiplier,
-  $bottom: span.$illusion-span-bottom,
-  $defaults: span.$illusion-span-defaults,
-  $omega: span.$illusion-span-omega,
-  $gutter: span.$illusion-span-gutter,
-  $includeWidth: span.$illusion-span-includeWidth,
-  $includeMargin: span.$illusion-span-includeMargin
+  $span: $illusion-span-span,
+  $fromto: $illusion-span-fromto,
+  $multiplier: $illusion-span-multiplier,
+  $bottom: $illusion-span-bottom,
+  $defaults: $illusion-span-defaults,
+  $omega: $illusion-span-omega,
+  $gutter: $illusion-span-gutter,
+  $includeWidth: $illusion-span-includeWidth,
+  $includeMargin: $illusion-span-includeMargin
 ) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and tools.$illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `span` mixin is designed to work best with a number dividable by 0.5';
   }
 
   // Get new SCSS map
-  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+  $grid-breakpoints: grid-breakpoints($fromto);
 
   // Map when gutter is set
   @if ($gutter != false) {
-    $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+    $grid-breakpoints: grid-breakpoint($fromto, $gutter);
   }
 
   // Loop
@@ -54,7 +40,7 @@
 
     // Span values
     $spanColumns: list.nth($span, 1);
-    $spanContainer: getContainer.getcontainer($span);
+    $spanContainer: getcontainer($span);
     $spanAmount: math.div($spanContainer, $spanColumns);
 
     // Column values
@@ -63,21 +49,21 @@
     $columnMargin: calc(#{$breakpointGutter * $multiplier});
 
     // Only run between starting and stopping breakpoints
-    @include ifBreakpoint.ifBreakpoint($breakpointWidth) {
+    @include ifBreakpoint($breakpointWidth) {
 
       // Width
       @if $includeWidth != false {
-        @include property.property("width", $columnWidth);
+        @include property("width", $columnWidth);
       }
 
       // Left margin
       @if $includeMargin != false {
-        @include property.property("margin-left", $columnMargin);
+        @include property("margin-left", $columnMargin);
       }
 
       // Bottom margin
       @if $bottom != false {
-        @include property.property("margin-bottom", $columnMargin);
+        @include property("margin-bottom", $columnMargin);
       }
 
       // Omega settings
@@ -85,10 +71,10 @@
         // Reset all previous NTH values and set new spacing
         @if $breakpointWidth != 0 {
           &:nth-child(n) {
-            @include property.property("margin-left", $columnMargin);
-            @include property.property("margin-right", 0);
+            @include property("margin-left", $columnMargin);
+            @include property("margin-right", 0);
 
-            @if grid.$illusion-grid-type == float {
+            @if $illusion-grid-type == float {
               clear: none;
             }
           }
@@ -96,15 +82,15 @@
 
         // sub-pixel rounding fix
         &:nth-child(#{$omega}n) {
-          @include property.property("margin-right", -1px);
+          @include property("margin-right", -1px);
         }
 
         // Clear the item after omega
         &:nth-child(#{$omega}n+1) {
-          @include property.property("margin-left", 0);
+          @include property("margin-left", 0);
 
-          @if grid.$illusion-grid-type == float {
-            @include property.property("clear", left);
+          @if $illusion-grid-type == float {
+            @include property("clear", left);
           }
         }
       }
@@ -112,19 +98,19 @@
       @if $defaults == true {
 
         // Float item
-        @if grid.$illusion-grid-type == float {
-          @include property.property("float", left);
+        @if $illusion-grid-type == float {
+          @include property("float", left);
         }
 
         // No margin for first child
         &:first-child {
-          @include property.property("margin-left", 0);
+          @include property("margin-left", 0);
         }
 
         // sub-pixel rounding fix
         @if $omega == null {
           &:last-child {
-            @include property.property("margin-right", -1px);
+            @include property("margin-right", -1px);
           }
         }
 

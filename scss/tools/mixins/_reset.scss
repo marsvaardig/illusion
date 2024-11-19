@@ -1,23 +1,17 @@
-// Variables
-@use "../variables/reset";
-
-// Mixins
-@use "property";
-
 // Reset elements
 
 @mixin reset(
-  $margin: reset.$illusion-reset-margin,
-  $padding: reset.$illusion-reset-padding,
-  $list-style: reset.$illusion-reset-list-style,
-  $border: reset.$illusion-reset-border,
-  $background: reset.$illusion-reset-background
+  $margin: $illusion-reset-margin,
+  $padding: $illusion-reset-padding,
+  $list-style: $illusion-reset-list-style,
+  $border: $illusion-reset-border,
+  $background: $illusion-reset-background
 ) {
   @if $margin != false {
-    @include property.property("margin", $margin);
+    @include property("margin", $margin);
   }
   @if $padding != false {
-    @include property.property("padding", $padding);
+    @include property("padding", $padding);
   }
   @if $list-style != false {
     list-style: $list-style;

@@ -1,55 +1,43 @@
-// Variables
-@use "../tools/variables/breakpoints";
-@use "../tools/variables/extendalize";
-@use "../tools/variables/form";
-
-// Mixins
-@use "../tools/mixins/breakpoint";
-@use "../tools/mixins/content-block";
-@use "../tools/mixins/property";
-@use "../tools/mixins/selectors";
-@use "../tools/mixins/transition";
-
-@if (form.$illusion-form == true and form.$illusion-multiple-choice != false) or form.$illusion-multiple-choice == true {
+@if ($illusion-form == true and $illusion-multiple-choice != false) or $illusion-multiple-choice == true {
   // Radio buttons & checkboxes
 
   // By default, multiple choice inputs stack vertically
-  @include selectors.selectors(form.$illusion-multiple-choice-selector) {
-    display: form.$illusion-multiple-choice-display;
-    @include property.property("float", form.$illusion-multiple-choice-float);
-    @include property.property("clear", form.$illusion-multiple-choice-clear);
-    position: form.$illusion-multiple-choice-position;
-    @include property.property("padding", form.$illusion-multiple-choice-padding);
-    @include property.property("min-height", form.$illusion-multiple-choice-min-height);
+  @include selectors($illusion-multiple-choice-selector) {
+    display: $illusion-multiple-choice-display;
+    @include property("float", $illusion-multiple-choice-float);
+    @include property("clear", $illusion-multiple-choice-clear);
+    position: $illusion-multiple-choice-position;
+    @include property("padding", $illusion-multiple-choice-padding);
+    @include property("min-height", $illusion-multiple-choice-min-height);
 
-    @if (extendalize.$illusion-extendalize-last-children != false) {
-      @include content-block.content-block(form.$illusion-multiple-choice-margin-bottom);
+    @if ($illusion-extendalize-last-children != false) {
+      @include content-block($illusion-multiple-choice-margin-bottom);
     }
 
-    @include breakpoint.breakpoint(breakpoints.$bravo) {
-      @include property.property("float", form.$illusion-multiple-choice-bravo-float);
+    @include breakpoint($bravo) {
+      @include property("float", $illusion-multiple-choice-bravo-float);
     }
 
     // Absolutely position inputs within label, to allow text to wrap
     input {
-      position: form.$illusion-multiple-choice-input-position;
-      cursor: form.$illusion-multiple-choice-input-cursor;
-      @include property.property("left", form.$illusion-multiple-choice-input-left);
-      @include property.property("top", form.$illusion-multiple-choice-input-top);
-      @include property.property("width", form.$illusion-multiple-choice-input-width);
-      @include property.property("height", form.$illusion-multiple-choice-input-height);
-      z-index: form.$illusion-multiple-choice-input-zindex;
-      @include property.property("margin", form.$illusion-multiple-choice-input-margin);
-      opacity: form.$illusion-multiple-choice-input-opacity;
+      position: $illusion-multiple-choice-input-position;
+      cursor: $illusion-multiple-choice-input-cursor;
+      @include property("left", $illusion-multiple-choice-input-left);
+      @include property("top", $illusion-multiple-choice-input-top);
+      @include property("width", $illusion-multiple-choice-input-width);
+      @include property("height", $illusion-multiple-choice-input-height);
+      z-index: $illusion-multiple-choice-input-zindex;
+      @include property("margin", $illusion-multiple-choice-input-margin);
+      opacity: $illusion-multiple-choice-input-opacity;
     }
 
     label {
-      cursor: form.$illusion-multiple-choice-label-cursor;
-      @include property.property("padding", form.$illusion-multiple-choice-label-padding);
-      display: form.$illusion-multiple-choice-label-display;
-      align-items: form.$illusion-multiple-choice-label-align-items;
-      @include property.property("min-height", form.$illusion-multiple-choice-label-min-height);
-      flex-wrap: form.$illusion-multiple-choice-label-flex-wrap;
+      cursor: $illusion-multiple-choice-label-cursor;
+      @include property("padding", $illusion-multiple-choice-label-padding);
+      display: $illusion-multiple-choice-label-display;
+      align-items: $illusion-multiple-choice-label-align-items;
+      @include property("min-height", $illusion-multiple-choice-label-min-height);
+      flex-wrap: $illusion-multiple-choice-label-flex-wrap;
 
       // remove 300ms pause on mobile
       touch-action: manipulation;
@@ -58,71 +46,71 @@
     // Bordered box for radio buttons and checkbox
     [type=radio] + label::before,
     [type=checkbox] + label::before {
-      content: form.$illusion-multiple-choice-label-before-content;
-      border: form.$illusion-multiple-choice-label-before-border;
-      background: form.$illusion-multiple-choice-label-before-background;
-      @include property.property("width", form.$illusion-multiple-choice-label-before-width);
-      @include property.property("height", form.$illusion-multiple-choice-label-before-height);
-      position: form.$illusion-multiple-choice-label-before-position;
-      @include property.property("top", form.$illusion-multiple-choice-label-before-top);
-      @include property.property("left", form.$illusion-multiple-choice-label-before-left);
+      content: $illusion-multiple-choice-label-before-content;
+      border: $illusion-multiple-choice-label-before-border;
+      background: $illusion-multiple-choice-label-before-background;
+      @include property("width", $illusion-multiple-choice-label-before-width);
+      @include property("height", $illusion-multiple-choice-label-before-height);
+      position: $illusion-multiple-choice-label-before-position;
+      @include property("top", $illusion-multiple-choice-label-before-top);
+      @include property("left", $illusion-multiple-choice-label-before-left);
     }
 
     // Dot and checkmark
     [type=radio] + label::after,
     [type=checkbox] + label::after {
-      content: form.$illusion-multiple-choice-label-after-content;
-      border: form.$illusion-multiple-choice-label-after-border;
-      position: form.$illusion-multiple-choice-label-after-position;
-      opacity: form.$illusion-multiple-choice-label-after-opacity;
-      transform: form.$illusion-multiple-choice-label-after-transform;
-      @include transition.transition();
+      content: $illusion-multiple-choice-label-after-content;
+      border: $illusion-multiple-choice-label-after-border;
+      position: $illusion-multiple-choice-label-after-position;
+      opacity: $illusion-multiple-choice-label-after-opacity;
+      transform: $illusion-multiple-choice-label-after-transform;
+      @include transition();
     }
 
     // Rounded box for radio buttons
     [type=radio] + label::before {
-      border-radius: form.$illusion-multiple-choice-label-radio-before-border-radius;
+      border-radius: $illusion-multiple-choice-label-radio-before-border-radius;
     }
 
     // Dot
     [type=radio] + label::after {
-      @include property.property("width", form.$illusion-multiple-choice-label-radio-after-width);
-      @include property.property("height", form.$illusion-multiple-choice-label-radio-after-height);
-      @include property.property("top", form.$illusion-multiple-choice-label-radio-after-top);
-      @include property.property("left", form.$illusion-multiple-choice-label-radio-after-left);
-      border-radius: form.$illusion-multiple-choice-label-radio-after-border-radius;
+      @include property("width", $illusion-multiple-choice-label-radio-after-width);
+      @include property("height", $illusion-multiple-choice-label-radio-after-height);
+      @include property("top", $illusion-multiple-choice-label-radio-after-top);
+      @include property("left", $illusion-multiple-choice-label-radio-after-left);
+      border-radius: $illusion-multiple-choice-label-radio-after-border-radius;
     }
 
     // Checkmark
     [type=checkbox] + label::after {
-      border-width: form.$illusion-multiple-choice-label-checkbox-after-border-width;
-      background: form.$illusion-multiple-choice-label-checkbox-after-background;
-      @include property.property("width", form.$illusion-multiple-choice-label-checkbox-after-width);
-      @include property.property("height", form.$illusion-multiple-choice-label-checkbox-after-height);
-      @include property.property("top", form.$illusion-multiple-choice-label-checkbox-after-top);
-      @include property.property("left", form.$illusion-multiple-choice-label-checkbox-after-left);
-      transform: form.$illusion-multiple-choice-label-checkbox-after-transform;
+      border-width: $illusion-multiple-choice-label-checkbox-after-border-width;
+      background: $illusion-multiple-choice-label-checkbox-after-background;
+      @include property("width", $illusion-multiple-choice-label-checkbox-after-width);
+      @include property("height", $illusion-multiple-choice-label-checkbox-after-height);
+      @include property("top", $illusion-multiple-choice-label-checkbox-after-top);
+      @include property("left", $illusion-multiple-choice-label-checkbox-after-left);
+      transform: $illusion-multiple-choice-label-checkbox-after-transform;
     }
 
     // Selected state
     input:checked + label::after {
-      opacity: form.$illusion-multiple-choice-label-checked-after-opacity;
-      transform: form.$illusion-multiple-choice-label-checked-after-transform;
+      opacity: $illusion-multiple-choice-label-checked-after-opacity;
+      transform: $illusion-multiple-choice-label-checked-after-transform;
     }
 
     // Focused state
     [type=checkbox]:focus + label::before,
     [type=radio]:focus + label::before {
-      box-shadow: form.$illusion-multiple-choice-label-focus-before-box-shadow;
+      box-shadow: $illusion-multiple-choice-label-focus-before-box-shadow;
     }
 
     // Disabled state
     input:disabled {
-      opacity: form.$illusion-multiple-choice-input-disabled-opacity;
+      opacity: $illusion-multiple-choice-input-disabled-opacity;
 
       + label {
-        opacity: form.$illusion-multiple-choice-label-disabled-opacity;
-        cursor: form.$illusion-multiple-choice-label-disabled-cursor;
+        opacity: $illusion-multiple-choice-label-disabled-opacity;
+        cursor: $illusion-multiple-choice-label-disabled-cursor;
       }
     }
   }
