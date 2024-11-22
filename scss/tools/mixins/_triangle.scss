@@ -1,57 +1,60 @@
+@use "../variables/triangle";
+@use "property";
+
 // Triangle
 // CSS only triangles using borders
 
 @mixin triangle(
-  $direction: $illusion-triangle-direction,
-  $size: $illusion-triangle-size,
-  $color: $illusion-triangle-color
+  $direction: triangle.$illusion-triangle-direction,
+  $size: triangle.$illusion-triangle-size,
+  $color: triangle.$illusion-triangle-color
 ) {
 
   // Top and bottom arrows
   @if $direction == top or $direction == bottom {
-    @include property("border-left", $size solid transparent);
-    @include property("border-right", $size solid transparent);
+    @include property.property("border-left", $size solid transparent);
+    @include property.property("border-right", $size solid transparent);
   }
 
   // Left and right arrows
   @if $direction == left or $direction == right {
-    @include property("border-top", $size solid transparent);
-    @include property("border-bottom", $size solid transparent);
+    @include property.property("border-top", $size solid transparent);
+    @include property.property("border-bottom", $size solid transparent);
   }
 
   // Top
   @if $direction == top {
-    @include property("border-bottom", $size solid);
+    @include property.property("border-bottom", $size solid);
 
     @if $color {
-      @include property("border-bottom-color", $color);
+      @include property.property("border-bottom-color", $color);
     }
   }
 
   // Right
   @if $direction == right {
-    @include property("border-left", $size solid);
+    @include property.property("border-left", $size solid);
 
     @if $color {
-      @include property("border-left-color", $color);
+      @include property.property("border-left-color", $color);
     }
   }
 
   // Bottom
   @if $direction == bottom {
-    @include property("border-top", $size solid);
+    @include property.property("border-top", $size solid);
 
     @if $color {
-      @include property("border-top-color", $color);
+      @include property.property("border-top-color", $color);
     }
   }
 
   // Left
   @if $direction == left {
-    @include property("border-right", $size solid);
+    @include property.property("border-right", $size solid);
 
     @if $color {
-      @include property("border-right-color", $color);
+      @include property.property("border-right-color", $color);
     }
   }
 }

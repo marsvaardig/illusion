@@ -1,5 +1,5 @@
 .bar {
-  @include clearfix;
+  @include clearfix();
 }
 
 .foo .bar {

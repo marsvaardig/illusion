@@ -1,21 +1,24 @@
+@use "../variables/content-block";
+@use "property";
+
 // Content block
 
 @mixin content-block(
-  $spacing: $illusion-content-block-spacing,
-  $location: $illusion-content-block-location
+  $spacing: content-block.$illusion-content-block-spacing,
+  $location: content-block.$illusion-content-block-location
 ) {
   @if $location == top {
-    @include property("margin-top", $spacing);
+    @include property.property("margin-top", $spacing);
 
     &:first-child {
-      @include property("margin-top", 0);
+      @include property.property("margin-top", 0);
     }
   }
   @if $location == bottom {
-    @include property("margin-bottom", $spacing);
+    @include property.property("margin-bottom", $spacing);
 
     &:last-child {
-      @include property("margin-bottom", 0);
+      @include property.property("margin-bottom", 0);
     }
   }
 }

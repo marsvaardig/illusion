@@ -1,5 +1,6 @@
 // Globals
 @use "sass:list";
+@use "../variables/grid";
 
 
 // Gets the container size and returns the default settings variable when it's not set
@@ -9,6 +10,6 @@
     $container: list.nth($span, 3);
     @return $container;
   } @else if list.length($span) == 1 {
-    @return $illusion-grid-container;
+    @return grid.$illusion-grid-container;
   }
 }

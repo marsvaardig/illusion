@@ -1,5 +1,6 @@
 // Globals
 @use "sass:list";
+@use "largestWidth";
 
 
 // Gets the to size and returns the largest grid width width when false
@@ -8,11 +9,11 @@
   @if list.length($fromto) == 3 {
     $to: list.nth($fromto, 3);
     @if $to == false {
-      $to: largestWidth() + 1;
+      $to: largestWidth.largestWidth() + 1;
     }
     @return $to;
   } @else if list.length($fromto) == 1 {
-    $to: largestWidth() + 1;
+    $to: largestWidth.largestWidth() + 1;
     @return $to;
   }
 }

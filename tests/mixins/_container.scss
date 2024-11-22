@@ -1,3 +1,3 @@
 .foo {
-  @include container;
+  @include container();
 }

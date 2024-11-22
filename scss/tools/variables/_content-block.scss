@@ -1,4 +1,6 @@
+@use "type";
+
 // Content block
 
-$illusion-content-block-spacing:  $line-height !default;
+$illusion-content-block-spacing:  type.$line-height !default;
 $illusion-content-block-location: bottom !default;

@@ -1,3 +1,5 @@
+@use "breakpoint";;
+
 // Do or don't use breakpoint depending on width
 
 @mixin ifBreakpoint(
@@ -11,7 +13,7 @@
 
   // Set width in breakpoints
   @if $width != 0 {
-    @include breakpoint($width) {
+    @include breakpoint.breakpoint($width) {
       @content;
     }
   }

@@ -1,26 +1,28 @@
 // Globals
 @use "sass:math";
 @use "sass:list";
-
+@use "../variables/gallery";
+@use "../functions/getContainer";
+@use "span";
 
 // Gallery mixin
 
 @mixin gallery(
-  $span: $illusion-gallery-span,
-  $fromto: $illusion-gallery-fromto,
-  $multiplier: $illusion-gallery-multiplier,
-  $bottom: $illusion-gallery-bottom,
-  $defaults: $illusion-gallery-defaults,
-  $gutter: $illusion-gallery-gutter,
-  $includeWidth: $illusion-gallery-includeWidth,
-  $includeMargin: $illusion-gallery-includeMargin
+  $span: gallery.$illusion-gallery-span,
+  $fromto: gallery.$illusion-gallery-fromto,
+  $multiplier: gallery.$illusion-gallery-multiplier,
+  $bottom: gallery.$illusion-gallery-bottom,
+  $defaults: gallery.$illusion-gallery-defaults,
+  $gutter: gallery.$illusion-gallery-gutter,
+  $includeWidth: gallery.$illusion-gallery-includeWidth,
+  $includeMargin: gallery.$illusion-gallery-includeMargin
 ) {
 
   // Span values
   $spanColumns: list.nth($span, 1);
-  $spanContainer: getcontainer($span);
+  $spanContainer: getContainer.getcontainer($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
   // Span columns
-  @include span($span, $fromto, $multiplier, $bottom, $defaults, $spanAmount, $gutter, $includeWidth, $includeMargin);
+  @include span.span($span, $fromto, $multiplier, $bottom, $defaults, $spanAmount, $gutter, $includeWidth, $includeMargin);
 }

@@ -1,5 +1,11 @@
 // Globals
 @use "sass:map";
+@use "../variables/fallback";
+@use "../variables/custom-properties" as vars;
+@use "../variables/modular-scale";
+@use "../variables/logical-properties" as logical;
+@use "../functions/modular-scale" as fms;
+@use "property";
 
 
 // Modular scale
@@ -14,7 +20,7 @@
   $subtractFrom: false
 ) {
   // Get default value from map
-  $ms-amount: map.get($illusion-ms-sizes, $amount);
+  $ms-amount: map.get(modular-scale.$illusion-ms-sizes, $amount);
   // Support for non default values
   @if ($ms-amount == null) {
     $ms-amount: $amount;
@@ -25,30 +31,30 @@
   }
     // Apply multiplier if applicable
   @else if ($multiplier != 1) {
-    $ms-amount: map.get($illusion-ms-sizes, $amount) * $multiplier;
+    $ms-amount: map.get(modular-scale.$illusion-ms-sizes, $amount) * $multiplier;
   }
 
   // Logical properties?
-  @if $illusion-logical-properties {
+  @if logical.$illusion-logical-properties {
     @if ($subtractFrom) {
-      @include property("#{$property}", calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
+      @include property.property("#{$property}", calc(#{$subtractFrom} - (var(--#{vars.$illusion-css-variables-prefix}spacing) * #{$ms-amount})));
     } @else {
-      @include property("#{$property}", calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+      @include property.property("#{$property}", calc(var(--#{vars.$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
     }
   } @else {
     // Default
     @if ($subtractFrom) {
-      #{$property}: calc(#{$subtractFrom} - (#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount}));
+      #{$property}: calc(#{$subtractFrom} - (#{fms.ms(1, rem)} * #{$ms-amount * fallback.$illusion-fallback-amount}));
     } @else {
-      #{$property}: calc(#{ms(1, rem)} * #{$ms-amount * $illusion-fallback-amount});
+      #{$property}: calc(#{fms.ms(1, rem)} * #{$ms-amount * fallback.$illusion-fallback-amount});
     }
     // Fallback
-    @if ($illusion-fallback == false) {
+    @if (fallback.$illusion-fallback == false) {
       @supports (--css: variables) {
         @if ($subtractFrom) {
-          #{$property}: calc(#{$subtractFrom} - (var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
+          #{$property}: calc(#{$subtractFrom} - (var(--#{vars.$illusion-css-variables-prefix}spacing) * #{$ms-amount}));
         } @else {
-          #{$property}: calc(var(--#{$illusion-css-variables-prefix}spacing) * #{$ms-amount});
+          #{$property}: calc(var(--#{vars.$illusion-css-variables-prefix}spacing) * #{$ms-amount});
         }
       }
     }

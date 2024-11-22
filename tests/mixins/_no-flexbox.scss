@@ -1,5 +1,5 @@
 .foo {
-  @include no-flexbox {
+  @include no-flexbox() {
     display: table;
   }
 }

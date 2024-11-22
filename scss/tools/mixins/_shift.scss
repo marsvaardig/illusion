@@ -2,83 +2,89 @@
 @use "sass:math";
 @use "sass:map";
 @use "sass:list";
+@use "../variables/shift";
+@use "../variables/warnings";
+@use "../functions/breakpointMap";
+@use "../functions/getContainer";
+@use "ifBreakpoint";
+@use "property";
 
 
 // Shift
 
 @mixin shift(
-  $shift: $illusion-shift,
-  $fromto: $illusion-shift-fromto,
-  $multiplier: $illusion-shift-multiplier,
-  $defaults: $illusion-shift-defaults,
-  $gutter: $illusion-shift-gutter
+  $shift: shift.$illusion-shift,
+  $fromto: shift.$illusion-shift-fromto,
+  $multiplier: shift.$illusion-shift-multiplier,
+  $defaults: shift.$illusion-shift-defaults,
+  $gutter: shift.$illusion-shift-gutter
 ) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `shift` mixin is designed to work best with a number dividable by 0.5';
   }
 
   // Get new SCSS map
-  $grid-breakpoints: grid-breakpoints($fromto);
+  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
   // Map when gutter is set
   @if ($gutter != false) {
-    $grid-breakpoints: grid-breakpoint($fromto, $gutter);
-  }
+    $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
 
-  // Loop
-  @each $breakpoint, $values in $grid-breakpoints {
+    // Loop
+    @each $breakpoint, $values in $grid-breakpoints {
 
-    // Breakpoint values
-    $breakpointGutter: map.get($values, gutter);
-    $breakpointWidth: map.get($values, width);
+      // Breakpoint values
+      $breakpointGutter: map.get($values, gutter);
+      $breakpointWidth: map.get($values, width);
 
-    // Shift values
-    $spanColumns: list.nth($shift, 1);
-    $spanContainer: getcontainer($shift);
-    $spanAmount: math.div($spanContainer, $spanColumns);
-
-    // Negative
-    $negative: false;
-    @if $spanColumns < 0 {
-      $spanColumns: $spanColumns * -1;
-      $negative: true;
-    }
-
-    // Calculate after negative test
-    @if $spanColumns != 0 {
+      // Shift values
+      $spanColumns: list.nth($shift, 1);
+      $spanContainer: getContainer.getcontainer($shift);
       $spanAmount: math.div($spanContainer, $spanColumns);
-    }
 
-    // Only run between starting and stopping breakpoints
-    @include ifBreakpoint($breakpointWidth) {
+      // Negative
+      $negative: false;
+      @if $spanColumns < 0 {
+        $spanColumns: $spanColumns * -1;
+        $negative: true;
+      }
 
-      // Set variable
-      $left: auto;
-
+      // Calculate after negative test
       @if $spanColumns != 0 {
-        // Column values
-        $columnGutter: ($spanAmount - 1) * $breakpointGutter * $multiplier;
+        $spanAmount: math.div($spanContainer, $spanColumns);
+      }
 
-        // Calculate left
-        $left: calc(((100% - #{$columnGutter}) / #{$spanAmount}) + #{$breakpointGutter * $multiplier});
-        @if $negative == true {
-          $left: calc(((-100% - #{$breakpointGutter * $multiplier}) / #{$spanAmount}));
+      // Only run between starting and stopping breakpoints
+      @include ifBreakpoint.ifBreakpoint($breakpointWidth) {
+
+        // Set variable
+        $left: auto;
+
+        @if $spanColumns != 0 {
+          // Column values
+          $columnGutter: ($spanAmount - 1) * $breakpointGutter * $multiplier;
+
+          // Calculate left
+          $left: calc(((100% - #{$columnGutter}) / #{$spanAmount}) + #{$breakpointGutter * $multiplier});
+          @if $negative == true {
+            $left: calc(((-100% - #{$breakpointGutter * $multiplier}) / #{$spanAmount}));
+          }
         }
+
+        // Default properties
+        @if $defaults == true {
+          // Relative positioning for shifting with `left`
+          position: relative;
+
+          $defaults: false;
+        }
+
+        // Set left
+        @include property.property("left", $left);
+
       }
-
-      // Default properties
-      @if $defaults == true {
-        // Relative positioning for shifting with `left`
-        position: relative;
-
-        $defaults: false;
-      }
-
-      // Set left
-      @include property("left", $left);
-
     }
   }
 }

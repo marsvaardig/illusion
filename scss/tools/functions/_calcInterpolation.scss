@@ -1,5 +1,7 @@
 // Globals
 @use "sass:math";
+@use "getUnit";
+@use "stripUnit";
 
 
 // Calc interpolation
@@ -7,9 +9,9 @@
 @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
 
   // Variables
-  $value-unit: get-unit($min-value);
-  $a: math.div(strip-unit($max-value) - strip-unit($min-value), strip-unit($max-screen) - strip-unit($min-screen));
-  $b: strip-unit($min-value) - $a * strip-unit($min-screen);
+  $value-unit: getUnit.get-unit($min-value);
+  $a: math.div(stripUnit.strip-unit($max-value) - stripUnit.strip-unit($min-value), stripUnit.strip-unit($max-screen) - stripUnit.strip-unit($min-screen));
+  $b: stripUnit.strip-unit($min-value) - $a * stripUnit.strip-unit($min-screen);
 
   // Substract or multiply
   $sign: "+";

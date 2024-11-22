@@ -1,5 +1,5 @@
 .foo {
-  @include js-disabled {
+  @include js-disabled() {
     display: block;
   }
 }

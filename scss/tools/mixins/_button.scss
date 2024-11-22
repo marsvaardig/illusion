@@ -1,3 +1,5 @@
+@use "../variables/button";
+
 // Button
 //
 // Can be used inside your own @mixin button(); and other elements that should behave like a button
@@ -8,10 +10,10 @@
 // 4. Appear clickable
 
 @mixin button-structure(
-  $appearance: $illusion-button-appearance,
-  $display: $illusion-button-display,
-  $vertical-align: $illusion-button-vertical-align,
-  $cursor: $illusion-button-cursor
+  $appearance: button.$illusion-button-appearance,
+  $display: button.$illusion-button-display,
+  $vertical-align: button.$illusion-button-vertical-align,
+  $cursor: button.$illusion-button-cursor
 ) {
   @if $appearance != false {
     -webkit-appearance: $appearance; // 1

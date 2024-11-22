@@ -1,27 +1,30 @@
-@if ($illusion-extendalize == true and $illusion-extendalize-svg != false) or $illusion-extendalize-svg == true {
+@use "../tools/variables/extendalize";
+@use "../tools/mixins/property";
+
+@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-svg != false) or extendalize.$illusion-extendalize-svg == true {
   /**
    * SVG
    */
 
   svg {
-    @if $illusion-extendalize-svg-width != false {
+    @if extendalize.$illusion-extendalize-svg-width != false {
       &:not([width]) {
-        @include property("width", 1em);
+        @include property.property("width", 1em);
       }
     }
-    @if $illusion-extendalize-svg-height != false {
+    @if extendalize.$illusion-extendalize-svg-height != false {
       &:not([height]) {
-        @include property("height", 1em);
+        @include property.property("height", 1em);
       }
     }
-    @if $illusion-extendalize-svg-color != false {
+    @if extendalize.$illusion-extendalize-svg-color != false {
       fill: currentColor;
     }
   }
 
-  @if $illusion-extendalize-svg-sprite != false {
+  @if extendalize.$illusion-extendalize-svg-sprite != false {
     .svg-sprite {
-      display: $illusion-extendalize-svg-sprite-display;
+      display: extendalize.$illusion-extendalize-svg-sprite-display;
     }
   }
 }
