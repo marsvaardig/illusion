@@ -9,9 +9,13 @@
 @function px($size, $type: rem) {
   $value: math.div($size, $root-site-font-size);
 
-  @if ($type != false) {
-    $value: #{math.div($size, $root-site-font-size)}#{$type};
+  @if $type == rem {
+    @return $value * 1rem;
+  } @else if $type == em {
+    @return $value * 1em;
+  } @else if $type == false {
+    @return $value;
+  } @else {
+    @error "Invalid type '#{$type}'. Allowed values are 'rem', 'em', or false.";
   }
-
-  @return $value;
 }
