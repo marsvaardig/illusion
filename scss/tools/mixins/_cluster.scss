@@ -8,8 +8,8 @@
 ) {
   @if $illusion-logical-properties or $illusion-layout-flex-gap {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-wrap: $flex-wrap;
+    align-items: $align-items;
     justify-content: $justify-content;
     gap: $margin;
   } @else {
