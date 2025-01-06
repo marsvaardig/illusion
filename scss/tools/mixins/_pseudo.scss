@@ -13,7 +13,7 @@
     position: $parent-position;
   }
 
-  &::#{pseudo.$illusion-pseudo} {
+  &::#{$illusion-pseudo} {
     @if $position != false {
       position: $position;
     }
