@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "../variables/type";
 
 // Pixels to rem
 // ==========================================================================
@@ -7,7 +8,7 @@
 // pixel size
 
 @function px($size, $type: rem) {
-  $value: math.div($size, $root-site-font-size);
+  $value: math.div($size, type.$root-site-font-size);
 
   @if $type == rem {
     @return $value * 1rem;
