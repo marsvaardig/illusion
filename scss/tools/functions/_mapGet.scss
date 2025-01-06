@@ -1,3 +1,6 @@
+// Globals
+@use "sass:map";
+
 // Map deep get
 // @author Hugo Giraudel
 // @access public
@@ -9,7 +12,7 @@
 
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
-    $map: map-get($map, $key);
+    $map: map.get($map, $key);
   }
   @return $map;
 }

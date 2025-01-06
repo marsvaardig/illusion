@@ -1,3 +1,5 @@
+@use "../variables/flexbox";
+
 // Flexbox
 //
 // 1. Is flexbox variable set to true?
@@ -9,10 +11,10 @@
 // This is a good thing since we're not sure what we're showing / hiding with JS that might mess with flexbox
 
 @mixin flexbox(
-  $horizontal: $illusion-flexbox-horizontal,
-  $vertical: $illusion-flexbox-vertical
+  $horizontal: flexbox.$illusion-flexbox-horizontal,
+  $vertical: flexbox.$illusion-flexbox-vertical
 ) {
-  @if $illusion-flexbox == true { // 1
+  @if flexbox.$illusion-flexbox == true { // 1
     @at-root { // 2
       .flexbox &, // 3
       .flexboxlegacy & { // 3

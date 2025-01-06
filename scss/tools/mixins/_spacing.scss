@@ -1,59 +1,70 @@
+// Globals
+@use "sass:map";
+@use "sass:list";
+@use "../variables/spacing";
+@use "../variables/warnings";
+@use "../variables/logical-properties" as logical;
+@use "../functions/breakpointMap";
+@use "../functions/getsides";
+@use "ifBreakpoint";
+@use "property";
+
 // Spacing
 //
 // Responsive spacing that follows the grid breakpoints
 
 @mixin spacing(
-  $sides: $illusion-spacing-sides,
-  $type: $illusion-spacing-type,
-  $multiplier: $illusion-spacing-multiplier,
-  $fromto: $illusion-spacing-fromto,
-  $lastchildnone: $illusion-spacing-lastchildnone,
-  $minus: $illusion-spacing-minus
+  $sides: spacing.$illusion-spacing-sides,
+  $type: spacing.$illusion-spacing-type,
+  $multiplier: spacing.$illusion-spacing-multiplier,
+  $fromto: spacing.$illusion-spacing-fromto,
+  $lastchildnone: spacing.$illusion-spacing-lastchildnone,
+  $minus: spacing.$illusion-spacing-minus
 ) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `spacing` mixin is designed to work best with a number dividable by 0.5';
   }
 
-  @if ($type != padding and $type != margin and $illusion-display-warnings != false) {
+  @if ($type != padding and $type != margin and warnings.$illusion-display-warnings != false) {
     @warn 'It might be best to use the spacing function instead of the spacing mixin for what you are trying to do.';
   }
 
   // Get new SCSS map
-  $grid-breakpoints: grid-breakpoints($fromto);
+  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
   // Loop
   @each $breakpoint, $values in $grid-breakpoints {
 
     //Get values
-    $spacing: map-get($values, gutter);
-    $width: map-get($values, width);
-    $side: nth($sides, 1);
-    $skip: getsides($sides);
-    $spacing: map-get($values, gutter) * $multiplier;
-    $width: map-get($values, width);
+    $spacing: map.get($values, gutter);
+    $width: map.get($values, width);
+    $side: list.nth($sides, 1);
+    $skip: getsides.getsides($sides);
+    $spacing: map.get($values, gutter) * $multiplier;
+    $width: map.get($values, width);
     $subtract: $minus;
 
     // Only run between starting and stopping breakpoints
-    @include ifBreakpoint($width) {
+    @include ifBreakpoint.ifBreakpoint($width) {
 
       // Top
       @if ($side == all or $side == vertical or $side == top) and $skip != top {
         @if ($side == all or $side == vertical) and ($skip != bottom) {
-          @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
+          @if ($minus % 2 != 0 and warnings.$illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        @if $illusion-logical-properties {
-          @include property("#{$type}-top", $spacing - $subtract);
+        @if logical.$illusion-logical-properties {
+          @include property.property("#{$type}-top", $spacing - $subtract);
         } @else {
           #{$type}-top: $spacing - $subtract;
         }
 
         @if $lastchildnone != false {
           &:last-child {
-            @if $illusion-logical-properties {
-              @include property("#{$type}-top", 0);
+            @if logical.$illusion-logical-properties {
+              @include property.property("#{$type}-top", 0);
             } @else {
               #{$type}-top: 0;
             }
@@ -64,19 +75,19 @@
       // Right
       @if ($side == all or $side == horizontal or $side == right) and $skip != right {
         @if ($side == all or $side == horizontal) and ($skip != left) {
-          @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
+          @if ($minus % 2 != 0 and warnings.$illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        @if $illusion-logical-properties {
-          @include property("#{$type}-right", $spacing - $subtract);
+        @if logical.$illusion-logical-properties {
+          @include property.property("#{$type}-right", $spacing - $subtract);
         } @else {
           #{$type}-right: $spacing - $subtract;
         }
 
         @if $lastchildnone != false {
           &:last-child {
-            @if $illusion-logical-properties {
-              @include property("#{$type}-right", 0);
+            @if logical.$illusion-logical-properties {
+              @include property.property("#{$type}-right", 0);
             } @else {
               #{$type}-right: 0;
             }
@@ -87,19 +98,19 @@
       // Bottom
       @if ($side == all or $side == vertical or $side == bottom) and $skip != bottom {
         @if ($side == all or $side == vertical) and ($skip != top) {
-          @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
+          @if ($minus % 2 != 0 and warnings.$illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        @if $illusion-logical-properties {
-          @include property("#{$type}-bottom", $spacing - $subtract);
+        @if logical.$illusion-logical-properties {
+          @include property.property("#{$type}-bottom", $spacing - $subtract);
         } @else {
           #{$type}-bottom: $spacing - $subtract;
         }
 
         @if $lastchildnone != false {
           &:last-child {
-            @if $illusion-logical-properties {
-              @include property("#{$type}-bottom", 0);
+            @if logical.$illusion-logical-properties {
+              @include property.property("#{$type}-bottom", 0);
             } @else {
               #{$type}-bottom: 0;
             }
@@ -110,19 +121,19 @@
       // Left
       @if ($side == all or $side == horizontal or $side == left) and $skip != left {
         @if ($side == all or $side == horizontal) and ($skip != right) {
-          @if ($minus % 2 != 0 and $illusion-display-warnings != false) { @warn '$minus should be an even number'; }
+          @if ($minus % 2 != 0 and warnings.$illusion-display-warnings != false) { @warn '$minus should be an even number'; }
           $subtract: $minus * 0.5;
         }
-        @if $illusion-logical-properties {
-          @include property("#{$type}-left", $spacing - $subtract);
+        @if logical.$illusion-logical-properties {
+          @include property.property("#{$type}-left", $spacing - $subtract);
         } @else {
           #{$type}-left: $spacing - $subtract;
         }
 
         @if $lastchildnone != false {
           &:last-child {
-            @if $illusion-logical-properties {
-              @include property("#{$type}-left", 0);
+            @if logical.$illusion-logical-properties {
+              @include property.property("#{$type}-left", 0);
             } @else {
               #{$type}-left: 0;
             }

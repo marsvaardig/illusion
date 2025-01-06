@@ -1,24 +1,32 @@
+// Globals
+@use "sass:map";
+@use "../variables/grid";
+@use "property";
+@use "clearfix";
+@use "ifBreakpoint";
+@use "../functions/largestGutter";
+
 // Container
 
 @mixin container(
-  $type: $illusion-grid-container-type,
-  $align: $illusion-grid-container-align
+  $type: grid.$illusion-grid-container-type,
+  $align: grid.$illusion-grid-container-align
 ) {
 
   // Set default styling
-  @include property("max-width", $illusion-grid-maxwidth + (largestGutter() * 2));
+  @include property.property("max-width", grid.$illusion-grid-maxwidth + (largestGutter.largestGutter() * 2));
 
   // Alignment
   @if $align == center or $align == right {
-    @include property("margin-left", auto);
+    @include property.property("margin-left", auto);
   }
   @if $align == center or $align == left {
-    @include property("margin-right", auto);
+    @include property.property("margin-right", auto);
   }
 
   // Flexbox
   @if $type != flex {
-    @include clearfix;
+    @include clearfix.clearfix;
   }
   @if $type == flex {
     display: flex;
@@ -26,10 +34,10 @@
   }
 
   // Run through each breakpoint
-  @each $breakpoint, $values in $illusion-grid-breakpoints {
-    @include ifBreakpoint(map-get($values, width)) {
-      @include property("padding-left", map-get($values, gutter));
-      @include property("padding-right", map-get($values, gutter));
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+    @include ifBreakpoint.ifBreakpoint(map.get($values, width)) {
+      @include property.property("padding-left", map.get($values, gutter));
+      @include property.property("padding-right", map.get($values, gutter));
     }
   }
 }

@@ -1,30 +1,34 @@
+@use "../variables/ratio-block";
+@use "../functions/calculateRatio";
+@use "property";
+
 // Aspect ratio blocks
 
 @mixin ratio-block(
-  $ratio: $illusion-ratio-block,
-  $overflow: $illusion-ratio-block-overflow,
-  $after: $illusion-ratio-block-after
+  $ratio: ratio-block.$illusion-ratio-block,
+  $overflow: ratio-block.$illusion-ratio-block-overflow,
+  $after: ratio-block.$illusion-ratio-block-after
 ) {
 
   // Get percentage
-  $percent: calculateRatio($ratio);
+  $percent: calculateRatio.calculateRatio($ratio);
 
   @if $overflow != false {
     overflow: $overflow;
   }
 
   &::before {
-    display: $illusion-ratio-block-before-display;
-    @include property("float", $illusion-ratio-block-before-float);
-    content: $illusion-ratio-block-before-content;
-    @include property("padding-top", $percent);
+    display: ratio-block.$illusion-ratio-block-before-display;
+    @include property.property("float", ratio-block.$illusion-ratio-block-before-float);
+    content: ratio-block.$illusion-ratio-block-before-content;
+    @include property.property("padding-top", $percent);
   }
 
   @if $after != false {
     &::after {
-      content: $illusion-ratio-block-after-content;
-      @include property("clear", $illusion-ratio-block-after-clear);
-      display: $illusion-ratio-block-after-display;
+      content: ratio-block.$illusion-ratio-block-after-content;
+      @include property.property("clear", ratio-block.$illusion-ratio-block-after-clear);
+      display: ratio-block.$illusion-ratio-block-after-display;
     }
   }
 }

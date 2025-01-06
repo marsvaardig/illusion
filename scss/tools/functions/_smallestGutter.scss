@@ -1,11 +1,16 @@
+// Globals
+@use "sass:map";
+@use "../variables/grid";
+
+
 // Loop through breakpoints to get the smallest gutter
 
 @function smallestGutter() {
   $gutter: false;
-  @each $breakpoint, $values in $illusion-grid-breakpoints {
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
     // Only run on the first one
     @if $gutter == false {
-      $gutter: map-get($values, gutter);
+      $gutter: map.get($values, gutter);
     }
   }
   @return $gutter;

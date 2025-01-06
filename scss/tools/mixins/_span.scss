@@ -1,117 +1,128 @@
+// Globals
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+@use "../variables/grid";
+@use "../variables/span";
+@use "../variables/warnings";
+@use "../functions/breakpointMap";
+@use "../functions/getContainer";
+@use "property";
+@use "ifBreakpoint";
+
+
 // Span mixin
 
-@use "sass:math";
-
 @mixin span(
-  $span: $illusion-span-span,
-  $fromto: $illusion-span-fromto,
-  $multiplier: $illusion-span-multiplier,
-  $bottom: $illusion-span-bottom,
-  $defaults: $illusion-span-defaults,
-  $omega: $illusion-span-omega,
-  $gutter: $illusion-span-gutter,
-  $includeWidth: $illusion-span-includeWidth,
-  $includeMargin: $illusion-span-includeMargin
+  $span: span.$illusion-span-span,
+  $fromto: span.$illusion-span-fromto,
+  $multiplier: span.$illusion-span-multiplier,
+  $bottom: span.$illusion-span-bottom,
+  $defaults: span.$illusion-span-defaults,
+  $omega: span.$illusion-span-omega,
+  $gutter: span.$illusion-span-gutter,
+  $includeWidth: span.$illusion-span-includeWidth,
+  $includeMargin: span.$illusion-span-includeMargin
 ) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `span` mixin is designed to work best with a number dividable by 0.5';
   }
 
   // Get new SCSS map
-  $grid-breakpoints: grid-breakpoints($fromto);
+  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
   // Map when gutter is set
   @if ($gutter != false) {
-    $grid-breakpoints: grid-breakpoint($fromto, $gutter);
-  }
+    $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
 
-  // Loop
-  @each $breakpoint, $values in $grid-breakpoints {
+    // Loop
+    @each $breakpoint, $values in $grid-breakpoints {
 
-    // Breakpoint values
-    $breakpointGutter: map-get($values, gutter);
-    $breakpointWidth: map-get($values, width);
+      // Breakpoint values
+      $breakpointGutter: map.get($values, gutter);
+      $breakpointWidth: map.get($values, width);
 
-    // Span values
-    $spanColumns: nth($span, 1);
-    $spanContainer: getcontainer($span);
-    $spanAmount: math.div($spanContainer, $spanColumns);
+      // Span values
+      $spanColumns: list.nth($span, 1);
+      $spanContainer: getContainer.getcontainer($span);
+      $spanAmount: math.div($spanContainer, $spanColumns);
 
-    // Column values
-    $columnGutter: ($spanAmount - 1) * $breakpointGutter * $multiplier;
-    $columnWidth: calc((100% - #{$columnGutter}) / #{$spanAmount});
-    $columnMargin: calc(#{$breakpointGutter * $multiplier});
+      // Column values
+      $columnGutter: ($spanAmount - 1) * $breakpointGutter * $multiplier;
+      $columnWidth: calc((100% - #{$columnGutter}) / #{$spanAmount});
+      $columnMargin: calc(#{$breakpointGutter * $multiplier});
 
-    // Only run between starting and stopping breakpoints
-    @include ifBreakpoint($breakpointWidth) {
+      // Only run between starting and stopping breakpoints
+      @include ifBreakpoint.ifBreakpoint($breakpointWidth) {
 
-      // Width
-      @if $includeWidth != false {
-        @include property("width", $columnWidth);
-      }
+        // Width
+        @if $includeWidth != false {
+          @include property.property("width", $columnWidth);
+        }
 
-      // Left margin
-      @if $includeMargin != false {
-        @include property("margin-left", $columnMargin);
-      }
+        // Left margin
+        @if $includeMargin != false {
+          @include property.property("margin-left", $columnMargin);
+        }
 
-      // Bottom margin
-      @if $bottom != false {
-        @include property("margin-bottom", $columnMargin);
-      }
+        // Bottom margin
+        @if $bottom != false {
+          @include property.property("margin-bottom", $columnMargin);
+        }
 
-      // Omega settings
-      @if $omega != null {
-        // Reset all previous NTH values and set new spacing
-        @if $breakpointWidth != 0 {
-          &:nth-child(n) {
-            @include property("margin-left", $columnMargin);
-            @include property("margin-right", 0);
+        // Omega settings
+        @if $omega != null {
+          // Reset all previous NTH values and set new spacing
+          @if $breakpointWidth != 0 {
+            &:nth-child(n) {
+              @include property.property("margin-left", $columnMargin);
+              @include property.property("margin-right", 0);
 
-            @if $illusion-grid-type == float {
-              clear: none;
+              @if grid.$illusion-grid-type == float {
+                clear: none;
+              }
+            }
+          }
+
+          // sub-pixel rounding fix
+          &:nth-child(#{$omega}n) {
+            @include property.property("margin-right", -1px);
+          }
+
+          // Clear the item after omega
+          &:nth-child(#{$omega}n+1) {
+            @include property.property("margin-left", 0);
+
+            @if grid.$illusion-grid-type == float {
+              @include property.property("clear", left);
             }
           }
         }
 
-        // sub-pixel rounding fix
-        &:nth-child(#{$omega}n) {
-          @include property("margin-right", -1px);
-        }
+        @if $defaults == true {
 
-        // Clear the item after omega
-        &:nth-child(#{$omega}n+1) {
-          @include property("margin-left", 0);
-
-          @if $illusion-grid-type == float {
-            @include property("clear", left);
+          // Float item
+          @if grid.$illusion-grid-type == float {
+            @include property.property("float", left);
           }
-        }
-      }
 
-      @if $defaults == true {
-
-        // Float item
-        @if $illusion-grid-type == float {
-          @include property("float", left);
-        }
-
-        // No margin for first child
-        &:first-child {
-          @include property("margin-left", 0);
-        }
-
-        // sub-pixel rounding fix
-        @if $omega == null {
-          &:last-child {
-            @include property("margin-right", -1px);
+          // No margin for first child
+          &:first-child {
+            @include property.property("margin-left", 0);
           }
-        }
 
-        // Set to true so it only runs once
-        $defaults: false;
+          // sub-pixel rounding fix
+          @if $omega == null {
+            &:last-child {
+              @include property.property("margin-right", -1px);
+            }
+          }
+
+          // Set to true so it only runs once
+          $defaults: false;
+        }
       }
     }
   }

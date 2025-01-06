@@ -1,11 +1,25 @@
+// Globals
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+@use "smallestGutter";
+@use "getcontainer";
+@use "mapGetNext";
+@use "mapGet";
+@use "largestWidth";
+@use "lastValue";
+@use "../variables/span";
+@use "../variables/grid";
+@use "../variables/warnings";
+@use "../mixins/breakpoint";
+
+
 // Returns gallery/span width
 
-@use "sass:math";
-
-@function getWidth($span: $illusion-span-span, $multiplier: $illusion-span-multiplier, $gutter: $illusion-span-gutter) {
+@function getWidth($span: span.$illusion-span-span, $multiplier: span.$illusion-span-multiplier, $gutter: span.$illusion-span-gutter) {
 
   // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and $illusion-display-warnings != false) {
+  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
     @warn 'The `multiplier` in the `getWidth` function is designed to work best with a number dividable by 0.5';
   }
 
@@ -14,26 +28,26 @@
   $columnGutter: false;
 
   // Set default gutter to smallest one
-  $breakpointGutter: smallestGutter() * $multiplier;
+  $breakpointGutter: smallestGutter.smallestGutter() * $multiplier;
 
   // Span values
-  $spanColumns: nth($span, 1);
-  $spanContainer: getcontainer($span);
+  $spanColumns: list.nth($span, 1);
+  $spanContainer: getcontainer.getcontainer($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
   // Run through each breakpoint and create a new map
-  @if $inside-breakpoint != false and $gutter == false {
-    @each $breakpoint, $values in $illusion-grid-breakpoints {
+  @if breakpoint.$inside-breakpoint != false and $gutter == false {
+    @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
 
       // Values
-      $mapWidth: map-get($values, width);
-      $mapGutter: map-get($values, gutter) * $multiplier;
-      $nextKey: map-get-next($illusion-grid-breakpoints, $breakpoint, #{lastValue()});
-      $nextWidth: map-deep-get($illusion-grid-breakpoints, $nextKey, "width");
-      $largestWidth: largestWidth();
+      $mapWidth: map.get($values, width);
+      $mapGutter: map.get($values, gutter) * $multiplier;
+      $nextKey: mapGetNext.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, lastValue.lastValue());
+      $nextWidth: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+      $largestWidth: largestWidth.largestWidth();
 
       // Create new temporary map and merge it with the current one
-      @if ($inside-breakpoint >= $mapWidth and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largestWidth) {
+      @if (breakpoint.$inside-breakpoint >= $mapWidth and breakpoint.$inside-breakpoint < $nextWidth) or (breakpoint.$inside-breakpoint >= $largestWidth) {
         $columnGutter: ($spanAmount - 1) * $mapGutter * $multiplier;
       }
     }

@@ -1,10 +1,12 @@
+// Globals
+@use "sass:math";
+@use "sass:list";
+
 // Calculate a ratio based on two numbers
 
-@use "sass:math";
-
 @function calculateRatio($ratio) {
-  $width: nth($ratio, 1);
-  $height: nth($ratio, 3);
+  $width: list.nth($ratio, 1);
+  $height: list.nth($ratio, 3);
   $percent: math.div($height, $width) * 100%;
   @return $percent;
 }

@@ -1,8 +1,10 @@
+@use "../variables/grid";
+
 // Get last value of the grid map
 
 @function lastValue() {
   $value: false;
-  @each $breakpoint, $values in $illusion-grid-breakpoints {
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
     $value: $breakpoint;
   }
   @return $value;

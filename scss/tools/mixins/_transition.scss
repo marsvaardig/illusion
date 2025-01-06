@@ -1,3 +1,7 @@
+// Globals
+@use "sass:list";
+@use "../variables/transition";
+
 // Default transition
 //
 // Usage:   @include transition(width, height 0.3s ease-in-out);
@@ -9,11 +13,11 @@
   $transitions...
 ) {
   $unfoldedTransitions: ();
-  @if length($transitions) == 0 {
-    $unfoldedTransitions: append($unfoldedTransitions, unfoldTransition(all), comma);
+  @if list.length($transitions) == 0 {
+    $unfoldedTransitions: list.append($unfoldedTransitions, unfoldTransition(all), comma);
   }
   @each $transition in $transitions {
-    $unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+    $unfoldedTransitions: list.append($unfoldedTransitions, unfoldTransition($transition), comma);
   }
   transition: $unfoldedTransitions;
 }
@@ -26,21 +30,21 @@
 @function unfoldTransition ($transition) {
   // Default values
   $property: all;
-  $duration: $illusion-transition-duration;
-  $easing: $illusion-transition-easing;
-  $delay: $illusion-transition-delay;
+  $duration: transition.$illusion-transition-duration;
+  $easing: transition.$illusion-transition-easing;
+  $delay: transition.$illusion-transition-delay;
   $defaults: ($property, $duration, $easing, $delay);
 
   // Grab transition properties if they exist
   $unfoldedTransition: ();
-  @for $i from 1 through length($defaults) {
+  @for $i from 1 through list.length($defaults) {
     $p: null;
-    @if $i <= length($transition) {
-      $p: nth($transition, $i)
+    @if $i <= list.length($transition) {
+      $p: list.nth($transition, $i)
     } @else {
-      $p: nth($defaults, $i)
+      $p: list.nth($defaults, $i)
     }
-    $unfoldedTransition: append($unfoldedTransition, $p);
+    $unfoldedTransition: list.append($unfoldedTransition, $p);
   }
 
   @return $unfoldedTransition;
