@@ -1,5 +1,4 @@
 @use "sass:math";
-@use "../variables/type";
 
 // Pixels to rem
 // ==========================================================================
@@ -8,17 +7,15 @@
 // pixel size
 
 @function px($size, $type: rem) {
-  $value: math.div($size, type.$root-site-font-size);
+  $value: math.div($size, $root-site-font-size);
 
-  @if ($type != false) {
-    @if $type == rem {
-      $value: $value * 1rem;
-    } @else if $type == em {
-      $value: $value * 1em;
-    } @else {
-      @error "Unsupported type: #{$type}";
-    }
+  @if $type == rem {
+    @return $value * 1rem;
+  } @else if $type == em {
+    @return $value * 1em;
+  } @else if $type == false {
+    @return $value;
+  } @else {
+    @error "Invalid type '#{$type}'. Allowed values are 'rem', 'em', or false.";
   }
-
-  @return $value;
 }

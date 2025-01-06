@@ -4,8 +4,10 @@
   $selectors...
 ) {
   @each $selector in $selectors {
-    #{$selector} {
-      @content;
+    @if $selector != false {
+      #{$selector} {
+        @content;
+      }
     }
   }
 }
