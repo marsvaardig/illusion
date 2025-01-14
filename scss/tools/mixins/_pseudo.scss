@@ -10,7 +10,9 @@
   $display: pseudo.$illusion-pseudo-display
 ) {
   @if $parent-position != false {
-    position: $parent-position;
+    & {
+      position: $parent-position;
+    }
   }
 
   &::#{$illusion-pseudo} {
