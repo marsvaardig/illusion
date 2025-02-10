@@ -19,7 +19,9 @@
   @each $transition in $transitions {
     $unfoldedTransitions: list.append($unfoldedTransitions, unfoldTransition($transition), comma);
   }
-  transition: $unfoldedTransitions;
+  & {
+    transition: $unfoldedTransitions;
+  }
 }
 
 

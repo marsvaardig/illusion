@@ -1,3 +1,5 @@
+@use "../../scss/illusion" as *;
+
 .foo {
   @include no-flexbox() {
     display: table;

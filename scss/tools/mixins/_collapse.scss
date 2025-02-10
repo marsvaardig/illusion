@@ -19,40 +19,40 @@
   $fromto: collapse.$illusion-collapse-fromto,
   $gutter: collapse.$illusion-collapse-gutter
 ) {
-
-  // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
-    @warn 'The `multiplier` in the `collapse` mixin is designed to work best with a number dividable by 0.5';
-  }
-
-  // Get new SCSS map
-  @if ($fromto != false) {
-    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
-
-    // Map when gutter is set
-    @if ($gutter != false) {
-      $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+  & {
+    // Give a warning when $multiplier is not dividable by 0.5
+    @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
+      @warn 'The `multiplier` in the `collapse` mixin is designed to work best with a number dividable by 0.5';
     }
 
-    // Loop
-    @each $breakpoint, $values in $grid-breakpoints {
+    // Get new SCSS map
+    @if ($fromto != false) {
+      $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
-      //Get values
-      $spacing: map.get($values, gutter);
-      $side: list.nth($sides, 1);
-      $width: map.get($values, width);
+      // Map when gutter is set
+      @if ($gutter != false) {
+        $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+      }
 
-      // Only run between starting and stopping breakpoints
-      @include ifBreakpoint.ifBreakpoint($width) {
+      // Loop
+      @each $breakpoint, $values in $grid-breakpoints {
 
-        // Right
-        @if ($side == both or $side == right) {
-          @include property.property("margin-right", calc((-1 * #{$multiplier}) * #{$spacing}));
-        }
+        //Get values
+        $spacing: map.get($values, gutter);
+        $side: list.nth($sides, 1);
+        $width: map.get($values, width);
 
-        // Right
-        @if ($side == both or $side == left) {
-          @include property.property("margin-left", calc((-1 * #{$multiplier}) * #{$spacing}));
+        // Only run between starting and stopping breakpoints
+        @include ifBreakpoint.ifBreakpoint($width) {
+          // Right
+          @if ($side == both or $side == right) {
+            @include property.property("margin-right", calc((-1 * #{$multiplier}) * #{$spacing}));
+          }
+
+          // Right
+          @if ($side == both or $side == left) {
+            @include property.property("margin-left", calc((-1 * #{$multiplier}) * #{$spacing}));
+          }
         }
       }
     }

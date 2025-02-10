@@ -1,5 +1,5 @@
 @use "../../scss/illusion" as *;
 
 .foo {
-  @include reset();
+  @include cluster();
 }

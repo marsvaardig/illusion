@@ -14,7 +14,9 @@
 
   // Flexbox
   @if $type == flex {
-    display: flex;
-    flex-wrap: wrap;
+    & {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }

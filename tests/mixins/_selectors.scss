@@ -1,0 +1,5 @@
+@use "../../scss/illusion" as *;
+
+@include selectors('.foo', '.bar') {
+  background: red;
+};

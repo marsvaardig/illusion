@@ -21,11 +21,14 @@
     $viewboxHeight: $viewboxWidth;
   }
   $svg-url: svg-url.svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
-  @if $color {
-    background-color: $color;
+
+  & {
+    @if $color {
+      background-color: $color;
+    }
+    -webkit-mask-image: $svg-url;
+    mask-image: $svg-url;
+    -webkit-mask-size: $width $height;
+    mask-size: $width $height;
   }
-  -webkit-mask-image: $svg-url;
-  mask-image: $svg-url;
-  -webkit-mask-size: $width $height;
-  mask-size: $width $height;
 }

@@ -10,23 +10,25 @@
   $align-items: cluster.$illusion-cluster-align-items,
   $justify-content: cluster.$illusion-cluster-justify-content
 ) {
-  @if logical.$illusion-logical-properties or layout.$illusion-layout-flex-gap {
-    display: flex;
-    flex-wrap: $flex-wrap;
-    align-items: $align-items;
-    justify-content: $justify-content;
-    gap: $margin;
-  } @else {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: $justify-content;
-    margin-bottom: calc(#{$margin} * -1);
-    margin-left: calc(#{$margin} * -1);
+  & {
+    @if logical.$illusion-logical-properties or layout.$illusion-layout-flex-gap {
+      display: flex;
+      flex-wrap: $flex-wrap;
+      align-items: $align-items;
+      justify-content: $justify-content;
+      gap: $margin;
+    } @else {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: $justify-content;
+      margin-bottom: calc(#{$margin} * -1);
+      margin-left: calc(#{$margin} * -1);
 
-    > * {
-      margin-bottom: $margin;
-      margin-left: $margin;
+      > * {
+        margin-bottom: $margin;
+        margin-left: $margin;
+      }
     }
   }
 }

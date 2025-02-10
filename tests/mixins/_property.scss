@@ -1,7 +1,11 @@
 @use "../../scss/illusion" as *;
 
 .foo {
-  @include breakpoint($bravo) {
+  width: auto;
+
+  .bar {
     width: auto;
   }
+
+  @include property(width, $charlie);
 }

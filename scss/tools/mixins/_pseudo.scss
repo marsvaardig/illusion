@@ -9,20 +9,22 @@
   $content: pseudo.$illusion-pseudo-content,
   $display: pseudo.$illusion-pseudo-display
 ) {
-  @if $parent-position != false {
-    position: $parent-position;
-  }
+  & {
+    @if $parent-position != false {
+      position: $parent-position;
+    }
 
-  &::#{$illusion-pseudo} {
-    @if $position != false {
-      position: $position;
+    &::#{$illusion-pseudo} {
+      @if $position != false {
+        position: $position;
+      }
+      @if $content != false {
+        content: $content;
+      }
+      @if $display != false {
+        display: $display;
+      }
+      @content;
     }
-    @if $content != false {
-      content: $content;
-    }
-    @if $display != false {
-      display: $display;
-    }
-    @content;
   }
 }

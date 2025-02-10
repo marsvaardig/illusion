@@ -12,34 +12,36 @@
   $position: coverall.$illusion-coverall-position,
   $reset: coverall.$illusion-coverall-reset
 ) {
-  @if $position != false {
-    position: $position;
-  }
-  @if $top == true {
-    @include property.property("top", $offset);
-  } @else if $top != false {
-    @include property.property("top", $top);
-  }
-  @if $right == true {
-    @include property.property("right", $offset);
-  } @else if $right != false {
-    @include property.property("right", $right);
-  }
-  @if $bottom == true {
-    @include property.property("bottom", $offset);
-  } @else if $bottom != false {
-    @include property.property("bottom", $bottom);
-  }
-  @if $left == true {
-    @include property.property("left", $offset);
-  } @else if $left != false {
-    @include property.property("left", $left);
-  }
-  @if $reset == true {
-    position: coverall.$illusion-coverall-reset-position;
-    @include property.property("top", coverall.$illusion-coverall-reset-top);
-    @include property.property("right", coverall.$illusion-coverall-reset-right);
-    @include property.property("bottom", coverall.$illusion-coverall-reset-bottom);
-    @include property.property("left", coverall.$illusion-coverall-reset-left);
+  & {
+    @if $position != false {
+      position: $position;
+    }
+    @if $top == true {
+      @include property.property("top", $offset);
+    } @else if $top != false {
+      @include property.property("top", $top);
+    }
+    @if $right == true {
+      @include property.property("right", $offset);
+    } @else if $right != false {
+      @include property.property("right", $right);
+    }
+    @if $bottom == true {
+      @include property.property("bottom", $offset);
+    } @else if $bottom != false {
+      @include property.property("bottom", $bottom);
+    }
+    @if $left == true {
+      @include property.property("left", $offset);
+    } @else if $left != false {
+      @include property.property("left", $left);
+    }
+    @if $reset == true {
+      position: coverall.$illusion-coverall-reset-position;
+      @include property.property("top", coverall.$illusion-coverall-reset-top);
+      @include property.property("right", coverall.$illusion-coverall-reset-right);
+      @include property.property("bottom", coverall.$illusion-coverall-reset-bottom);
+      @include property.property("left", coverall.$illusion-coverall-reset-left);
+    }
   }
 }

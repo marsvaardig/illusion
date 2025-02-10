@@ -10,19 +10,21 @@
   $border: reset.$illusion-reset-border,
   $background: reset.$illusion-reset-background
 ) {
-  @if $margin != false {
-    @include property.property("margin", $margin);
-  }
-  @if $padding != false {
-    @include property.property("padding", $padding);
-  }
-  @if $list-style != false {
-    list-style: $list-style;
-  }
-  @if $border != false {
-    border: $border;
-  }
-  @if $background != false {
-    background: $background;
+  & {
+    @if $margin != false {
+      @include property.property("margin", $margin);
+    }
+    @if $padding != false {
+      @include property.property("padding", $padding);
+    }
+    @if $list-style != false {
+      list-style: $list-style;
+    }
+    @if $border != false {
+      border: $border;
+    }
+    @if $background != false {
+      background: $background;
+    }
   }
 }

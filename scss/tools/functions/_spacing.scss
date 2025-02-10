@@ -8,6 +8,7 @@
 @use "../variables/grid";
 @use "../variables/warnings";
 @use "../functions/lastValue";
+@use "../variables/breakpoints" as *;
 @use "../mixins/breakpoint";
 
 // Returns set spacing or calculate current spacing when inside breakpoint
@@ -23,7 +24,7 @@
   $breakpointGutter: smallestGutter.smallestGutter() * $multiplier;
 
   // If no breakpoint has been set calculate the current breakpoint gutter
-  @if $breakpoint == false and breakpoint.$inside-breakpoint != false {
+  @if $breakpoint == false and $inside-breakpoint != false {
 
     // Run through each breakpoint and create a new map
     @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
@@ -36,7 +37,7 @@
       $largestWidth: largestWidth.largestWidth();
 
       // Create new temporary map and merge it with the current one
-      @if (breakpoint.$inside-breakpoint >= $width and breakpoint.$inside-breakpoint < $nextWidth) or (breakpoint.$inside-breakpoint >= $largestWidth) {
+      @if ($inside-breakpoint >= $width and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largestWidth) {
         $breakpointGutter: $gutter;
       }
     }

@@ -1,3 +1,5 @@
+@use "../../scss/illusion" as *;
+
 .foo {
   @include pseudo(after) {
     width: 24px;

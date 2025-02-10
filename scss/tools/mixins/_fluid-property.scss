@@ -14,28 +14,29 @@
   $min-screen: type.$illusion-fluid-property-min-screen,
   $max-screen: type.$illusion-fluid-property-max-screen
 ) {
+  & {
+    @if logical.$illusion-logical-properties {
+      @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
+        @include property.property("#{$property}", clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value}));
+      }
+    } @else {
+      @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
+        #{$property}: $min-value;
 
-  @if logical.$illusion-logical-properties {
-    @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
-      @include property.property("#{$property}", clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value}));
-    }
-  } @else {
-    @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
-      #{$property}: $min-value;
-
-      @if (type.$illusion-fluid-property-clamp == false) {
-        @include breakpoint.breakpoint($min-screen) {
-          #{$property}: calcInterpolation.calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+        @if (type.$illusion-fluid-property-clamp == false) {
+          @include breakpoint.breakpoint($min-screen) {
+            #{$property}: calcInterpolation.calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+          }
         }
-      }
 
-      @include breakpoint.breakpoint($max-screen) {
-        #{$property}: $max-value;
-      }
+        @include breakpoint.breakpoint($max-screen) {
+          #{$property}: $max-value;
+        }
 
-      @if (type.$illusion-fluid-property-clamp != false) {
-        @supports (top: clamp(1em, 1vw, 2em)) {
-          #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value});
+        @if (type.$illusion-fluid-property-clamp != false) {
+          @supports (top: clamp(1em, 1vw, 2em)) {
+            #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value});
+          }
         }
       }
     }

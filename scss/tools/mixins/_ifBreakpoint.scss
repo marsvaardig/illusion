@@ -8,7 +8,9 @@
 
   // Don't use media query when width = 0
   @if $width == 0 {
-    @content;
+    & {
+      @content;
+    }
   }
 
   // Set width in breakpoints

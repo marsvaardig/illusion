@@ -1,3 +1,5 @@
+@use "../../scss/illusion" as *;
+
 .foo {
   padding-top: calculateRatio(16 by 9);
 }

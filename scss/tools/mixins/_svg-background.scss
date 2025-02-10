@@ -24,8 +24,11 @@
     $viewboxHeight: $viewboxWidth;
   }
   $svg-url: svg-url.svg-url('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
-  background-image: $svg-url;
-  background-position: $background-position;
-  background-repeat: $background-repeat;
-  background-size: #{$width}#{$unit} #{$height}#{$unit};
+
+  & {
+    background-image: $svg-url;
+    background-position: $background-position;
+    background-repeat: $background-repeat;
+    background-size: #{$width}#{$unit} #{$height}#{$unit};
+  }
 }

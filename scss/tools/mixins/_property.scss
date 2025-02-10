@@ -4,14 +4,12 @@
 
 // Property
 
-@mixin property(
+@mixin propertyValues(
   $property,
-  $value
+  $value,
 ) {
-  // Change properties to logical properties
   @if logical.$illusion-logical-properties {
     @each $prop, $val in logical.$illusion-logical-properties-map {
-      //@error logical.$illusion-logical-properties-map;
       @if ($prop == $property) {
         @if $prop == 'float' or $prop == 'clear' {
           @if $value == 'right' {
@@ -54,4 +52,19 @@
   } @else if ($value != false) {
     #{$property}: $value;
   }
+}
+
+@mixin property(
+  $property,
+  $value,
+  $nested: false
+) {
+  @if ($nested) {
+    & {
+      @include propertyValues($property, $value);
+    }
+  } @else {
+    @include propertyValues($property, $value);
+  }
+
 }

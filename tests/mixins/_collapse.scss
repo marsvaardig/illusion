@@ -1,3 +1,9 @@
+@use "../../scss/illusion" as *;
+
 .foo {
-  @include collapse();
+  @include span(8);
+}
+
+.bar {
+  @include collapse($fromto: 0 to $charlie);
 }

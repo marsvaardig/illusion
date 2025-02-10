@@ -15,16 +15,18 @@
   $vertical-align: button.$illusion-button-vertical-align,
   $cursor: button.$illusion-button-cursor
 ) {
-  @if $appearance != false {
-    -webkit-appearance: $appearance; // 1
-  }
-  @if $display != false {
-    display: $display; // 2
-  }
-  @if $vertical-align != false {
-    vertical-align: $vertical-align; // 3
-  }
-  @if $cursor != false {
-    cursor: $cursor; // 4
+  & {
+    @if $appearance != false {
+      -webkit-appearance: $appearance; // 1
+    }
+    @if $display != false {
+      display: $display; // 2
+    }
+    @if $vertical-align != false {
+      vertical-align: $vertical-align; // 3
+    }
+    @if $cursor != false {
+      cursor: $cursor; // 4
+    }
   }
 }

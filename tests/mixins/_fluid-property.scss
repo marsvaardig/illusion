@@ -1,3 +1,5 @@
+@use "../../scss/illusion" as *;
+
 .foo {
   @include fluid-property(font-size, 16px, 24px);
 }

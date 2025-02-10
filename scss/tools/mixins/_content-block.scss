@@ -7,18 +7,20 @@
   $spacing: content-block.$illusion-content-block-spacing,
   $location: content-block.$illusion-content-block-location
 ) {
-  @if $location == top {
-    @include property.property("margin-top", $spacing);
+  & {
+    @if $location == top {
+      @include property.property("margin-top", $spacing);
 
-    &:first-child {
-      @include property.property("margin-top", 0);
+      &:first-child {
+        @include property.property("margin-top", 0);
+      }
     }
-  }
-  @if $location == bottom {
-    @include property.property("margin-bottom", $spacing);
+    @if $location == bottom {
+      @include property.property("margin-bottom", $spacing);
 
-    &:last-child {
-      @include property.property("margin-bottom", 0);
+      &:last-child {
+        @include property.property("margin-bottom", 0);
+      }
     }
   }
 }

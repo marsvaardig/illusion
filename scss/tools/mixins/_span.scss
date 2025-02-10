@@ -24,22 +24,22 @@
   $includeWidth: span.$illusion-span-includeWidth,
   $includeMargin: span.$illusion-span-includeMargin
 ) {
+  & {
+    // Give a warning when $multiplier is not dividable by 0.5
+    @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
+      @warn 'The `multiplier` in the `span` mixin is designed to work best with a number dividable by 0.5';
+    }
 
-  // Give a warning when $multiplier is not dividable by 0.5
-  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
-    @warn 'The `multiplier` in the `span` mixin is designed to work best with a number dividable by 0.5';
-  }
+    // Get new SCSS map
+    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
 
-  // Get new SCSS map
-  $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
-
-  // Map when gutter is set
-  @if ($gutter != false) {
-    $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+    // Map when gutter is set
+    @if ($gutter != false) {
+      $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+    }
 
     // Loop
     @each $breakpoint, $values in $grid-breakpoints {
-
       // Breakpoint values
       $breakpointGutter: map.get($values, gutter);
       $breakpointWidth: map.get($values, width);

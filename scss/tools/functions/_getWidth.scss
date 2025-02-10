@@ -11,6 +11,7 @@
 @use "../variables/span";
 @use "../variables/grid";
 @use "../variables/warnings";
+@use "../variables/breakpoints" as *;
 @use "../mixins/breakpoint";
 
 
@@ -36,7 +37,7 @@
   $spanAmount: math.div($spanContainer, $spanColumns);
 
   // Run through each breakpoint and create a new map
-  @if breakpoint.$inside-breakpoint != false and $gutter == false {
+  @if $inside-breakpoint != false and $gutter == false {
     @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
 
       // Values
@@ -47,7 +48,7 @@
       $largestWidth: largestWidth.largestWidth();
 
       // Create new temporary map and merge it with the current one
-      @if (breakpoint.$inside-breakpoint >= $mapWidth and breakpoint.$inside-breakpoint < $nextWidth) or (breakpoint.$inside-breakpoint >= $largestWidth) {
+      @if ($inside-breakpoint >= $mapWidth and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largestWidth) {
         $columnGutter: ($spanAmount - 1) * $mapGutter * $multiplier;
       }
     }

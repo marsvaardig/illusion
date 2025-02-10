@@ -1,0 +1,11 @@
+@use "../../scss/illusion" as *;
+
+.foo {
+  @include ifBreakpoint(0) {
+    background: red;
+  }
+
+  @include ifBreakpoint(400) {
+    background: red;
+  }
+}

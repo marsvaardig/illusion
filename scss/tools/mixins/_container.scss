@@ -12,32 +12,33 @@
   $type: grid.$illusion-grid-container-type,
   $align: grid.$illusion-grid-container-align
 ) {
+  & {
+    // Set default styling
+    @include property.property("max-width", grid.$illusion-grid-maxwidth + (largestGutter.largestGutter() * 2));
 
-  // Set default styling
-  @include property.property("max-width", grid.$illusion-grid-maxwidth + (largestGutter.largestGutter() * 2));
+    // Alignment
+    @if $align == center or $align == right {
+      @include property.property("margin-left", auto);
+    }
+    @if $align == center or $align == left {
+      @include property.property("margin-right", auto);
+    }
 
-  // Alignment
-  @if $align == center or $align == right {
-    @include property.property("margin-left", auto);
-  }
-  @if $align == center or $align == left {
-    @include property.property("margin-right", auto);
-  }
+    // Flexbox
+    @if $type != flex {
+      @include clearfix.clearfix;
+    }
+    @if $type == flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-  // Flexbox
-  @if $type != flex {
-    @include clearfix.clearfix;
-  }
-  @if $type == flex {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  // Run through each breakpoint
-  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
-    @include ifBreakpoint.ifBreakpoint(map.get($values, width)) {
-      @include property.property("padding-left", map.get($values, gutter));
-      @include property.property("padding-right", map.get($values, gutter));
+    // Run through each breakpoint
+    @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+      @include ifBreakpoint.ifBreakpoint(map.get($values, width)) {
+        @include property.property("padding-left", map.get($values, gutter));
+        @include property.property("padding-right", map.get($values, gutter));
+      }
     }
   }
 }
