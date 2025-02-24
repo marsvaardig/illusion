@@ -42,7 +42,7 @@
 
       // Shift values
       $spanColumns: list.nth($shift, 1);
-      $spanContainer: getContainer.getcontainer($shift);
+      $spanContainer: getContainer.getContainer($shift);
       $spanAmount: math.div($spanContainer, $spanColumns);
 
       // Negative

@@ -3,7 +3,7 @@
 @use "sass:map";
 @use "sass:list";
 @use "smallestGutter";
-@use "getcontainer";
+@use "getContainer";
 @use "mapGetNext";
 @use "mapGet";
 @use "largestWidth";
@@ -33,7 +33,7 @@
 
   // Span values
   $spanColumns: list.nth($span, 1);
-  $spanContainer: getcontainer.getcontainer($span);
+  $spanContainer: getContainer.getContainer($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
   // Run through each breakpoint and create a new map
