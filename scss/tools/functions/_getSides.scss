@@ -3,7 +3,7 @@
 
 // Gets the sides and returns false when it's not set
 
-@function getsides($sides) {
+@function getSides($sides) {
   @if list.length($sides) == 3 {
     $skip: list.nth($sides, 3);
     @return $skip;
