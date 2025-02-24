@@ -31,11 +31,11 @@
     }
 
     // Get new SCSS map
-    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+    $grid-breakpoints: breakpointMap.gridBreakpoints($fromto);
 
     // Map when gutter is set
     @if ($gutter != false) {
-      $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+      $grid-breakpoints: breakpointMap.gridBreakpoint($fromto, $gutter);
     }
 
     // Loop

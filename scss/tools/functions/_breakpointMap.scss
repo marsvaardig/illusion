@@ -13,7 +13,7 @@
 // Create a new map for the grid
 // Adds $from width at correct position
 
-@function grid-breakpoints($fromto) {
+@function gridBreakpoints($fromto) {
 
   // Variables
   $from: getFrom.getFrom($fromto);
@@ -26,8 +26,8 @@
     // Values
     $width: map.get($values, width);
     $gutter: map.get($values, gutter);
-    $nextKey: mapGetNext.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, lastValue.lastValue());
-    $nextWidth: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+    $nextKey: mapGetNext.mapGetNext(grid.$illusion-grid-breakpoints, $breakpoint, lastValue.lastValue());
+    $nextWidth: mapGet.mapDeepGet(grid.$illusion-grid-breakpoints, $nextKey, "width");
     $largestWidth: largestWidth.largestWidth();
 
     // Create new temporary map and merge it with the current (looped) one
@@ -38,7 +38,7 @@
                       gutter: $gutter
               )
       );
-      $new-map: mapMerge.non-destructive-map-merge($new-map, $map);
+      $new-map: mapMerge.nonDestructiveMapMerge($new-map, $map);
     }
 
     // Add custom from in between and merge it with the current (looped) one
@@ -49,7 +49,7 @@
                       gutter: $gutter
               )
       );
-      $new-map: mapMerge.non-destructive-map-merge($new-map, $map);
+      $new-map: mapMerge.nonDestructiveMapMerge($new-map, $map);
     }
   }
 
@@ -61,7 +61,7 @@
 // Simple map
 // Map with just 1 value for when $gutter is set
 
-@function grid-breakpoint($fromto, $gutter) {
+@function gridBreakpoint($fromto, $gutter) {
 
   // Variables
   $from: getFrom.getFrom($fromto);

@@ -23,11 +23,11 @@
 // );
 //
 // .foo {
-// 	width: map-get-next($map, a);
+// 	width: mapGetNext($map, a);
 // }
 //
 // .bar {
-//	width: map-get-next($map, b, auto);
+//	width: mapGetNext($map, b, auto);
 // }
 //
 // @example css - CSS output
@@ -41,7 +41,7 @@
 //
 // https://gist.github.com/agorilla/9df052eb1e15d8aea446
 
-@function map-get-next($map, $key, $fallback: false) {
+@function mapGetNext($map, $key, $fallback: false) {
 
   // Check if map is valid
   @if meta.type-of($map) == map {

@@ -2,12 +2,12 @@
 @use "sass:map";
 @use "sass:meta";
 
-// non-destructive-map-merge function for Sass.
+// nonDestructiveMapMerge function for Sass.
 // Version 1.2 - 2016.05.14.
 // Author: Zsolt Pentz - github.com/pentzzsolt
 // License: CC0 1.0 Universal (Public Domain)
 
-@function non-destructive-map-merge($parent-map, $child-map) {
+@function nonDestructiveMapMerge($parent-map, $child-map) {
   $result: $parent-map;
   @each $key, $value in $child-map {
     //If the parent map does not have the child map's key, or
@@ -20,7 +20,7 @@
     @else {
       //If they are both maps, we need another non-destructive merger.
       //Recursive, yay!
-      $result: map.merge($result, ($key: non-destructive-map-merge(map.get($result, $key), $value)));
+      $result: map.merge($result, ($key: nonDestructiveMapMerge(map.get($result, $key), $value)));
     }
   }
   @return $result;

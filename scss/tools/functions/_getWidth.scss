@@ -43,8 +43,8 @@
       // Values
       $mapWidth: map.get($values, width);
       $mapGutter: map.get($values, gutter) * $multiplier;
-      $nextKey: mapGetNext.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, lastValue.lastValue());
-      $nextWidth: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+      $nextKey: mapGetNext.mapGetNext(grid.$illusion-grid-breakpoints, $breakpoint, lastValue.lastValue());
+      $nextWidth: mapGet.mapDeepGet(grid.$illusion-grid-breakpoints, $nextKey, "width");
       $largestWidth: largestWidth.largestWidth();
 
       // Create new temporary map and merge it with the current one
