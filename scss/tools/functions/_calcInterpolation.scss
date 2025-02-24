@@ -13,7 +13,7 @@
   $a: math.div(stripUnit.stripUnit($max-value) - stripUnit.stripUnit($min-value), stripUnit.stripUnit($max-screen) - stripUnit.stripUnit($min-screen));
   $b: stripUnit.stripUnit($min-value) - $a * stripUnit.stripUnit($min-screen);
 
-  // Substract or multiply
+  // Subtract or multiply
   $sign: "+";
   @if ($b < 0) {
     $sign: "-";
