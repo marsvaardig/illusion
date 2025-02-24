@@ -20,7 +20,7 @@
 
   // Span values
   $spanColumns: list.nth($span, 1);
-  $spanContainer: getContainer.getcontainer($span);
+  $spanContainer: getContainer.getContainer($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
   // Span columns

@@ -5,7 +5,7 @@
 
 // Gets the container size and returns the default settings variable when it's not set
 
-@function getcontainer($span) {
+@function getContainer($span) {
   @if list.length($span) == 3 {
     $container: list.nth($span, 3);
     @return $container;
