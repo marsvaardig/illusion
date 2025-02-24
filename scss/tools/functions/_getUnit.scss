@@ -3,6 +3,6 @@
 
 // Get unit
 
-@function get-unit($value) {
+@function getUnit($value) {
   @return string.slice($value * 0 + "", 2, -1);
 }
