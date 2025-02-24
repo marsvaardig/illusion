@@ -4,7 +4,7 @@
 
 // Strip unit
 
-@function strip-unit($number) {
+@function stripUnit($number) {
   @if meta.type-of($number) == "number" and not math.is-unitless($number) {
     @return math.div($number, $number * 0 + 1);
   }

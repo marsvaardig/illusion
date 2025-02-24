@@ -1,5 +1,5 @@
 @use "../variables/svg";
-@use "../functions/svg-url";
+@use "../functions/svgUrl";
 
 // Example
 //
@@ -23,7 +23,7 @@
   @if $viewboxHeight == false {
     $viewboxHeight: $viewboxWidth;
   }
-  $svg-url: svg-url.svg-url('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
+  $svg-url: svgUrl.svgUrl('<svg style="fill: #{$color};" xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" viewBox="0 0 #{$viewboxWidth} #{$viewboxHeight}" preserveAspectRatio="#{$aspectRatio}">#{$svg}</svg>');
 
   & {
     background-image: $svg-url;

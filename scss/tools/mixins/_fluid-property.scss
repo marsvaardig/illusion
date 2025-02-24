@@ -17,7 +17,7 @@
   & {
     @if logical.$illusion-logical-properties {
       @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
-        @include property.property("#{$property}", clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value}));
+        @include property.property("#{$property}", clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.stripUnit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.stripUnit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value}));
       }
     } @else {
       @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
@@ -25,7 +25,7 @@
 
         @if (type.$illusion-fluid-property-clamp == false) {
           @include breakpoint.breakpoint($min-screen) {
-            #{$property}: calcInterpolation.calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+            #{$property}: calcInterpolation.calcInterpolation($min-screen, $min-value, $max-screen, $max-value);
           }
         }
 
@@ -35,7 +35,7 @@
 
         @if (type.$illusion-fluid-property-clamp != false) {
           @supports (top: clamp(1em, 1vw, 2em)) {
-            #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value});
+            #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{stripUnit.stripUnit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{stripUnit.stripUnit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value});
           }
         }
       }

@@ -84,7 +84,7 @@ $illusion-logical-properties-text-align: (
 ) !default;
 
 // Merged map
-$illusion-logical-properties-map: mapCollect.map-collect(
+$illusion-logical-properties-map: mapCollect.mapCollect(
         $illusion-logical-properties-sizing,
         $illusion-logical-properties-border,
         $illusion-logical-properties-margin,

@@ -32,7 +32,7 @@
     }
 
     // Get new SCSS map
-    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+    $grid-breakpoints: breakpointMap.gridBreakpoints($fromto);
 
     // Loop
     @each $breakpoint, $values in $grid-breakpoints {
