@@ -5,7 +5,7 @@
 @use "../variables/warnings";
 @use "../variables/logical-properties" as logical;
 @use "../functions/breakpointMap";
-@use "../functions/getsides";
+@use "../functions/getSides";
 @use "ifBreakpoint";
 @use "property";
 
@@ -41,7 +41,7 @@
       $spacing: map.get($values, gutter);
       $width: map.get($values, width);
       $side: list.nth($sides, 1);
-      $skip: getsides.getsides($sides);
+      $skip: getSides.getSides($sides);
       $spacing: map.get($values, gutter) * $multiplier;
       $width: map.get($values, width);
       $subtract: $minus;
