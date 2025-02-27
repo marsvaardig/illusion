@@ -1,5 +1,5 @@
 @use "../variables/ratio-block";
-@use "../functions/calculateRatio";
+@use "../functions/calculate-ratio";
 @use "property";
 
 // Aspect ratio blocks
@@ -11,7 +11,7 @@
 ) {
   & {
     // Get percentage
-    $percent: calculateRatio.calculateRatio($ratio);
+    $percent: calculate-ratio.calculate-ratio($ratio);
 
     @if $overflow != false {
       overflow: $overflow;

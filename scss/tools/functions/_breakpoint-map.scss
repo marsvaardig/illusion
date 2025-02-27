@@ -1,13 +1,8 @@
 // Globals
 @use "sass:map";
-@use "getFrom";
-@use "getTo";
+@use "get";
+@use "map-extend";
 @use "../variables/grid";
-@use "lastValue";
-@use "largestWidth";
-@use "mapGetNext";
-@use "mapGet";
-@use "mapMerge";
 
 
 // Create a new map for the grid
@@ -16,8 +11,8 @@
 @function grid-breakpoints($fromto) {
 
   // Variables
-  $from: getFrom.getFrom($fromto);
-  $to: getTo.getTo($fromto);
+  $from: get.get-from($fromto);
+  $to: get.get-to($fromto);
   $new-map: ();
 
   // Run through each breakpoint
@@ -26,9 +21,9 @@
     // Values
     $width: map.get($values, width);
     $gutter: map.get($values, gutter);
-    $nextKey: mapGetNext.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, lastValue.lastValue());
-    $nextWidth: mapGet.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
-    $largestWidth: largestWidth.largestWidth();
+    $nextKey: map-extend.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, get.last-value());
+    $nextWidth: map-extend.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+    $largest-width: get.largest-width();
 
     // Create new temporary map and merge it with the current (looped) one
     @if $width >= $from and $width < $to {
@@ -38,18 +33,18 @@
                       gutter: $gutter
               )
       );
-      $new-map: mapMerge.non-destructive-map-merge($new-map, $map);
+      $new-map: map-extend.non-destructive-map-merge($new-map, $map);
     }
 
     // Add custom from in between and merge it with the current (looped) one
-    @if ($from > $width and $from < $nextWidth) or ($from > $largestWidth) {
+    @if ($from > $width and $from < $nextWidth) or ($from > $largest-width) {
       $map: (
               customFrom: (
                       width: $from,
                       gutter: $gutter
               )
       );
-      $new-map: mapMerge.non-destructive-map-merge($new-map, $map);
+      $new-map: map-extend.non-destructive-map-merge($new-map, $map);
     }
   }
 
@@ -64,7 +59,7 @@
 @function grid-breakpoint($fromto, $gutter) {
 
   // Variables
-  $from: getFrom.getFrom($fromto);
+  $from: get.get-from($fromto);
 
   // Set to 0 when $fromto is false
   @if $from == false {

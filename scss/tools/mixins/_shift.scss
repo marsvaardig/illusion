@@ -4,9 +4,9 @@
 @use "sass:list";
 @use "../variables/shift";
 @use "../variables/warnings";
-@use "../functions/breakpointMap";
-@use "../functions/getContainer";
-@use "ifBreakpoint";
+@use "../functions/breakpoint-map";
+@use "../functions/get";
+@use "if-breakpoint";
 @use "property";
 
 
@@ -26,11 +26,11 @@
     }
 
     // Get new SCSS map
-    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+    $grid-breakpoints: breakpoint-map.grid-breakpoints($fromto);
 
     // Map when gutter is set
     @if ($gutter != false) {
-      $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+      $grid-breakpoints: breakpoint-map.grid-breakpoint($fromto, $gutter);
     }
 
     // Loop
@@ -42,7 +42,7 @@
 
       // Shift values
       $spanColumns: list.nth($shift, 1);
-      $spanContainer: getContainer.getContainer($shift);
+      $spanContainer: get.get-container($shift);
       $spanAmount: math.div($spanContainer, $spanColumns);
 
       // Negative
@@ -58,7 +58,7 @@
       }
 
       // Only run between starting and stopping breakpoints
-      @include ifBreakpoint.ifBreakpoint($breakpointWidth) {
+      @include if-breakpoint.if-breakpoint($breakpointWidth) {
 
         // Set variable
         $left: auto;

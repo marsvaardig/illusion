@@ -3,8 +3,8 @@
 @use "sass:list";
 @use "../variables/collapse";
 @use "../variables/warnings";
-@use "../functions/breakpointMap";
-@use "ifBreakpoint";
+@use "../functions/breakpoint-map";
+@use "if-breakpoint";
 @use "property";
 
 
@@ -27,11 +27,11 @@
 
     // Get new SCSS map
     @if ($fromto != false) {
-      $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+      $grid-breakpoints: breakpoint-map.grid-breakpoints($fromto);
 
       // Map when gutter is set
       @if ($gutter != false) {
-        $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+        $grid-breakpoints: breakpoint-map.grid-breakpoint($fromto, $gutter);
       }
 
       // Loop
@@ -43,7 +43,7 @@
         $width: map.get($values, width);
 
         // Only run between starting and stopping breakpoints
-        @include ifBreakpoint.ifBreakpoint($width) {
+        @include if-breakpoint.if-breakpoint($width) {
           // Right
           @if ($side == both or $side == right) {
             @include property.property("margin-right", calc((-1 * #{$multiplier}) * #{$spacing}));

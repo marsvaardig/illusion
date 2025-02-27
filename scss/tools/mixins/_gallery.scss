@@ -2,7 +2,7 @@
 @use "sass:math";
 @use "sass:list";
 @use "../variables/gallery";
-@use "../functions/getContainer";
+@use "../functions/get";
 @use "span";
 
 // Gallery mixin
@@ -20,7 +20,7 @@
 
   // Span values
   $spanColumns: list.nth($span, 1);
-  $spanContainer: getContainer.getContainer($span);
+  $spanContainer: get.get-container($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
   // Span columns

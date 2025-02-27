@@ -5,6 +5,42 @@
 @use "../variables/warnings";
 
 
+// Map Collect function
+// Since the builtin map-merge function in Sass only take 2 arguments, it can only merge 2 maps at a time.
+// The map-collect function below allows you to combine multiple maps together in a cleaner way.
+
+@function map-collect($maps...) {
+  $collection: ();
+
+  @each $map in $maps {
+    @if meta.type-of($map) == "map" {
+      $collection: map.merge($collection, $map);
+    } @else {
+      @error "#{$map} is not a valid map.";
+    }
+  }
+
+  @return $collection;
+}
+
+
+// Map deep get
+// @author Hugo Giraudel
+// @access public
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Key chain
+// @return {*} - Desired value
+//
+// https://css-tricks.com/snippets/sass/deep-getset-maps/
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}
+
+
 // Function to get next map item
 // returns next map item or fallback value if map, key or next item does not exist
 //
@@ -92,4 +128,29 @@
     @warn 'No valid map';
   }
   @return $fallback;
+}
+
+
+// non-destructive-map-merge function for Sass.
+// Version 1.2 - 2016.05.14.
+// Author: Zsolt Pentz - github.com/pentzzsolt
+// License: CC0 1.0 Universal (Public Domain)
+
+@function non-destructive-map-merge($parent-map, $child-map) {
+  $result: $parent-map;
+  @each $key, $value in $child-map {
+    //If the parent map does not have the child map's key, or
+    //If their type don't match, or
+    //If they are not both maps,
+    @if (not map.has-key($result, $key)) or (meta.type-of(map.get($result, $key)) != meta.type-of($value)) or (not (meta.type-of(map.get($result, $key)) == map and meta.type-of($value) == map)) {
+      //Simply add that key to the parent map.
+      $result: map.merge($result, ($key: $value));
+    }
+    @else {
+      //If they are both maps, we need another non-destructive merger.
+      //Recursive, yay!
+      $result: map.merge($result, ($key: non-destructive-map-merge(map.get($result, $key), $value)));
+    }
+  }
+  @return $result;
 }

@@ -1,0 +1,213 @@
+// Globals
+@use "sass:math";
+@use "sass:meta";
+@use "sass:map";
+@use "sass:list";
+@use "sass:string";
+@use "map-extend";
+@use "../variables/span";
+@use "../variables/grid";
+@use "../variables/warnings";
+@use "../variables/breakpoints" as *;
+@use "../mixins/breakpoint";
+
+
+// Gets the container size and returns the default settings variable when it's not set
+
+@function get-container($span) {
+  @if list.length($span) == 3 {
+    $container: list.nth($span, 3);
+    @return $container;
+  } @else if list.length($span) == 1 {
+    @return grid.$illusion-grid-container;
+  }
+}
+
+// Gets the from width and returns to 0 when false
+
+@function get-from($fromto) {
+  $from: list.nth($fromto, 1);
+  @if $from == 0 or $from == false {
+    $from: 0
+  }
+  @return $from;
+}
+
+
+// Returns gallery/span margin
+
+@function get-margin($multiplier: span.$illusion-span-multiplier) {
+  $breakpointGutter: spacing($multiplier);
+  @return $breakpointGutter;
+}
+
+
+// Gets the sides and returns false when it's not set
+
+@function get-sides($sides) {
+  @if list.length($sides) == 3 {
+    $skip: list.nth($sides, 3);
+    @return $skip;
+  } @else if list.length($sides) == 1 {
+    @return false;
+  }
+}
+
+
+// Gets the to size and returns the largest grid width width when false
+
+@function get-to($fromto) {
+  @if list.length($fromto) == 3 {
+    $to: list.nth($fromto, 3);
+    @if $to == false {
+      $to: largest-width() + 1;
+    }
+    @return $to;
+  } @else if list.length($fromto) == 1 {
+    $to: largest-width() + 1;
+    @return $to;
+  }
+}
+
+
+// Get unit
+
+@function get-unit($value) {
+  @return string.slice($value * 0 + "", 2, -1);
+}
+
+
+// Returns gallery/span width
+
+@function get-width($span: span.$illusion-span-span, $multiplier: span.$illusion-span-multiplier, $gutter: span.$illusion-span-gutter) {
+
+  // Give a warning when $multiplier is not dividable by 0.5
+  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
+    @warn 'The `multiplier` in the `get-width` function is designed to work best with a number dividable by 0.5';
+  }
+
+  // Set default column width
+  $columnWidth: false;
+  $columnGutter: false;
+
+  // Set default gutter to smallest one
+  $breakpointGutter: smallest-gutter() * $multiplier;
+
+  // Span values
+  $spanColumns: list.nth($span, 1);
+  $spanContainer: get-container($span);
+  $spanAmount: math.div($spanContainer, $spanColumns);
+
+  // Run through each breakpoint and create a new map
+  @if $inside-breakpoint != false and $gutter == false {
+    @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+
+      // Values
+      $mapWidth: map.get($values, width);
+      $mapGutter: map.get($values, gutter) * $multiplier;
+      $nextKey: map-extend.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, last-value());
+      $nextWidth: map-extend.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+      $largest-width: largest-width();
+
+      // Create new temporary map and merge it with the current one
+      @if ($inside-breakpoint >= $mapWidth and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largest-width) {
+        $columnGutter: ($spanAmount - 1) * $mapGutter * $multiplier;
+      }
+    }
+  } @else if $gutter != false {
+    $columnGutter: ($spanAmount - 1) * $gutter * $multiplier;
+  }
+  @else {
+    $columnGutter: ($spanAmount - 1) * $breakpointGutter * $multiplier;
+  }
+  // Calculate column width
+  $columnWidth: calc((100% - #{$columnGutter}) / #{$spanAmount});
+
+  @return $columnWidth;
+}
+
+
+// Loop through breakpoints to get the largest gutter
+
+@function largest-gutter() {
+  $gutter: false;
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+    $gutter: map.get($values, gutter);
+  }
+  @return $gutter;
+}
+
+
+// Loop through breakpoints to get the largest width
+
+@function largest-width() {
+  $width: false;
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+    $width: map.get($values, width);
+  }
+  @return $width;
+}
+
+
+// Loop through breakpoints to get the smallest gutter
+
+@function smallest-gutter() {
+  $gutter: false;
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+    // Only run on the first one
+    @if $gutter == false {
+      $gutter: map.get($values, gutter);
+    }
+  }
+  @return $gutter;
+}
+
+
+@function last-value() {
+  $value: false;
+  @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+    $value: $breakpoint;
+  }
+  @return $value;
+}
+
+
+// Returns set spacing or calculate current spacing when inside breakpoint
+
+@function spacing($multiplier: 1, $breakpoint: false) {
+
+  // Give a warning when $multiplier is not dividable by 0.5
+  @if ($multiplier % 0.5 != 0 and warnings.$illusion-display-warnings != false) {
+    @warn 'The `multiplier` in the `spacing` function is designed to work best with a number dividable by 0.5';
+  }
+
+  // Set default gutter to smallest one
+  $breakpointGutter: smallest-gutter() * $multiplier;
+
+  // If no breakpoint has been set calculate the current breakpoint gutter
+  @if $breakpoint == false and $inside-breakpoint != false {
+
+    // Run through each breakpoint and create a new map
+    @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
+
+      // Values
+      $width: map.get($values, width);
+      $gutter: map.get($values, gutter) * $multiplier;
+      $nextKey: map-extend.map-get-next(grid.$illusion-grid-breakpoints, $breakpoint, last-value());
+      $nextWidth: map-extend.map-deep-get(grid.$illusion-grid-breakpoints, $nextKey, "width");
+      $largest-width: largest-width();
+
+      // Create new temporary map and merge it with the current one
+      @if ($inside-breakpoint >= $width and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largest-width) {
+        $breakpointGutter: $gutter;
+      }
+    }
+  }
+  @else {
+    @if $breakpoint != false {
+      $breakpointGutter: map-extend.map-deep-get(grid.$illusion-grid-breakpoints, #{$breakpoint}, "gutter");
+    }
+  }
+
+  @return $breakpointGutter;
+}

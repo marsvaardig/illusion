@@ -2,6 +2,6 @@
 
 .foo {
   @include breakpoint($bravo) {
-    margin-top: getMargin();
+    width: get-width(6);
   }
 }

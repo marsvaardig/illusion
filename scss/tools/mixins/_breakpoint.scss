@@ -1,5 +1,5 @@
 @use "../variables/breakpoints" as *;
-@use "../functions/stripUnit";
+@use "../functions/strip-unit";
 
 // Breakpoint
 // Sets a temporary global $inside-breakpoint variable to be used inside other mixins
@@ -10,8 +10,8 @@
   $type: $illusion-breakpoint-type
 ) {
   $inside-breakpoint: $width !global;
-  $bp-width: if($type == inherit, $width, #{stripUnit.strip-unit($width)}#{$illusion-breakpoint-type});
-  $bp-width--max: if($type == inherit, $width--max, #{stripUnit.strip-unit($width--max)}#{$illusion-breakpoint-type});
+  $bp-width: if($type == inherit, $width, #{strip-unit.strip-unit($width)}#{$illusion-breakpoint-type});
+  $bp-width--max: if($type == inherit, $width--max, #{strip-unit.strip-unit($width--max)}#{$illusion-breakpoint-type});
   @if $width--max == false {
     @media screen and (min-width: $bp-width) {
       @content;

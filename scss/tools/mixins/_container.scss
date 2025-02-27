@@ -3,8 +3,8 @@
 @use "../variables/grid";
 @use "property";
 @use "clearfix";
-@use "ifBreakpoint";
-@use "../functions/largestGutter";
+@use "if-breakpoint";
+@use "../functions/get";
 
 // Container
 
@@ -14,7 +14,7 @@
 ) {
   & {
     // Set default styling
-    @include property.property("max-width", grid.$illusion-grid-maxwidth + (largestGutter.largestGutter() * 2));
+    @include property.property("max-width", grid.$illusion-grid-maxwidth + (get.largest-gutter() * 2));
 
     // Alignment
     @if $align == center or $align == right {
@@ -35,7 +35,7 @@
 
     // Run through each breakpoint
     @each $breakpoint, $values in grid.$illusion-grid-breakpoints {
-      @include ifBreakpoint.ifBreakpoint(map.get($values, width)) {
+      @include if-breakpoint.if-breakpoint(map.get($values, width)) {
         @include property.property("padding-left", map.get($values, gutter));
         @include property.property("padding-right", map.get($values, gutter));
       }

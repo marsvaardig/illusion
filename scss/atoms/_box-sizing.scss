@@ -1,6 +1,6 @@
 @use "../tools/variables/extendalize";
 
-@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-boxsizing != false) or extendalize.$illusion-extendalize-boxsizing == true {
+@if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-box-sizing != false) or extendalize.$illusion-extendalize-box-sizing == true {
   /**
    * Border-box everything
    */

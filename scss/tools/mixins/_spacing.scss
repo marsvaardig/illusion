@@ -4,9 +4,9 @@
 @use "../variables/spacing";
 @use "../variables/warnings";
 @use "../variables/logical-properties" as logical;
-@use "../functions/breakpointMap";
-@use "../functions/getSides";
-@use "ifBreakpoint";
+@use "../functions/breakpoint-map";
+@use "../functions/get";
+@use "if-breakpoint";
 @use "property";
 
 // Spacing
@@ -32,7 +32,7 @@
     }
 
     // Get new SCSS map
-    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+    $grid-breakpoints: breakpoint-map.grid-breakpoints($fromto);
 
     // Loop
     @each $breakpoint, $values in $grid-breakpoints {
@@ -41,13 +41,13 @@
       $spacing: map.get($values, gutter);
       $width: map.get($values, width);
       $side: list.nth($sides, 1);
-      $skip: getSides.getSides($sides);
+      $skip: get.get-sides($sides);
       $spacing: map.get($values, gutter) * $multiplier;
       $width: map.get($values, width);
       $subtract: $minus;
 
       // Only run between starting and stopping breakpoints
-      @include ifBreakpoint.ifBreakpoint($width) {
+      @include if-breakpoint.if-breakpoint($width) {
 
         // Top
         @if ($side == all or $side == vertical or $side == top) and $skip != top {

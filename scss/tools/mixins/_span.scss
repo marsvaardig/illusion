@@ -5,10 +5,10 @@
 @use "../variables/grid";
 @use "../variables/span";
 @use "../variables/warnings";
-@use "../functions/breakpointMap";
-@use "../functions/getContainer";
+@use "../functions/breakpoint-map";
+@use "../functions/get";
 @use "property";
-@use "ifBreakpoint";
+@use "if-breakpoint";
 
 
 // Span mixin
@@ -31,11 +31,11 @@
     }
 
     // Get new SCSS map
-    $grid-breakpoints: breakpointMap.grid-breakpoints($fromto);
+    $grid-breakpoints: breakpoint-map.grid-breakpoints($fromto);
 
     // Map when gutter is set
     @if ($gutter != false) {
-      $grid-breakpoints: breakpointMap.grid-breakpoint($fromto, $gutter);
+      $grid-breakpoints: breakpoint-map.grid-breakpoint($fromto, $gutter);
     }
 
     // Loop
@@ -46,7 +46,7 @@
 
       // Span values
       $spanColumns: list.nth($span, 1);
-      $spanContainer: getContainer.getContainer($span);
+      $spanContainer: get.get-container($span);
       $spanAmount: math.div($spanContainer, $spanColumns);
 
       // Column values
@@ -55,7 +55,7 @@
       $columnMargin: calc(#{$breakpointGutter * $multiplier});
 
       // Only run between starting and stopping breakpoints
-      @include ifBreakpoint.ifBreakpoint($breakpointWidth) {
+      @include if-breakpoint.if-breakpoint($breakpointWidth) {
 
         // Width
         @if $includeWidth != false {

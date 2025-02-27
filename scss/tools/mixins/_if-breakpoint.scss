@@ -2,7 +2,7 @@
 
 // Do or don't use breakpoint depending on width
 
-@mixin ifBreakpoint(
+@mixin if-breakpoint(
   $width
 ) {
 
