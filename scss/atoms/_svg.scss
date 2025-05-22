@@ -7,6 +7,9 @@
    */
 
   svg {
+    @if extendalize.$illusion-extendalize-svg-color != false {
+      fill: currentColor;
+    }
     @if extendalize.$illusion-extendalize-svg-width != false {
       &:not([width]) {
         @include property.property("width", 1em);
@@ -16,9 +19,6 @@
       &:not([height]) {
         @include property.property("height", 1em);
       }
-    }
-    @if extendalize.$illusion-extendalize-svg-color != false {
-      fill: currentColor;
     }
   }
 
