@@ -81,7 +81,9 @@
             @include property.property("margin-right", 0);
 
             @if grid.$illusion-grid-type == float {
-              clear: none;
+              & {
+                clear: none;
+              }
             }
           }
         }

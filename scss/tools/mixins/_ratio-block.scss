@@ -9,27 +9,27 @@
   $overflow: ratio-block.$illusion-ratio-block-overflow,
   $after: ratio-block.$illusion-ratio-block-after
 ) {
-  & {
-    // Get percentage
-    $percent: calculate-ratio.calculate-ratio($ratio);
+  // Get percentage
+  $percent: calculate-ratio.calculate-ratio($ratio);
 
-    @if $overflow != false {
+  @if $overflow != false {
+    & {
       overflow: $overflow;
     }
+  }
 
-    &::before {
-      display: ratio-block.$illusion-ratio-block-before-display;
-      @include property.property("float", ratio-block.$illusion-ratio-block-before-float);
-      content: ratio-block.$illusion-ratio-block-before-content;
-      @include property.property("padding-top", $percent);
-    }
+  &::before {
+    display: ratio-block.$illusion-ratio-block-before-display;
+    @include property.property("float", ratio-block.$illusion-ratio-block-before-float);
+    content: ratio-block.$illusion-ratio-block-before-content;
+    @include property.property("padding-top", $percent);
+  }
 
-    @if $after != false {
-      &::after {
-        content: ratio-block.$illusion-ratio-block-after-content;
-        @include property.property("clear", ratio-block.$illusion-ratio-block-after-clear);
-        display: ratio-block.$illusion-ratio-block-after-display;
-      }
+  @if $after != false {
+    &::after {
+      content: ratio-block.$illusion-ratio-block-after-content;
+      @include property.property("clear", ratio-block.$illusion-ratio-block-after-clear);
+      display: ratio-block.$illusion-ratio-block-after-display;
     }
   }
 }
