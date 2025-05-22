@@ -93,10 +93,12 @@
 
           // Clear the item after omega
           &:nth-child(#{$omega}n+1) {
-            @include property.property("margin-left", 0);
+            & {
+              @include property.property("margin-left", 0);
 
-            @if grid.$illusion-grid-type == float {
-              @include property.property("clear", left);
+              @if grid.$illusion-grid-type == float {
+                @include property.property("clear", left);
+              }
             }
           }
         }
