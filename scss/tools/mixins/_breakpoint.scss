@@ -10,8 +10,18 @@
   $type: $illusion-breakpoint-type
 ) {
   $inside-breakpoint: $width !global;
-  $bp-width: if($type == inherit, $width, #{strip-unit.strip-unit($width)}#{$illusion-breakpoint-type});
-  $bp-width--max: if($type == inherit, $width--max, #{strip-unit.strip-unit($width--max)}#{$illusion-breakpoint-type});
+  $bp-width: null;
+  @if $type == inherit {
+    $bp-width: $width;
+  } @else {
+    $bp-width: #{strip-unit.strip-unit($width)}#{$illusion-breakpoint-type};
+  }
+  $bp-width--max: null;
+  @if $type == inherit {
+    $bp-width--max: $width--max;
+  } @else {
+    $bp-width--max: #{strip-unit.strip-unit($width--max)}#{$illusion-breakpoint-type};
+  }
   @if $width--max == false {
     @media screen and (min-width: $bp-width) {
       @content;
