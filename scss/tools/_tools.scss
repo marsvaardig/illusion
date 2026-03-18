@@ -1,3 +1,19 @@
-@forward "variables";
+@forward "variables" hide
+  $alfa, $alfa--plus, $bravo, $charlie, $delta, $echo,
+  $alfa--plus-min, $bravo-min, $charlie-min, $delta-min, $echo-min,
+  $inside-breakpoint,
+  $font-family, $font-size, $line-height,
+  $weight-light, $weight-normal, $weight-bold,
+  $spacing-xs, $spacing-s, $spacing-m, $spacing-l, $spacing-xl
+with (
+  // Configure illusion grid to use rem units (matching UIKit config)
+  $illusion-grid-default-width: 0rem,
+  $illusion-grid-default-gutter: 1rem,
+  $illusion-grid-bravo-width: 35rem,
+  $illusion-grid-bravo-gutter: 1.5rem,
+  $illusion-grid-delta-width: 64rem,
+  $illusion-grid-delta-gutter: 2rem,
+  $illusion-breakpoint-type: em,
+);
 @forward "functions";
 @forward "mixins";
