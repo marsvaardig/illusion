@@ -6,6 +6,11 @@
   $weight-light, $weight-normal, $weight-bold,
   $spacing-xs, $spacing-s, $spacing-m, $spacing-l, $spacing-xl
 with (
+  // Enable illusion modules
+  $illusion-extendalize: true,
+  $illusion-form: true,
+  $illusion-custom-select: true,
+
   // Configure illusion grid to use rem units (matching UIKit config)
   $illusion-grid-default-width: 0rem,
   $illusion-grid-default-gutter: 1rem,
