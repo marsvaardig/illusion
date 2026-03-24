@@ -13,9 +13,7 @@
   $percent: calculate-ratio.calculate-ratio($ratio);
 
   @if $overflow != false {
-    & {
-      overflow: $overflow;
-    }
+    overflow: $overflow;
   }
 
   &::before {
