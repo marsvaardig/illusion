@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "../tools/variables/body-fallback";
 
 @if body-fallback.$illusion-body-fallback == true {
@@ -26,7 +27,8 @@
   }
 
   /* 1 */
+  // Unquoted string: Sass would simplify calc(100%) to 100%, which every browser understands
   :root body {
-    width: calc(100%);
+    width: string.unquote("calc(100%)");
   }
 }
