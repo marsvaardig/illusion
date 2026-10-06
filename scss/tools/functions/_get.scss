@@ -110,14 +110,14 @@
 
       // Create new temporary map and merge it with the current one
       @if ($inside-breakpoint >= $mapWidth and $inside-breakpoint < $nextWidth) or ($inside-breakpoint >= $largest-width) {
-        $columnGutter: ($spanAmount - 1) * $mapGutter * $multiplier;
+        $columnGutter: ($spanAmount - 1) * $mapGutter;
       }
     }
   } @else if $gutter != false {
     $columnGutter: ($spanAmount - 1) * $gutter * $multiplier;
   }
   @else {
-    $columnGutter: ($spanAmount - 1) * $breakpointGutter * $multiplier;
+    $columnGutter: ($spanAmount - 1) * $breakpointGutter;
   }
   // Calculate column width
   $columnWidth: calc((100% - #{$columnGutter}) / #{$spanAmount});

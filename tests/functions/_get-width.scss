@@ -1,6 +1,8 @@
 @use "../../scss/illusion" as *;
 
 .foo {
+  width: get-width(4, 2);
+
   @include breakpoint($bravo) {
     width: get-width(6);
   }
