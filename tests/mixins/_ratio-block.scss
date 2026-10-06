@@ -1,5 +1,5 @@
 @use "../../scss/illusion" as *;
 
 .foo {
-  @include ratio-block(4 to 3);
+  @include ratio-block(4 by 3);
 }

@@ -5,7 +5,7 @@
     background: red;
   }
 
-  @include if-breakpoint(400) {
+  @include if-breakpoint(400px) {
     background: red;
   }
 }
