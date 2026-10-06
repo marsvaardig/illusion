@@ -1,11 +1,17 @@
+@use "sass:list";
+@use "sass:map";
 @use "breakpoints";
 @use "grid";
 
 // Fluid
 //
 // Viewport widths between which fluid() scales a value: by default from the
-// smallest breakpoint up to the width where the grid stops growing.
+// smallest breakpoint up to the width where @mixin container stops growing,
+// which is its max width plus the largest gutter on both sides.
 // Design pixels; unitless, px, rem and em are all accepted.
 
+// The largest gutter is the one of the last grid breakpoint, as in largest-gutter()
+$-largest-gutter:                 map.get(list.nth(map.values(grid.$illusion-grid-breakpoints), -1), gutter);
+
 $illusion-fluid-from:             breakpoints.$alfa !default;
-$illusion-fluid-to:               grid.$illusion-grid-maxwidth !default;
+$illusion-fluid-to:               grid.$illusion-grid-maxwidth + 2 * $-largest-gutter !default;

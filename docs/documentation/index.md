@@ -90,7 +90,7 @@ Most mixin arguments take their default from an `$illusion-` variable named afte
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `$illusion-fluid-from` | `$alfa` | Viewport width where `fluid()` starts scaling |
-| `$illusion-fluid-to` | `$illusion-grid-maxwidth` | Viewport width where `fluid()` stops scaling |
+| `$illusion-fluid-to` | `$illusion-grid-maxwidth` + 2 × the largest gutter (`1176px`) | Viewport width where `fluid()` stops scaling: where `@mixin container` stops growing |
 | `$illusion-fluid-property-min-value`, `$illusion-fluid-property-max-value`, `$illusion-fluid-property-min-screen`, `$illusion-fluid-property-max-screen` | `$font-size`, `20px`, `$bravo`, `$delta` | Defaults of `@mixin fluid-property` |
 | `$illusion-fluid-property-clamp` | `false` | Set to `true` to let `@mixin fluid-property` use `clamp()` |
 

@@ -11,7 +11,7 @@ Scales a value fluidly between two viewport widths and returns a `clamp()` in `r
 | `min` | `number` | - | Value at the `from` viewport width. Unitless, `px`, `rem` or `em` |
 | `max` | `number` | - | Value at the `to` viewport width. Unitless, `px`, `rem` or `em` |
 | `from` | `number` | `$illusion-fluid-from` | Viewport width where scaling starts. Defaults to `$alfa` |
-| `to` | `number` | `$illusion-fluid-to` | Viewport width where scaling stops. Defaults to `$illusion-grid-maxwidth` |
+| `to` | `number` | `$illusion-fluid-to` | Viewport width where scaling stops. Defaults to where `@mixin container` stops growing: `$illusion-grid-maxwidth` plus the largest gutter on both sides (`1176px`) |
 
 #### SCSS
 
@@ -26,7 +26,7 @@ Scales a value fluidly between two viewport widths and returns a `clamp()` in `r
 
 {% highlight css %}
 .foo {
-  font-size: clamp(0.8889rem, 0.7093rem + 1.0101vw, 1.3333rem);
-  margin-top: clamp(0.8889rem, 2.7609rem - 3.0303vw, 2.2222rem);
+  font-size: clamp(0.8889rem, 0.7227rem + 0.9346vw, 1.3333rem);
+  margin-top: clamp(0.8889rem, 2.7207rem - 2.8037vw, 2.2222rem);
 }
 {% endhighlight %}
