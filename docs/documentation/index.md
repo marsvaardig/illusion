@@ -71,7 +71,7 @@ Most mixin arguments take their default from an `$illusion-` variable named afte
 | `$illusion-grid-breakpoints` | `default`: `0` / `16px`, `bravo`: `$bravo` / `24px`, `delta`: `$delta` / `32px` | Widths and gutters used by the grid and spacing mixins and functions. Set the width and gutter variables, like `$illusion-grid-bravo-gutter`, or replace the whole map |
 | `$illusion-grid-type` | `float` | `float` or `flex`. Default for `$illusion-grid-container-type` and `$illusion-grid-row-type`. `@mixin span` only adds floats and clears when this is `float` |
 | `$illusion-breakpoint-width-max` | `false` | Default max-width of `@mixin breakpoint` |
-| `$illusion-breakpoint-type` | `inherit` | Unit for `@mixin breakpoint`. `inherit` keeps the unit of the width |
+| `$illusion-breakpoint-type` | `inherit` | Unit for `@mixin breakpoint`. `inherit` keeps the unit of the width; `em` or `rem` converts px widths (16px per `em`) |
 
 ### Type, spacing and color
 

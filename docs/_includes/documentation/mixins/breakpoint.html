@@ -10,7 +10,7 @@ Media query shortcut. Sets a temporary global `$inside-breakpoint` variable to b
 | ---- | ---- | ------- | ----------- |
 | `width` | `string` | - | min-width amount |
 | `width--max` | `string` | `false` | max-width amount for `(min-width) and (max-width)` media query |
-| `type` | `string` | `inherit` | `inherit` uses the widths as they are. Any other value strips the unit of the widths and adds the unit set in `$illusion-breakpoint-type` (the number is not converted) |
+| `type` | `string` | `inherit` | `inherit` uses the widths as they are. `em` or `rem` converts px widths, 16px per `em` as in all media queries. `px` converts `em` and `rem` widths |
 
 #### SCSS
 
