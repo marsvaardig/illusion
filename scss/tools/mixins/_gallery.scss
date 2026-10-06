@@ -23,6 +23,11 @@
   $spanContainer: get.get-container($span);
   $spanAmount: math.div($spanContainer, $spanColumns);
 
+  // The rows are built with :nth-child(), which needs a whole number of items per row
+  @if math.round($spanAmount) != $spanAmount {
+    @error "gallery(): items of #{$spanColumns} columns don't divide the #{$spanContainer}-column grid into whole rows. Use a column count that divides #{$spanContainer}.";
+  }
+
   // Span columns
   @include span.span($span, $fromto, $multiplier, $bottom, $defaults, $spanAmount, $gutter, $includeWidth, $includeMargin);
 }
