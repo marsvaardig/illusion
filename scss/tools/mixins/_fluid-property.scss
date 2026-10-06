@@ -1,6 +1,7 @@
 // Globals
 @use "sass:math";
 @use "../variables/type";
+@use "../variables/warnings";
 @use "../variables/logical-properties" as logical;
 @use "../functions/strip-unit";
 @use "../functions/calc-interpolation";
@@ -14,9 +15,14 @@
   $min-screen: type.$illusion-fluid-property-min-screen,
   $max-screen: type.$illusion-fluid-property-max-screen
 ) {
+  // The formulas measure the values in the unit of the screens; other units come out wrong
+  @if not math.compatible($min-value, $min-screen) and warnings.$illusion-display-warnings != false {
+    @warn 'The values in the `fluid-property` mixin should use the same unit as the screens, got #{$min-value} and #{$min-screen}';
+  }
+
   @if logical.$illusion-logical-properties {
     @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
-      @include property.property("#{$property}", clamp(#{$min-value}, calc(#{$min-value} + #{strip-unit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{strip-unit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value}));
+      @include property.property("#{$property}", clamp(#{$min-value}, calc(#{$min-value} + #{strip-unit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{strip-unit.strip-unit($max-screen - $min-screen)})), #{$max-value}));
     }
   } @else {
     @if math.compatible($min-screen, $max-screen) and math.compatible($min-value, $max-value) {
@@ -34,7 +40,7 @@
 
       @if (type.$illusion-fluid-property-clamp != false) {
         @supports (top: clamp(1em, 1vw, 2em)) {
-          #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{strip-unit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{strip-unit.strip-unit($max-screen - $min-screen)} * #{math.div($max-screen, $min-screen)})), #{$max-value});
+          #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{strip-unit.strip-unit($max-value - $min-value)} * ((100vw - #{$min-screen}) / #{strip-unit.strip-unit($max-screen - $min-screen)})), #{$max-value});
         }
       }
     }
