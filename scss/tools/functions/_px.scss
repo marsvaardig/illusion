@@ -8,6 +8,15 @@
 // pixel size
 
 @function px($size, $type: rem) {
+  // Design pixels: unitless or px
+  @if not math.is-unitless($size) {
+    @if math.unit($size) != "px" {
+      @error "px() expects design pixels, unitless or px, got #{$size}.";
+    }
+
+    $size: math.div($size, 1px);
+  }
+
   $value: math.div($size, type.$root-site-font-size);
 
   @if $type == rem {
