@@ -16,10 +16,11 @@
 @forward "extendalize";
 @forward "fallback";
 @forward "flexbox";
-@forward "fluid";
 @forward "form";
 @forward "gallery";
 @forward "grid";
+// After grid: fluid's default reads $illusion-grid-maxwidth, and a module can only be configured on its first load
+@forward "fluid";
 @forward "hover";
 @forward "layout";
 @forward "logical-properties";
