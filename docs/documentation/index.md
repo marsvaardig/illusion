@@ -165,7 +165,7 @@ Each feature defaults to `default`, which follows `$illusion-extendalize`. `true
 | `$illusion-extendalize-list` | `ul` and `ol`: margins |
 | `$illusion-extendalize-paragraph` | `p`: margins |
 | `$illusion-extendalize-picture` | `picture img`: vertical alignment |
-| `$illusion-extendalize-svg` | `svg`: `currentColor` fill and a `1em` width and height when the SVG has no width or height attribute. Also hides `.svg-sprite` |
+| `$illusion-extendalize-svg` | `svg`: a fill of `$illusion-extendalize-svg-color` (`currentColor`, or set a color) and a width and height of `$illusion-extendalize-svg-width` and `-height` (`1em`) when the SVG has no width or height attribute. Set any of these to `false` to leave it out. Also hides `.svg-sprite` |
 
 Addresses, figures, headings, lists and paragraphs lose their bottom margin when they are the last child. Set `$illusion-extendalize-last-children-direction` (`bottom`) to `top` to remove the top margin of the first child instead. Set `$illusion-extendalize-last-children` to `false` to leave out the bottom margin, and its `:last-child` reset, of `legend`, `.form__group` and `.multiple-choice`.
 
