@@ -1,7 +1,6 @@
 @use "../tools/variables/form";
-@use "../tools/variables/extendalize";
 @use "../tools/mixins/button";
-@use "../tools/mixins/content-block";
+@use "../tools/mixins/last-children";
 @use "../tools/mixins/property";
 @use "../tools/mixins/selectors";
 @use "../tools/mixins/spacing";
@@ -21,9 +20,8 @@
 
   // Form group is used to wrap label and input pairs
   @include selectors.selectors(form.$illusion-form-group-selector) {
-    @if (extendalize.$illusion-extendalize-last-children != false) {
-      @include content-block.content-block(form.$illusion-form-group-margin);
-    }
+    @include property.property("margin-bottom", form.$illusion-form-group-margin);
+    @include last-children.last-children(bottom);
   }
 
   @include selectors.selectors(form.$illusion-form-label-selector) {

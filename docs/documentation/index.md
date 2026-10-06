@@ -167,7 +167,12 @@ Each feature defaults to `default`, which follows `$illusion-extendalize`. `true
 | `$illusion-extendalize-picture` | `picture img`: vertical alignment |
 | `$illusion-extendalize-svg` | `svg`: a fill of `$illusion-extendalize-svg-color` (`currentColor`, or set a color) and a width and height of `$illusion-extendalize-svg-width` and `-height` (`1em`) when the SVG has no width or height attribute. Set any of these to `false` to leave it out. Also hides `.svg-sprite` |
 
-Addresses, figures, headings, lists and paragraphs lose their bottom margin when they are the last child. Set `$illusion-extendalize-last-children-direction` (`bottom`) to `top` to remove the top margin of the first child instead. Set `$illusion-extendalize-last-children` to `false` to leave out the bottom margin, and its `:last-child` reset, of `legend`, `.form__group` and `.multiple-choice`.
+Every element with base styling gets its margins from its own settings, for example `$illusion-extendalize-paragraph-margin-bottom`. Two settings control the margin at the edge of the parent, so the first or last element adds no space there:
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `$illusion-extendalize-last-children` | `default` | Set to `false` to keep the edge margins. `default` and `true` remove them |
+| `$illusion-extendalize-last-children-direction` | `bottom` | `bottom` removes the bottom margin of the last child, `top` the top margin of the first child. Applies to addresses, figures, headings, lists and paragraphs. `legend`, `.form__group` and `.multiple-choice` only have a bottom margin, so they always reset the last child |
 
 ### Level 2: Element styling
 

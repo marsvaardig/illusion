@@ -1,0 +1,25 @@
+@use "../variables/extendalize";
+@use "property";
+
+// Last children
+//
+// Removes the margin at the edge of the parent, so the first or last element
+// adds no space there. $illusion-extendalize-last-children switches it on or off
+// for every element with base styling; $illusion-extendalize-last-children-direction
+// picks the edge: bottom removes the bottom margin of the last child, top the top
+// margin of the first child. Elements that only have a bottom margin pass bottom.
+// Used internally by the atoms and molecules, so it is not forwarded.
+
+@mixin last-children($direction: extendalize.$illusion-extendalize-last-children-direction) {
+  @if extendalize.$illusion-extendalize-last-children != false {
+    @if $direction == top {
+      &:first-child {
+        @include property.property("margin-top", 0);
+      }
+    } @else {
+      &:last-child {
+        @include property.property("margin-bottom", 0);
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 @use "../tools/variables/breakpoints";
-@use "../tools/variables/extendalize";
 @use "../tools/variables/form";
 @use "../tools/mixins/breakpoint";
-@use "../tools/mixins/content-block";
+@use "../tools/mixins/last-children";
 @use "../tools/mixins/property";
 @use "../tools/mixins/selectors";
 @use "../tools/mixins/transition";
@@ -19,9 +18,8 @@
     @include property.property("padding", form.$illusion-multiple-choice-padding);
     @include property.property("min-height", form.$illusion-multiple-choice-min-height);
 
-    @if (extendalize.$illusion-extendalize-last-children != false) {
-      @include content-block.content-block(form.$illusion-multiple-choice-margin-bottom);
-    }
+    @include property.property("margin-bottom", form.$illusion-multiple-choice-margin-bottom);
+    @include last-children.last-children(bottom);
 
     @include breakpoint.breakpoint(breakpoints.$bravo) {
       @include property.property("float", form.$illusion-multiple-choice-bravo-float);

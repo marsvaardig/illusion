@@ -1,4 +1,5 @@
 @use "../tools/variables/extendalize";
+@use "../tools/mixins/last-children";
 @use "../tools/mixins/property";
 
 @if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-paragraph != false) or extendalize.$illusion-extendalize-paragraph == true {
@@ -10,18 +11,6 @@
     @include property.property("margin-top", extendalize.$illusion-extendalize-paragraph-margin-top); // 1
     @include property.property("margin-bottom", extendalize.$illusion-extendalize-paragraph-margin-bottom); // 2
 
-    // Remove first-child margin
-    @if (extendalize.$illusion-extendalize-last-children-direction == top) {
-      &:first-child {
-        @include property.property("margin-top", 0);
-      }
-    }
-
-    // Remove last-child margin
-    @if (extendalize.$illusion-extendalize-last-children-direction == bottom) {
-      &:last-child {
-        @include property.property("margin-bottom", 0);
-      }
-    }
+    @include last-children.last-children;
   }
 }

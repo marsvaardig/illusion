@@ -1,6 +1,6 @@
 @use "../tools/variables/extendalize";
 @use "../tools/mixins/property";
-@use "../tools/mixins/content-block";
+@use "../tools/mixins/last-children";
 
 @if (extendalize.$illusion-extendalize == true and extendalize.$illusion-extendalize-fieldset != false) or extendalize.$illusion-extendalize-fieldset == true {
   /**
@@ -13,10 +13,9 @@
     @include property.property("margin", extendalize.$illusion-extendalize-fieldset-margin);
     @include property.property("border", extendalize.$illusion-extendalize-fieldset-border);
 
-    @if (extendalize.$illusion-extendalize-last-children != false) {
-      legend {
-        @include content-block.content-block(extendalize.$illusion-extendalize-legend-margin-bottom);
-      }
+    legend {
+      @include property.property("margin-bottom", extendalize.$illusion-extendalize-legend-margin-bottom);
+      @include last-children.last-children(bottom);
     }
   }
 }
