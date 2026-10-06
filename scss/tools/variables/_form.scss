@@ -30,7 +30,7 @@ $illusion-form-input-focus-outline:                           3px solid $illusio
 $illusion-form-input-focus-outline-offset:                    0 !default;
 $illusion-form-input-border-radius:                           0 !default;
 $illusion-form-select-line-height:                            type.$line-height + (spacing.$spacing-xs * 4) !default;
-$illusion-form-submit-focus-outline:                          3px solid color.$color-focus !default;
+$illusion-form-submit-focus-outline:                          3px solid $illusion-form-focus-color !default;
 
 $illusion-multiple-choice:                                    inherit !default;
 $illusion-multiple-choice-selector:                           ".multiple-choice" !default;
