@@ -4,4 +4,8 @@
   @include breakpoint($bravo) {
     width: auto;
   }
+
+  @include breakpoint($bravo, $charlie-min, em) {
+    width: 50%;
+  }
 }

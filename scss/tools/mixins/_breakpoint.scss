@@ -1,8 +1,27 @@
+@use "sass:math";
 @use "../variables/breakpoints" as *;
 @use "../functions/strip-unit";
 
 // Breakpoint
 // Sets a temporary global $inside-breakpoint variable to be used inside other mixins
+
+// Media query width in the unit set by $type. In media queries 1em and 1rem are always 16px.
+@function _media-width($value, $type) {
+  @if $type == inherit or $value == false {
+    @return $value;
+  }
+
+  $number: strip-unit.strip-unit($value);
+  $unit: math.unit($value);
+
+  @if $unit == "px" and ($type == em or $type == rem) {
+    $number: math.div($number, 16);
+  } @else if ($unit == "em" or $unit == "rem") and $type == px {
+    $number: $number * 16;
+  }
+
+  @return #{$number}#{$type};
+}
 
 @mixin breakpoint(
   $width,
@@ -10,18 +29,8 @@
   $type: $illusion-breakpoint-type
 ) {
   $inside-breakpoint: $width !global;
-  $bp-width: null;
-  @if $type == inherit {
-    $bp-width: $width;
-  } @else {
-    $bp-width: #{strip-unit.strip-unit($width)}#{$illusion-breakpoint-type};
-  }
-  $bp-width--max: null;
-  @if $type == inherit {
-    $bp-width--max: $width--max;
-  } @else {
-    $bp-width--max: #{strip-unit.strip-unit($width--max)}#{$illusion-breakpoint-type};
-  }
+  $bp-width: _media-width($width, $type);
+  $bp-width--max: _media-width($width--max, $type);
   @if $width--max == false {
     @media screen and (min-width: $bp-width) {
       @content;
