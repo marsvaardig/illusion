@@ -36,7 +36,9 @@
     @include property.property("left", $left);
   }
   @if $reset == true {
-    position: coverall.$illusion-coverall-reset-position;
+    @if coverall.$illusion-coverall-reset-position != false {
+      position: coverall.$illusion-coverall-reset-position;
+    }
     @include property.property("top", coverall.$illusion-coverall-reset-top);
     @include property.property("right", coverall.$illusion-coverall-reset-right);
     @include property.property("bottom", coverall.$illusion-coverall-reset-bottom);

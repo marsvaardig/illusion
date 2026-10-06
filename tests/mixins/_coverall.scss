@@ -3,3 +3,7 @@
 .foo {
   @include coverall();
 }
+
+.bar {
+  @include coverall($reset: true);
+}
