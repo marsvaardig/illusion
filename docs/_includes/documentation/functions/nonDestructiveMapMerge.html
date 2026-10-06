@@ -1,0 +1,34 @@
+---
+
+### @function non-destructive-map-merge()
+
+Merges `child-map` into `parent-map`. Unlike `map-merge()` it also merges nested maps instead of replacing them.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `parent-map` | `map` | - | The map to merge into |
+| `child-map` | `map` | - | The map with the values to add or overwrite |
+
+#### SCSS
+
+{% highlight css %}
+$base: (button: (color: black, padding: 8px));
+$theme: (button: (padding: 16px));
+$merged: non-destructive-map-merge($base, $theme);
+
+.foo {
+  color: map-deep-get($merged, button, color);
+  padding: map-deep-get($merged, button, padding);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  color: black;
+  padding: 16px;
+}
+{% endhighlight %}

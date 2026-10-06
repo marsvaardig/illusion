@@ -1,0 +1,39 @@
+---
+
+### @mixin if-breakpoint
+
+Works like the `breakpoint` mixin, but leaves out the media query when `width` is `0`. The grid mixins use it to loop over `$illusion-grid-breakpoints`.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `width` | `number` | - | min-width amount. `0` outputs the content without a media query |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include if-breakpoint(0) {
+    color: red;
+  }
+
+  @include if-breakpoint($bravo) {
+    color: blue;
+  }
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  color: red;
+}
+
+@media screen and (min-width: 560px) {
+  .foo {
+    color: blue;
+  }
+}
+{% endhighlight %}

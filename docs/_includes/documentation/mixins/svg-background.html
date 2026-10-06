@@ -8,14 +8,16 @@ Add an SVG icon as background to an element. Especially useful when trying to ov
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `svg` | `string` | - | Accepts anything that nomally goes inside the `<svg></svg>` element. Although try to only use small single element SVG files for performance. Only use if you can't use a real SVG instead |
-| `color` | `string` | `$svg-background-color` | Color of the SVG. SVGs can only be one color |
-| `width` | `number` | `$svg-background-width` | The width the SVG background should be displayed as |
-| `height` | `number` | `$svg-background-height` | The height the SVG background should be displayed as. Set to false if it's the same as width |
-| `viewboxWidth` | `number` | `$svg-background-viewboxWidth` | The actual viewboxWidth number. See original SVG file for this number |
-| `viewboxHeight` | `number` | `$svg-background-viewboxHeight` | The actual viewboxHeight number. See original SVG file for this number. Set to false if it's the same as width |
-| `background-position` | `string` | `$svg-background-position` | SVG background-position |
-| `background-repeat` | `string` | `$svg-background-repeat` | SVG background-repeat |
+| `svg` | `string` | - | Accepts anything that normally goes inside the `<svg></svg>` element. Although try to only use small single element SVG files for performance. Only use if you can't use a real SVG instead |
+| `color` | `string` | `$illusion-svg-background-color` | Color of the SVG. SVGs can only be one color. Defaults to `black` |
+| `width` | `number` | `$illusion-svg-background-width` | The width the SVG background should be displayed as. Defaults to `24` |
+| `height` | `number` | `$illusion-svg-background-height` | The height the SVG background should be displayed as. Set to false if it's the same as width. Defaults to `false` |
+| `viewboxWidth` | `number` | `$illusion-svg-background-viewboxWidth` | The actual viewboxWidth number. See original SVG file for this number. Defaults to `24` |
+| `viewboxHeight` | `number` | `$illusion-svg-background-viewboxHeight` | The actual viewboxHeight number. See original SVG file for this number. Set to false if it's the same as viewboxWidth. Defaults to `false` |
+| `background-position` | `string` | `$illusion-svg-background-position` | SVG background-position. Defaults to `center` |
+| `background-repeat` | `string` | `$illusion-svg-background-repeat` | SVG background-repeat. Defaults to `no-repeat` |
+| `unit` | `string` | `$illusion-svg-background-size-unit` | Unit added to width and height in `background-size`. Defaults to `px` |
+| `aspectRatio` | `string` | `$illusion-svg-background-aspect-ratio` | Value for the `preserveAspectRatio` attribute. Defaults to `xMidYMid meet` |
 
 #### SCSS
 
@@ -29,7 +31,7 @@ Add an SVG icon as background to an element. Especially useful when trying to ov
 
 {% highlight css %}
 .foo {
-  background-image: url('data:image/svg+xml;utf-8,<svg style="fill: black;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g transform="matrix(2.18679,0,0,2.18679,5.43964,-0.0421697)"><path d="M5.9 5.3L0.5 0.1C0.4 0 0.2 0 0.1 0.1 0 0.2 0 0.4 0.1 0.5L5.2 5.5 0.1 10.5C0 10.6 0 10.8 0.1 10.9 0.2 11 0.2 11 0.3 11 0.4 11 0.5 11 0.5 10.9L5.9 5.7C6 5.6 6 5.4 5.9 5.3Z"/></g></svg>');
+  background-image: url("data:image/svg+xml,%3Csvg style='fill: black;' xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='matrix(2.18679,0,0,2.18679,5.43964,-0.0421697)'%3E%3Cpath d='M5.9 5.3L0.5 0.1C0.4 0 0.2 0 0.1 0.1 0 0.2 0 0.4 0.1 0.5L5.2 5.5 0.1 10.5C0 10.6 0 10.8 0.1 10.9 0.2 11 0.2 11 0.3 11 0.4 11 0.5 11 0.5 10.9L5.9 5.7C6 5.6 6 5.4 5.9 5.3Z'/%3E%3C/g%3E%3C/svg%3E");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 16px 16px;

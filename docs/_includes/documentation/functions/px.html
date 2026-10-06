@@ -1,0 +1,32 @@
+---
+
+### @function px()
+
+Converts a pixel value from the design to `rem` by dividing it by `$root-site-font-size` (default `18`).
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `size` | `number` | - | Pixel value without a unit |
+| `type` | `string` | `rem` | Unit of the result: `rem`, `em` or `false` for a unitless number |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  font-size: px(16);
+  padding: px(9, em);
+  line-height: px(27, false);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  font-size: 0.8888888889rem;
+  padding: 0.5em;
+  line-height: 1.5;
+}
+{% endhighlight %}

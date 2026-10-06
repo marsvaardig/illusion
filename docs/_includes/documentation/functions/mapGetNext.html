@@ -1,0 +1,33 @@
+---
+
+### @function map-get-next()
+
+Returns the key that comes after `key` in `map`. Returns `fallback` when `key` is the last key. When the map or the key doesn't exist it also returns `fallback` and shows a warning.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `map` | `map` | - | The map to look in |
+| `key` | `string` | - | The key to start from |
+| `fallback` | `string` | `false` | Returned when there is no next key |
+
+#### SCSS
+
+{% highlight css %}
+$sizes: (small: 8px, medium: 16px, large: 24px);
+
+.foo {
+  margin-top: map-get($sizes, map-get-next($sizes, small));
+  margin-bottom: map-get-next($sizes, large, auto);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  margin-top: 16px;
+  margin-bottom: auto;
+}
+{% endhighlight %}

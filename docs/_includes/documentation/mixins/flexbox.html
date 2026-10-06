@@ -2,14 +2,14 @@
 
 ### @mixin flexbox
 
-Style only when browser supports flexbox.
+Style only when browser supports flexbox. Outputs nothing when `$illusion-flexbox` is `false`, so you can test the fallback.
 
 #### Arguments
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `horizontal` | `string` | `$flexbox-horizontal` | Flex when viewport reached this amount |
-| `vertical` | `string` | `$flexbox-vertical` | Flex when viewport reached this amount |
+| `horizontal` | `string` | `$illusion-flexbox-horizontal` | Flex when viewport reached this width. Defaults to `0` |
+| `vertical` | `string` | `$illusion-flexbox-vertical` | Flex when viewport reached this height. Defaults to `0` |
 
 #### Dependencies
 
@@ -25,12 +25,11 @@ For flexbox to work properly it uses Modernizr `.flexbox` and `.flexboxlegacy`
 }
 {% endhighlight %}
 
-#### SCSS
+#### CSS
 
 {% highlight css %}
 @media (min-width: 560px) and (min-height: 768px) {
-  .flexbox .foo,
-  .flexboxlegacy .foo {
+  .flexbox .foo, .flexboxlegacy .foo {
     display: flex;
   }
 }

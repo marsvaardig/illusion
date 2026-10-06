@@ -1,6 +1,6 @@
 ---
 
-### @mixin transitation
+### @mixin transition
 
 Shortcut to set one or more transition properties.
 
@@ -8,7 +8,7 @@ Shortcut to set one or more transition properties.
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `transitions` | `list` | - | Comma separated list. Each item can have three sub-items and will fall back to the default values. |
+| `transitions` | `list` | `all` | Comma separated list. Each item can have up to four values (property, duration, easing, delay). Missing values fall back to `$illusion-transition-duration` (`200ms`), `$illusion-transition-easing` and `$illusion-transition-delay` (`0ms`) |
 
 #### SCSS
 
@@ -22,6 +22,6 @@ Shortcut to set one or more transition properties.
 
 {% highlight css %}
 .foo {
-  transition: opacity 1s cubic-bezier(0.195, 0.4, 0.45, 0.785) 0ms, transform 0.2s cubic-bezier(0.195, 0.4, 0.45, 0.785) 0ms;
+  transition: opacity 1s cubic-bezier(0.195, 0.4, 0.45, 0.785) 0ms, transform 200ms cubic-bezier(0.195, 0.4, 0.45, 0.785) 0ms;
 }
 {% endhighlight %}

@@ -1,8 +1,8 @@
 ---
 
-### @function getMargin()
+### @function get-margin()
 
-Returns margin(gutter), also within breakpoint
+Returns the gutter (margin) times `multiplier`, also within a breakpoint. Outside a breakpoint it uses the smallest gutter.
 
 #### Arguments
 
@@ -15,7 +15,7 @@ Returns margin(gutter), also within breakpoint
 {% highlight css %}
 .foo {
   @include breakpoint($bravo) {
-    margin-top: getMargin();
+    margin-top: get-margin();
   }
 }
 {% endhighlight %}

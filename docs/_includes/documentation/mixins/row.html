@@ -2,11 +2,13 @@
 
 ### @mixin row
 
+Wraps grid columns: adds a clearfix for floats or makes it a wrapping flex container.
+
 #### Arguments
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `type` | `string` | `$illusion-grid-container-type` | Choose between clearfix (for floats) or flexbox container. Defaults to clearfix container. |
+| `type` | `string` | `$illusion-grid-row-type` | `flex` for a flexbox row, any other value for a clearfix (float) row. Defaults to `float` |
 
 #### SCSS
 

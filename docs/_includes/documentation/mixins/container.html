@@ -8,12 +8,8 @@ Shouldn't be nested. Adds clearfix when used without flexbox and removes clearfi
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `type` | `string` | `$illusion-grid-container-type` | Choose between clearfix (for floats) or flexbox container. Defaults to clearfix container. |
-| `alignment` | `string` | `center` | Align container to left, center or right |
-
-#### Dependencies
-
-For flexbox to work properly it uses Modernizr `.flexbox.flexwrap`
+| `type` | `string` | `$illusion-grid-container-type` | `flex` for a flexbox container, any other value for a clearfix (float) container. Defaults to `float` |
+| `align` | `string` | `center` | Align container to left, center or right |
 
 #### SCSS
 
@@ -27,11 +23,9 @@ For flexbox to work properly it uses Modernizr `.flexbox.flexwrap`
 
 {% highlight css %}
 .foo {
+  max-width: 1176px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1176px;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .foo::before, .foo::after {
@@ -41,6 +35,11 @@ For flexbox to work properly it uses Modernizr `.flexbox.flexwrap`
 
 .foo::after {
   clear: both;
+}
+
+.foo {
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 @media screen and (min-width: 560px) {

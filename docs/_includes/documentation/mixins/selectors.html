@@ -1,0 +1,31 @@
+---
+
+### @mixin selectors
+
+Writes the content as a separate rule for each selector. Selectors that are `false` are skipped. Illusion uses it for the configurable form selectors.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `selectors` | `list` | - | Comma separated list of selectors |
+
+#### SCSS
+
+{% highlight css %}
+@include selectors('.foo', '.bar') {
+  color: red;
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  color: red;
+}
+
+.bar {
+  color: red;
+}
+{% endhighlight %}

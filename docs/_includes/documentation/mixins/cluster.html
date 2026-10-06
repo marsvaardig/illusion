@@ -1,0 +1,54 @@
+---
+
+### @mixin cluster
+
+Lines up child elements in a wrapping flex row with space between them. By default the space is made with margins on the children. When `$illusion-logical-properties` or `$illusion-layout-flex-gap` is `true` it uses `gap` instead.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `margin` | `string` | `1rem` | Space between the items |
+| `flex-wrap` | `string` | `wrap` | Only used when `$illusion-logical-properties` or `$illusion-layout-flex-gap` is `true` |
+| `align-items` | `string` | `center` | Only used when `$illusion-logical-properties` or `$illusion-layout-flex-gap` is `true` |
+| `justify-content` | `string` | `flex-start` | Horizontal alignment of the items |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include cluster;
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: calc(1rem * -1);
+  margin-left: calc(1rem * -1);
+}
+
+.foo > * {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+{% endhighlight %}
+
+##### With gap
+
+With `$illusion-layout-flex-gap: true` the same SCSS compiles to:
+
+{% highlight css %}
+.foo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+{% endhighlight %}

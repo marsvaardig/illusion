@@ -1,0 +1,27 @@
+---
+
+### @function strip-unit()
+
+Removes the unit from a number. Values that are not a number or have no unit are returned as they are.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `number` | `number` | - | The value to remove the unit from |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  --breakpoint: #{strip-unit($bravo)};
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  --breakpoint: 560;
+}
+{% endhighlight %}

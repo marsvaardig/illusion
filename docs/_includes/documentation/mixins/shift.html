@@ -9,7 +9,7 @@ Visually change the order of elements.
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `shift` | `list` | - | Set how many columns should be shifted. Accepts single value: `@include shift(2)` or list: `@include shift(3 of 12)`. Amount of columns defaults to `$illusion-grid-container`  |
-| `fromto` | `list` | `false to false` | Set starting and stopping breakpoints. Accepts single value: `@include shift(6, $bravo)` or list: `@include shift(6, $bravo to $charlie)`. The second (to) value only means that Illusion is not adding more media queries. The styling is not being reset on this 'to' breakpoint |
+| `fromto` | `list` | `false` | Set starting and stopping breakpoints. `false` uses all breakpoints. Accepts single value: `@include shift(6, $bravo)` or list: `@include shift(6, $bravo to $charlie)`. The second (to) value only means that Illusion is not adding more media queries. The styling is not being reset on this 'to' breakpoint |
 | `multiplier` | `number` | `1` | Gutter multiplier. defaults to `1` and can be set to any number dividable by `0.5` |
 | `defaults` | `boolean` | `true` | If set to `false` the mixin won't add the `position` property |
 | `gutter` | `string` | `false` | Custom gutter value for Illusion to calculate (`calc()`) with. |
@@ -26,20 +26,20 @@ Visually change the order of elements.
 
 {% highlight css %}
 .foo {
-    left: calc(((100% - 16px) / 2) + 16px);
-    position: relative;
+  position: relative;
+  left: calc(((100% - 32px) / 3) + 16px);
 }
 
 @media screen and (min-width: 560px) {
-    .foo {
-        left: calc(((100% - 24px) / 2) + 24px);
-    }
+  .foo {
+    left: calc(((100% - 48px) / 3) + 24px);
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .foo {
-        left: calc(((100% - 32px) / 2) + 32px);
-    }
+  .foo {
+    left: calc(((100% - 64px) / 3) + 32px);
+  }
 }
 {% endhighlight %}
 

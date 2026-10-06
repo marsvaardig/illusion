@@ -1,0 +1,30 @@
+---
+
+### @function ms()
+
+Returns a step of the modular scale (`$illusion-ms-sizes`) with a unit. Defaults to `em` so larger fonts get a larger scale. The result is a string, so it can't be used in Sass calculations.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `size` | `number` | `0` | Step on the scale, from `-4` to `4`. Other numbers are used as they are |
+| `type` | `string` | `em` | Unit to add. Use `rem` to ignore the font size of the element |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  font-size: ms(2);
+  margin-top: ms(-1, rem);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  font-size: 2.25em;
+  margin-top: 0.6666666667rem;
+}
+{% endhighlight %}

@@ -1,13 +1,15 @@
+---
+
 ### @function spacing()
 
-Returns set spacing or calculate current spacing, also within breakpoint
+Returns the gutter of the current breakpoint times `multiplier`, also within a breakpoint. Outside a breakpoint it uses the smallest gutter.
 
 #### Arguments
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `multiplier` | `number` | `1` | Gutter multiplier. defaults to `1` and can be set to any number dividable by `0.5` |
-| `breakpoint` | `string` | `false` | Specific breakpoint to use |
+| `breakpoint` | `string` | `false` | Name of a breakpoint in `$illusion-grid-breakpoints` (`default`, `bravo` or `delta`) to return the gutter of |
 
 #### SCSS
 

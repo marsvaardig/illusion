@@ -1,14 +1,14 @@
 ---
 
-### @function getWidth()
+### @function get-width()
 
-Returns width, also within breakpoint
+Returns the width of a number of grid columns, also within a breakpoint.
 
 #### Arguments
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `span` | `list` | - | Set how many columns should be spanned. Accepts single value: `getWidth(6)` or list: `getWidth(4 of 12)`. Amount of columns defaults to `$illusion-grid-container` |
+| `span` | `list` | - | Set how many columns should be spanned. Accepts single value: `get-width(6)` or list: `get-width(4 of 12)`. Amount of columns defaults to `$illusion-grid-container` |
 | `multiplier` | `number` | `1` | Gutter multiplier. defaults to `1` and can be set to any number dividable by `0.5` |
 | `gutter` | `string` | `false` | Custom gutter value for Illusion to calculate (`calc()`) with. |
 
@@ -17,7 +17,7 @@ Returns width, also within breakpoint
 {% highlight css %}
 .foo {
   @include breakpoint($bravo) {
-    width: getWidth(6);
+    width: get-width(6);
   }
 }
 {% endhighlight %}

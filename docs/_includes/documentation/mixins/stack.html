@@ -1,0 +1,27 @@
+---
+
+### @mixin stack
+
+Adds a top margin to every direct child except the first, so stacked elements get the same space between them.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `string` | `1.5em` | The space between the children |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include stack;
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo > * + * {
+  margin-top: 1.5em;
+}
+{% endhighlight %}

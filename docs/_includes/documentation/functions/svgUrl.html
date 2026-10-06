@@ -1,0 +1,27 @@
+---
+
+### @function svg-url()
+
+Encodes SVG markup as a data URI and returns it as `url()`. Used by the `svg-background` and `svg-mask` mixins.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `svg` | `string` | - | The complete SVG markup, including the `xmlns` attribute |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  list-style-image: svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#f00"/></svg>');
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Ccircle cx='4' cy='4' r='4' fill='%23f00'/%3E%3C/svg%3E");
+}
+{% endhighlight %}

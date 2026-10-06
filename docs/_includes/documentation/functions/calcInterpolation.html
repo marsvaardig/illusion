@@ -1,0 +1,34 @@
+---
+
+### @function calc-interpolation()
+
+Returns a `calc()` that grows linearly from `min-value` at `min-screen` to `max-value` at `max-screen`. It doesn't stop growing, so use it within a media query range. Used by the `fluid-property` mixin.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `min-screen` | `number` | - | Viewport width where the value is `min-value`. Use `px` |
+| `min-value` | `number` | - | Value at `min-screen`. Use `px`; the output uses this unit |
+| `max-screen` | `number` | - | Viewport width where the value is `max-value`. Use `px` |
+| `max-value` | `number` | - | Value at `max-screen`. Use `px` |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include breakpoint($bravo) {
+    font-size: calc-interpolation($bravo, 16px, $delta, 24px);
+  }
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+@media screen and (min-width: 560px) {
+  .foo {
+    font-size: calc(1.724137931vw + 6.3448275862px);
+  }
+}
+{% endhighlight %}

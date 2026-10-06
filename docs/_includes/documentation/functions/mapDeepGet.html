@@ -1,0 +1,28 @@
+---
+
+### @function map-deep-get()
+
+Returns a value from nested maps by following a chain of keys.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `map` | `map` | - | The map to read from |
+| `keys` | `list` | - | Comma separated chain of keys |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  padding: map-deep-get($illusion-grid-breakpoints, bravo, gutter);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  padding: 24px;
+}
+{% endhighlight %}

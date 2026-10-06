@@ -1,0 +1,33 @@
+---
+
+### @function map-collect()
+
+Merges any number of maps into one. Keys in later maps overwrite the same keys in earlier maps. Throws an error when one of the arguments is not a map.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `maps` | `list` | - | Comma separated list of maps |
+
+#### SCSS
+
+{% highlight css %}
+$small: (s: 8px);
+$large: (l: 24px);
+$sizes: map-collect($small, $large);
+
+.foo {
+  margin-top: map-get($sizes, s);
+  margin-bottom: map-get($sizes, l);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+{% endhighlight %}

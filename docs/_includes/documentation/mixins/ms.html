@@ -1,0 +1,38 @@
+---
+
+### @mixin ms
+
+Sets a property to a step of the modular scale multiplied by the `--spacing` custom property. Illusion does not define `--spacing`, so set it yourself. Browsers without custom property support get a `rem` fallback: `ms(1, rem)` times the step times `$illusion-fallback-amount`.
+
+With `$illusion-fallback: true` only the fallback is output. With `$illusion-logical-properties: true` only the custom property version is output, using the logical property.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `property` | `string` | - | The property to set |
+| `amount` | `number` | `0` | Step on the scale, from `-4` to `4` (the keys of `$illusion-ms-sizes`). Other numbers are used as they are |
+| `multiplier` | `number` | `1` | Multiplies the step value. Set to `false` to use `amount` as the value without looking it up |
+| `subtractFrom` | `string` | `false` | Subtracts the result from this value, for example `100%` |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include ms(margin-top, 1);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  margin-top: calc(1.5rem * 2.25);
+}
+
+@supports (--css: variables) {
+  .foo {
+    margin-top: calc(var(--spacing) * 1.5);
+  }
+}
+{% endhighlight %}

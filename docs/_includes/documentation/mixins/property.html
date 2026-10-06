@@ -1,0 +1,46 @@
+---
+
+### @mixin property
+
+Writes a property and its value. With `$illusion-logical-properties: true` it writes the logical property instead, for example `margin-inline-start` for `margin-left`, and splits `margin` and `padding` shorthands into block and inline values. Most Illusion mixins write their properties with it.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `property` | `string` | - | The physical property, for example `margin-left` |
+| `value` | `string` | - | The value. With `$illusion-logical-properties` off, `false` outputs nothing |
+| `nested` | `boolean` | `false` | Not used at the moment |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include property(margin-left, 16px);
+  @include property(padding, 8px 16px);
+  @include property(float, left);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  margin-left: 16px;
+  padding: 8px 16px;
+  float: left;
+}
+{% endhighlight %}
+
+##### With logical properties
+
+With `$illusion-logical-properties: true` the same SCSS compiles to:
+
+{% highlight css %}
+.foo {
+  margin-inline-start: 16px;
+  padding-block: 8px;
+  padding-inline: 16px;
+  float: inline-start;
+}
+{% endhighlight %}

@@ -2,7 +2,7 @@
 
 ### @mixin ratio-block
 
-Create blocks that keep set aspect ratio. Blocks will grow when content exceeds the content area. To stop this add an absolute positioned child the the ratio block.
+Create blocks that keep set aspect ratio. Blocks will grow when content exceeds the content area. To stop this add an absolute positioned child to the ratio block.
 
 #### Arguments
 
@@ -10,18 +10,23 @@ Create blocks that keep set aspect ratio. Blocks will grow when content exceeds 
 | ---- | ---- | ------- | ----------- |
 | `ratio` | `list` | `16 by 9` | Width to height ratio |
 | `overflow` | `string` | `hidden` | Hides overflowing content when an absolute positioned child exceeds the content area |
+| `after` | `boolean` | `true` | Adds an `::after` element that clears the floated `::before` element |
 
 #### SCSS
 
 {% highlight css %}
 .foo {
-  @include ratio-block(4 to 3);
+  @include ratio-block(4 by 3);
 }
 {% endhighlight %}
 
 #### CSS
 
 {% highlight css %}
+.foo {
+  overflow: hidden;
+}
+
 .foo::before {
   display: block;
   float: left;

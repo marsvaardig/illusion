@@ -9,7 +9,7 @@ Shortcut to create gallery-style grids. Adds clearing on nth-child items.
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `span` | `list` | - | Set how many columns should be spanned. Accepts single value: `@include gallery(6)` or list: `@include gallery(4 of 12)`. Amount of columns defaults to `$illusion-grid-container` |
-| `fromto` | `list` | `false to false` | Set starting and stopping breakpoints. Accepts single value: `@include gallery(6, $bravo)` or list: `@include gallery(6, $bravo to $charlie)`. The second (to) value only means that Illusion is not adding more media queries. The styling is not being reset on this 'to' breakpoint |
+| `fromto` | `list` | `false` | Set starting and stopping breakpoints. `false` uses all breakpoints. Accepts single value: `@include gallery(6, $bravo)` or list: `@include gallery(6, $bravo to $charlie)`. The second (to) value only means that Illusion is not adding more media queries. The styling is not being reset on this 'to' breakpoint |
 | `multiplier` | `number` | `1` | Gutter multiplier. defaults to `1` and can be set to any number dividable by `0.5` |
 | `bottom` | `boolean` | `true` | Set to `false` if you don't want bottom gutters |
 | `defaults` | `boolean` | `true` | If set to `false` the mixin won't add the `float` and `margin` property on `:first-child` and `:last-child` for cleaner code |
@@ -29,69 +29,78 @@ Shortcut to create gallery-style grids. Adds clearing on nth-child items.
 
 {% highlight css %}
 .foo {
-    width: calc((100% - 32px) / 3);
-    margin-left: calc(16px);
-    margin-bottom: calc(16px);
-    float: left;
+  width: calc((100% - 32px) / 3);
+  margin-left: calc(16px);
+  margin-bottom: calc(16px);
 }
 
 .foo:nth-child(3n) {
-    margin-right: -1px;
+  margin-right: -1px;
 }
 
 .foo:nth-child(3n+1) {
-    margin-left: 0;
-    clear: left;
+  margin-left: 0;
+  clear: left;
+}
+
+.foo {
+  float: left;
 }
 
 .foo:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 @media screen and (min-width: 560px) {
-    .foo {
-        width: calc((100% - 48px) / 3);
-        margin-left: calc(24px);
-        margin-bottom: calc(24px);
-    }
+  .foo {
+    width: calc((100% - 48px) / 3);
+    margin-left: calc(24px);
+    margin-bottom: calc(24px);
+  }
 
-    .foo:nth-child(n) {
-        clear: none;
-        margin-left: calc(24px);
-        margin-right: 0;
-    }
+  .foo:nth-child(n) {
+    margin-left: calc(24px);
+    margin-right: 0;
+  }
 
-    .foo:nth-child(3n) {
-        margin-right: -1px;
-    }
+  .foo:nth-child(n) {
+    clear: none;
+  }
 
-    .foo:nth-child(3n+1) {
-        margin-left: 0;
-        clear: left;
-    }
+  .foo:nth-child(3n) {
+    margin-right: -1px;
+  }
+
+  .foo:nth-child(3n+1) {
+    margin-left: 0;
+    clear: left;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .foo {
-        width: calc((100% - 64px) / 3);
-        margin-left: calc(32px);
-        margin-bottom: calc(32px);
-    }
+  .foo {
+    width: calc((100% - 64px) / 3);
+    margin-left: calc(32px);
+    margin-bottom: calc(32px);
+  }
 
-    .foo:nth-child(n) {
-        clear: none;
-        margin-left: calc(32px);
-        margin-right: 0;
-    }
+  .foo:nth-child(n) {
+    margin-left: calc(32px);
+    margin-right: 0;
+  }
 
-    .foo:nth-child(3n) {
-        margin-right: -1px;
-    }
+  .foo:nth-child(n) {
+    clear: none;
+  }
 
-    .foo:nth-child(3n+1) {
-        margin-left: 0;
-        clear: left;
-    }
+  .foo:nth-child(3n) {
+    margin-right: -1px;
+  }
+
+  .foo:nth-child(3n+1) {
+    margin-left: 0;
+    clear: left;
+  }
 }
 {% endhighlight %}
 

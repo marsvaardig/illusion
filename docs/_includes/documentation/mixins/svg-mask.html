@@ -1,0 +1,37 @@
+---
+
+### @mixin svg-mask
+
+Uses an SVG as a CSS mask, so the background color of the element shows in the shape of the SVG. Unlike `svg-background` the color can follow the text color.
+
+#### Arguments
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `svg` | `string` | - | Accepts anything that normally goes inside the `<svg></svg>` element |
+| `color` | `string` | `currentColor` | Background color that shows through the mask. Set to `false` to leave out the `background-color` |
+| `width` | `string` | `100%` | Width of the mask |
+| `height` | `string` | `false` | Height of the mask. Set to `false` if it's the same as width |
+| `viewboxWidth` | `number` | `24` | The viewBox width of the original SVG |
+| `viewboxHeight` | `number` | `false` | The viewBox height of the original SVG. Set to `false` if it's the same as viewboxWidth |
+| `aspectRatio` | `string` | `xMidYMid meet` | Value for the `preserveAspectRatio` attribute |
+
+#### SCSS
+
+{% highlight css %}
+.foo {
+  @include svg-mask('<circle cx="12" cy="12" r="12"/>', currentColor, 16px);
+}
+{% endhighlight %}
+
+#### CSS
+
+{% highlight css %}
+.foo {
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' preserveAspectRatio='xMidYMid meet'%3E%3Ccircle cx='12' cy='12' r='12'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' preserveAspectRatio='xMidYMid meet'%3E%3Ccircle cx='12' cy='12' r='12'/%3E%3C/svg%3E");
+  -webkit-mask-size: 16px 16px;
+  mask-size: 16px 16px;
+}
+{% endhighlight %}
