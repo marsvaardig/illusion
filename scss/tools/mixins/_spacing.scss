@@ -51,6 +51,8 @@
 
         // Top
         @if ($side == all or $side == vertical or $side == top) and $skip != top {
+          // Start from the full value; only this side decides whether to halve it
+          $subtract: $minus;
           @if ($side == all or $side == vertical) and ($skip != bottom) {
             $subtract: $minus * 0.5;
           }
@@ -73,6 +75,8 @@
 
         // Right
         @if ($side == all or $side == horizontal or $side == right) and $skip != right {
+          // Start from the full value; only this side decides whether to halve it
+          $subtract: $minus;
           @if ($side == all or $side == horizontal) and ($skip != left) {
             $subtract: $minus * 0.5;
           }
@@ -95,6 +99,8 @@
 
         // Bottom
         @if ($side == all or $side == vertical or $side == bottom) and $skip != bottom {
+          // Start from the full value; only this side decides whether to halve it
+          $subtract: $minus;
           @if ($side == all or $side == vertical) and ($skip != top) {
             $subtract: $minus * 0.5;
           }
@@ -117,6 +123,8 @@
 
         // Left
         @if ($side == all or $side == horizontal or $side == left) and $skip != left {
+          // Start from the full value; only this side decides whether to halve it
+          $subtract: $minus;
           @if ($side == all or $side == horizontal) and ($skip != right) {
             $subtract: $minus * 0.5;
           }
