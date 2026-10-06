@@ -1,0 +1,5 @@
+@use "../../scss/illusion" as *;
+
+.foo {
+  content: str-replace("Hello world", "world", "Illusion");
+}
