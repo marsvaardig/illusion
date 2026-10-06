@@ -1,6 +1,8 @@
 @use "../../scss/illusion" as *;
 
 .foo {
+  margin-top: spacing(2, bravo);
+
   @include breakpoint($bravo) {
     padding-top: spacing();
   }

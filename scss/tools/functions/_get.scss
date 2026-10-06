@@ -204,7 +204,7 @@
   }
   @else {
     @if $breakpoint != false {
-      $breakpointGutter: map-extend.map-deep-get(grid.$illusion-grid-breakpoints, #{$breakpoint}, "gutter");
+      $breakpointGutter: map-extend.map-deep-get(grid.$illusion-grid-breakpoints, #{$breakpoint}, "gutter") * $multiplier;
     }
   }
 
