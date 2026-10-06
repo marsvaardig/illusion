@@ -1,0 +1,5 @@
+@use "../../scss/illusion" as *;
+
+.foo {
+  margin-top: calc-interpolation(560px, -16px, 1024px, -24px);
+}

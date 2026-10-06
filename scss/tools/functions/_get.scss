@@ -3,7 +3,6 @@
 @use "sass:meta";
 @use "sass:map";
 @use "sass:list";
-@use "sass:string";
 @use "map-extend";
 @use "../variables/span";
 @use "../variables/grid";
@@ -73,7 +72,7 @@
 // Get unit
 
 @function get-unit($value) {
-  @return string.slice($value * 0 + "", 2, -1);
+  @return math.unit($value);
 }
 
 
