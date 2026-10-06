@@ -1,3 +1,4 @@
+@use "sass:meta";
 @use "../tools/variables/extendalize";
 @use "../tools/mixins/property";
 
@@ -8,16 +9,21 @@
 
   svg {
     @if extendalize.$illusion-extendalize-svg-color != false {
-      fill: currentColor;
+      // A color sets the fill; any other value keeps the text color
+      @if meta.type-of(extendalize.$illusion-extendalize-svg-color) == "color" {
+        fill: extendalize.$illusion-extendalize-svg-color;
+      } @else {
+        fill: currentColor;
+      }
     }
     @if extendalize.$illusion-extendalize-svg-width != false {
       &:not([width]) {
-        @include property.property("width", 1em);
+        @include property.property("width", extendalize.$illusion-extendalize-svg-width);
       }
     }
     @if extendalize.$illusion-extendalize-svg-height != false {
       &:not([height]) {
-        @include property.property("height", 1em);
+        @include property.property("height", extendalize.$illusion-extendalize-svg-height);
       }
     }
   }
