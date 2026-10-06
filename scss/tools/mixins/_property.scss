@@ -8,49 +8,52 @@
   $property,
   $value,
 ) {
-  @if logical.$illusion-logical-properties {
-    @each $prop, $val in logical.$illusion-logical-properties-map {
-      @if ($prop == $property) {
-        @if $prop == 'float' or $prop == 'clear' {
-          @if $value == 'right' {
-            $value: inline-end
+  // false leaves the property out, with and without logical properties
+  @if $value != false {
+    @if logical.$illusion-logical-properties {
+      @each $prop, $val in logical.$illusion-logical-properties-map {
+        @if ($prop == $property) {
+          @if $prop == 'float' or $prop == 'clear' {
+            @if $value == 'right' {
+              $value: inline-end
+            }
+            @if $value == 'left' {
+              $value: inline-start
+            }
           }
-          @if $value == 'left' {
-            $value: inline-start
+          @if $prop == 'text-align' {
+            @if $value == 'right' {
+              $value: end
+            }
+            @if $value == 'left' {
+              $value: start
+            }
           }
+          $property: $val;
         }
-        @if $prop == 'text-align' {
-          @if $value == 'right' {
-            $value: end
-          }
-          @if $value == 'left' {
-            $value: start
-          }
+      }
+      @if (($property == 'margin' and logical.$illusion-logical-properties-margin != false) or ($property == 'padding') and logical.$illusion-logical-properties-padding != false) and list.length($value) != 1 {
+        @if list.length($value) == 4 {
+          #{$property}-block-start: list.nth($value, 1);
+          #{$property}-inline-end: list.nth($value, 2);
+          #{$property}-block-end: list.nth($value, 3);
+          #{$property}-inline-start: list.nth($value, 4);
         }
-        $property: $val;
-      }
-    }
-    @if (($property == 'margin' and logical.$illusion-logical-properties-margin != false) or ($property == 'padding') and logical.$illusion-logical-properties-padding != false) and list.length($value) != 1 {
-      @if list.length($value) == 4 {
-        #{$property}-block-start: list.nth($value, 1);
-        #{$property}-inline-end: list.nth($value, 2);
-        #{$property}-block-end: list.nth($value, 3);
-        #{$property}-inline-start: list.nth($value, 4);
-      }
-      @if list.length($value) == 3 {
-        #{$property}-block-start: list.nth($value, 1);
-        #{$property}-inline: list.nth($value, 2);
-        #{$property}-block-end: list.nth($value, 3);
-      }
-      @if list.length($value) == 2 {
-        #{$property}-block: list.nth($value, 1);
-        #{$property}-inline: list.nth($value, 2);
+        @if list.length($value) == 3 {
+          #{$property}-block-start: list.nth($value, 1);
+          #{$property}-inline: list.nth($value, 2);
+          #{$property}-block-end: list.nth($value, 3);
+        }
+        @if list.length($value) == 2 {
+          #{$property}-block: list.nth($value, 1);
+          #{$property}-inline: list.nth($value, 2);
+        }
+      } @else {
+        #{$property}: $value;
       }
     } @else {
       #{$property}: $value;
     }
-  } @else if ($value != false) {
-    #{$property}: $value;
   }
 }
 
