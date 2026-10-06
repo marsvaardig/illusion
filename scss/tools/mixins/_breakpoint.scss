@@ -28,6 +28,7 @@
   $width--max: $illusion-breakpoint-width-max,
   $type: $illusion-breakpoint-type
 ) {
+  $outer-breakpoint: $inside-breakpoint;
   $inside-breakpoint: $width !global;
   $bp-width: _media-width($width, $type);
   $bp-width--max: _media-width($width--max, $type);
@@ -41,5 +42,5 @@
     }
   }
 
-  $inside-breakpoint: false !global;
+  $inside-breakpoint: $outer-breakpoint !global;
 }
