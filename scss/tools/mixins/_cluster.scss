@@ -18,8 +18,8 @@
     gap: $margin;
   } @else {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-wrap: $flex-wrap;
+    align-items: $align-items;
     justify-content: $justify-content;
     margin-bottom: calc(#{$margin} * -1);
     margin-left: calc(#{$margin} * -1);

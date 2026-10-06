@@ -3,3 +3,7 @@
 .foo {
   @include cluster();
 }
+
+.bar {
+  @include cluster($flex-wrap: nowrap, $align-items: flex-start);
+}
