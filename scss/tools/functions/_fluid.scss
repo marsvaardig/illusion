@@ -69,21 +69,16 @@
   $intercept: $min-px - ($slope * $from-px);
 
   // clamp() wants the smallest value first, which flips for shrinking values.
-  $lower: px.px(math.min($min-px, $max-px));
-  $upper: px.px(math.max($min-px, $max-px));
+  $lower: _round(px.px(math.min($min-px, $max-px)));
+  $upper: _round(px.px(math.max($min-px, $max-px)));
+  $offset: _round(px.px($intercept));
+  $vw: _round(math.abs($slope) * 100) * 1vw;
 
-  // A shrinking value has a negative slope; subtract it rather than adding a
-  // negative number.
-  $vw: _round(math.abs($slope) * 100);
-  $operator: "+";
-
+  // A real calculation, so Sass prints it on one line and it can be used in other calculations.
+  // A shrinking value has a negative slope; subtract it rather than adding a negative number.
   @if $slope < 0 {
-    $operator: "-";
+    @return clamp($lower, $offset - $vw, $upper);
   }
 
-  @return clamp(
-    #{_round($lower)},
-    #{_round(px.px($intercept))} #{$operator} #{$vw}vw,
-    #{_round($upper)}
-  );
+  @return clamp($lower, $offset + $vw, $upper);
 }
