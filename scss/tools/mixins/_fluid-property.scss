@@ -15,6 +15,11 @@
   $min-screen: type.$illusion-fluid-property-min-screen,
   $max-screen: type.$illusion-fluid-property-max-screen
 ) {
+  // Both values and both screens need one unit each, or the mixin outputs nothing
+  @if not (math.compatible($min-value, $max-value) and math.compatible($min-screen, $max-screen)) and warnings.$illusion-display-warnings != false {
+    @warn 'The `fluid-property` mixin outputs nothing: use one unit for #{$min-value} and #{$max-value}, and one for #{$min-screen} and #{$max-screen}';
+  }
+
   // The formulas measure the values in the unit of the screens; other units come out wrong
   @if not math.compatible($min-value, $min-screen) and warnings.$illusion-display-warnings != false {
     @warn 'The values in the `fluid-property` mixin should use the same unit as the screens, got #{$min-value} and #{$min-screen}';
