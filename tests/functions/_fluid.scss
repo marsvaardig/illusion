@@ -1,0 +1,8 @@
+@use "../../scss/illusion" as *;
+
+.foo {
+  font-size: fluid(16, 24);
+  padding-block: fluid(16px, 40px, $from: 390, $to: 1392);
+  margin-top: fluid(40, 16);
+  gap: fluid(20, 20);
+}

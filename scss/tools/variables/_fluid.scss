@@ -1,0 +1,11 @@
+@use "breakpoints";
+@use "grid";
+
+// Fluid
+//
+// Viewport widths between which fluid() scales a value: by default from the
+// smallest breakpoint up to the width where the grid stops growing.
+// Design pixels; unitless, px, rem and em are all accepted.
+
+$illusion-fluid-from:             breakpoints.$alfa !default;
+$illusion-fluid-to:               grid.$illusion-grid-maxwidth !default;

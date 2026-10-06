@@ -152,6 +152,7 @@ Illusion comes with a great mixin and function library. All the parameters insid
 ## Functions
 
 {% include documentation/functions/calculateRatio.html %}
+{% include documentation/functions/fluid.html %}
 {% include documentation/functions/getMargin.html %}
 {% include documentation/functions/getWidth.html %}
 {% include documentation/functions/spacing.html %}

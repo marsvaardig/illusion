@@ -1,0 +1,89 @@
+// Globals
+@use "sass:math";
+@use "sass:meta";
+@use "../variables/fluid" as fluid-variables;
+@use "../variables/type";
+@use "px";
+@use "strip-unit";
+
+// Fluid
+// ==========================================================================
+// Two design values into a clamp() that scales linearly between
+// $illusion-fluid-from and $illusion-fluid-to.
+//
+//   font-size: fluid(25, 50);
+//   padding-block: fluid(16, 40, $to: 960);
+//
+// Values are design pixels. Unitless, px, rem and em are accepted; the output is
+// always rem (via px()), so it keeps honouring the user's font-size setting.
+// $min may be larger than $max for values that shrink as the viewport grows.
+
+// Keeps calculated values readable in the compiled CSS. Four decimals is
+// lossless for whole-pixel designs.
+@function _round($value, $digits: 4) {
+  $factor: math.pow(10, $digits);
+
+  @return math.div(math.round($value * $factor), $factor);
+}
+
+// Everything is calculated in design pixels, so normalise the input first.
+@function _pixels($value, $name) {
+  @if meta.type-of($value) != "number" {
+    @error "fluid(): #{$name} must be a number, got #{meta.inspect($value)}.";
+  }
+
+  $unit: math.unit($value);
+
+  @if $unit == "" or $unit == "px" {
+    @return strip-unit.strip-unit($value);
+  } @else if $unit == "rem" or $unit == "em" {
+    @return strip-unit.strip-unit($value) * type.$root-site-font-size;
+  }
+
+  @error "fluid(): #{$name} must be unitless, px, rem or em, got #{$unit}.";
+}
+
+@function fluid(
+  $min,
+  $max,
+  $from: fluid-variables.$illusion-fluid-from,
+  $to: fluid-variables.$illusion-fluid-to
+) {
+  $min-px: _pixels($min, "$min");
+  $max-px: _pixels($max, "$max");
+  $from-px: _pixels($from, "$from");
+  $to-px: _pixels($to, "$to");
+
+  @if $from-px == $to-px {
+    @error "fluid(): $from and $to must differ, both are #{$from-px}px.";
+  }
+
+  // Nothing to interpolate; a plain value beats a clamp() that never clamps.
+  @if $min-px == $max-px {
+    @return _round(px.px($min-px));
+  }
+
+  // Slope of the line through (from, min) and (to, max), and the value it would
+  // have at a 0px viewport: intercept + slope * vw is the fluid middle.
+  $slope: math.div($max-px - $min-px, $to-px - $from-px);
+  $intercept: $min-px - ($slope * $from-px);
+
+  // clamp() wants the smallest value first, which flips for shrinking values.
+  $lower: px.px(math.min($min-px, $max-px));
+  $upper: px.px(math.max($min-px, $max-px));
+
+  // A shrinking value has a negative slope; subtract it rather than adding a
+  // negative number.
+  $vw: _round(math.abs($slope) * 100);
+  $operator: "+";
+
+  @if $slope < 0 {
+    $operator: "-";
+  }
+
+  @return clamp(
+    #{_round($lower)},
+    #{_round(px.px($intercept))} #{$operator} #{$vw}vw,
+    #{_round($upper)}
+  );
+}
