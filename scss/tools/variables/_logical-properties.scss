@@ -94,4 +94,4 @@ $illusion-logical-properties-map: map-extend.map-collect(
         $illusion-logical-properties-float,
         $illusion-logical-properties-clear,
         $illusion-logical-properties-text-align,
-);
+) !default;

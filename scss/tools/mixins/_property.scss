@@ -32,7 +32,7 @@
           $property: $val;
         }
       }
-      @if (($property == 'margin' and logical.$illusion-logical-properties-margin != false) or ($property == 'padding') and logical.$illusion-logical-properties-padding != false) and list.length($value) != 1 {
+      @if (($property == 'margin' and logical.$illusion-logical-properties-margin != false) or ($property == 'padding' and logical.$illusion-logical-properties-padding != false)) and list.length($value) != 1 {
         @if list.length($value) == 4 {
           #{$property}-block-start: list.nth($value, 1);
           #{$property}-inline-end: list.nth($value, 2);

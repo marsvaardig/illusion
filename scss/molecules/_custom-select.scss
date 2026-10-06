@@ -104,7 +104,7 @@
     }
   }
 
-  @if (form.$illusion-custom-select-theme != false) or form.$illusion-custom-select-theme == true {
+  @if form.$illusion-custom-select-theme != false {
     // Theming custom-select
     #{form.$illusion-custom-select-selector} {
       border: form.$illusion-custom-select-border;
